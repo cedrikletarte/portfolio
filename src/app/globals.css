@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@layer base{
+    body{
+        @apply font-[Raleway];
+    }
+
+    li{
+        @apply px-4;
+        @apply cursor-pointer;
+    }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0A192F !important; /* Set the background color to transparent */
+}
+
+
+
+.content-div{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+}
+
+.content-div:hover{
+    background-image: linear-gradient(
+        to right,
+        rgba(112,157,255,0.8),
+        hsla(242,74%,61%,0.8)
+    )!important;
+}
+
+@keyframes slide-in {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.5s forwards;
+  }
+
+
+  .border-effect {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .border-effect::before,
+  .border-effect::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #DB2777;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .border-effect::before {
+    right: 50%;
+  }
+  
+  .border-effect::after {
+    left: 50%;
+  }
+  
+  .border-effect:hover::before,
+  .border-effect:hover::after {
+    width: 50%;
+  }
+  
+
+  html, body {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  }
+
+/* Hide the scrollbar */
+body::-webkit-scrollbar {
+  width: 0.0em;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
