@@ -1,0 +1,31 @@
+variables:
+  IMAGE_TAGGED_NAME: "portfolio-app:latest"
+
+stages:
+  - build
+  - deploy
+
+build-job:
+  stage: build
+  image: docker
+  before_script:
+    # download docker file from docker-configs repo
+    - wget -O /opt/Dockerfile --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/dockerfiles%2Fportfolio%2Fportfolio.cloud.Dockerfile/raw\?ref=master
+    - docker --version
+  script:
+    - docker build -f /opt/Dockerfile -t "${IMAGE_TAGGED_NAME}" --no-cache --network=host .
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_PROJECT_ID == "1"
+
+deploy-job:
+  stage: deploy
+  image: docker/compose:latest
+  needs: [build-job]
+  before_script:
+    # download docker-compose file from docker-configs repo
+    - wget -O /opt/docker-compose.yml --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/docker-compose%2Fportfolio%2Fdocker-compose.yml/raw\?ref=master
+  script:
+    - docker compose -f /opt/docker-compose.yml down || true
+    - docker compose -f /opt/docker-compose.yml up -d --build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_PROJECT_ID == "1"
