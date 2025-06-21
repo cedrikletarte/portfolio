@@ -1,7 +1,5 @@
 variables:
   IMAGE_TAGGED_NAME: "portfolio-app:latest"
-  CI_SERVER_URL: http://host.docker.internal:8929
-
 stages:
   - build
   - deploy
