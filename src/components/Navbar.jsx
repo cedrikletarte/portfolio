@@ -1,19 +1,24 @@
 "use client"
 /* */
 
+import { useTranslations } from 'next-intl'
 import {useState} from 'react'
 import {FaBars, FaTimes, FaGithub} from 'react-icons/fa'
 import {HiOutlineMail} from 'react-icons/hi'
 import {BsFillPersonLinesFill} from 'react-icons/bs'
 import {scroller} from 'react-scroll';
 import LoadingIcons from 'react-loading-icons'
-
+import { useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
 
 const Navbar = () => {
-
+  const t = useTranslations();
   const [nav, setnav] = useState(false);
   const [loading, setloading] = useState(false)
   const handleClick = () => setnav(!nav);
+
+  const locale = useLocale();
+  const router = useRouter();
 
   const scrollTo = (elementName) => {
     scroller.scrollTo(elementName, {
@@ -44,10 +49,11 @@ const Navbar = () => {
   };
 
   const downloadFile = () => {
-    const fileUrl = '/cv.pdf'; // Replace with your file URL
+    const fileUrl = locale === 'fr' ? '/cv_fr.pdf' : '/cv_en.pdf';
+    const filename = "Cedrik_Letarte_CV.pdf";
     const link = document.createElement('a');
     link.href = fileUrl;
-    link.download = 'Cédrik Letarte curriculum vitae.pdf'; // Replace with your desired filename
+    link.download = filename;
     link.click();
   }
   
@@ -60,11 +66,19 @@ const Navbar = () => {
 
         {/* menu  className='py-6 text-4xl' */}
              <ul className='hidden md:flex'>
-                <li className="border-effect" onClick={() => scrollTo('home')}>Accueil</li>
-                <li className="border-effect" onClick={() => scrollTo('about')}>À propos</li>
-                <li className="border-effect" onClick={() => scrollTo('skills')}>Compétences</li>
-                <li className="border-effect" onClick={() => scrollTo('work')}>Projets</li>
-                <li className="border-effect" onClick={() => scrollTo('contact')}>Contact</li>
+                <li className="border-effect" onClick={() => scrollTo('home')}>{t('navbar.home')}</li>
+                <li className="border-effect" onClick={() => scrollTo('about')}>{t('navbar.about')}</li>
+                <li className="border-effect" onClick={() => scrollTo('skills')}>{t('navbar.skills')}</li>
+                <li className="border-effect" onClick={() => scrollTo('work')}>{t('navbar.work')}</li>
+                <li className="border-effect" onClick={() => scrollTo('contact')}>{t('navbar.contact')}</li>
+                <li className="border-effect">
+                  <button
+                    onClick={() => router.replace(`/${locale === 'fr' ? 'en' : 'fr'}`)}
+                    className="w-full h-full"
+                  >
+                    {locale === 'fr' ? 'EN' : 'FR'}
+                  </button>
+                </li>
              </ul>
 
         {/* Hamburger */}
@@ -79,11 +93,19 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <ul className={!nav ? 'hidden' : 'absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center animate-slide-in' }>
-            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('home')}>Accueil</li>
-            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('about')}>À propos</li>
-            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('skills')}>Compétences</li>
-            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('work')}>Projets</li>
-            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('contact')}>Contact</li>
+            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('home')}>{t('navbar.home')}</li>
+            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('about')}>{t('navbar.about')}</li>
+            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('skills')}>{t('navbar.skills')}</li>
+            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('work')}>{t('navbar.work')}</li>
+            <li className="border-effect py-6 text-4xl" onClick={() => scrollToMobile('contact')}>{t('navbar.contact')}</li>
+            <li className="border-effect py-6 text-4xl">
+              <button
+                onClick={() => router.replace(`/${locale === 'fr' ? 'en' : 'fr'}`)}
+                className="w-full h-full"
+              >
+                {locale === 'fr' ? 'EN' : 'FR'}
+              </button>
+            </li>
         </ul>
 
         {/* Social icons */}

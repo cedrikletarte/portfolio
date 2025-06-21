@@ -1,6 +1,7 @@
 "use client"
 /* */
 
+import { useTranslations } from 'next-intl';
 import {useState} from 'react'
 import Server from './Server';
 import Website from './Website';
@@ -9,6 +10,7 @@ import Ai from './Ai';
 import {scroller} from 'react-scroll';
 
 function Work() {
+  const t = useTranslations();
   const [nav, setnav] = useState('');
 
   const scrollTo = (elementName) => {
@@ -48,8 +50,8 @@ function Work() {
       <div name='work' className='w-full md:h-screen text-gray-300 bg-[#0a192f]'>
         <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
           <div className='pb-8'>
-            <p className='text-4xl font-bold inline border-b-4 text-gray-300 border-pink-600'>Projets</p>
-            <p className='py-6'>Découvrez certains de mes travaux récents.</p>
+            <p className='text-4xl font-bold inline border-b-4 text-gray-300 border-pink-600'>{t('work.projects')}</p>
+            <p className='py-6'>{t('work.recent')}</p>
           </div>
 
           {/* Container */}
@@ -60,10 +62,10 @@ function Work() {
               {/* Hover Effects */}
               <div className='opacity-0 group-hover:opacity-100 text-center transition-opacity duration-500'>
                 <span className='text-2xl font-bold  text-white tracking-wider'>
-                  Configuration d&apos;un serveur multimédia
+                  {t('work.server')}
                 </span>
                 <div className='pt-8 text-center'>
-                  <button onClick={() => handleClick("server")} className='text-center ronded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>Détails</button>
+                  <button onClick={() => handleClick("server")} className='text-center ronded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>{t('work.details')}</button>
                 </div>
               </div>
             </div>
@@ -72,10 +74,10 @@ function Work() {
               {/* Hover Effects */}
               <div className='opacity-0 group-hover:opacity-100 text-center transition-opacity duration-500'>
                 <span className='text-2xl font-bold  text-white tracking-wider'>
-                  Création d&apos;une page web portfolio
+                  {t('work.website')}
                 </span>
                 <div className='pt-8 text-center'>
-                  <button onClick={() => handleClick("website")} className='text-center ronded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>Détails</button>
+                  <button onClick={() => handleClick("website")} className='text-center ronded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>{t('work.details')}</button>
                 </div>
               </div>
             </div>
@@ -84,10 +86,10 @@ function Work() {
               {/* Hover Effects */}
               <div className='opacity-0 group-hover:opacity-100 text-center transition-opacity duration-500'>
                 <span className='text-2xl font-bold  text-white tracking-wider'>
-                  Réalisation d&apos;un jeu vidéo
+                  {t('work.gaming')}
                 </span>
                 <div className='pt-8 text-center'>
-                  <button onClick={() => handleClick("gaming")} className='text-center ronded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>Détails</button>
+                  <button onClick={() => handleClick("gaming")} className='text-center ronded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>{t('work.details')}</button>
                 </div>
               </div>
             </div>
@@ -96,10 +98,10 @@ function Work() {
               {/* Hover Effects */}
               <div className='opacity-0 group-hover:opacity-100 text-center transition-opacity duration-500'>
                 <span className='text-2xl font-bold  text-white tracking-wider'>
-                  Création d&apos;une intelligence artificielle
+                  {t('work.ai')}
                 </span>
                 <div className='pt-8 text-center'>
-                  <button onClick={() => handleClick("AI")} className='text-center ronded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>Détails</button>
+                  <button onClick={() => handleClick("AI")} className='text-center ronded-lg px-4 py-3 m-2 bg-white text-gray-700 font-bold text-lg'>{t('work.details')}</button>
                 </div>
               </div>
             </div>
