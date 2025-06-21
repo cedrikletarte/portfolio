@@ -25,14 +25,18 @@ Start the Next.js development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 ## Installation
 
-To automatically install all libraries listed in `requirements.txt`, run the following command in PowerShell at the root of the project:
+To automatically install all libraries listed in `requirements.txt`, run the following command in PowerShell and Bash at the root of the project:
 
 ```powershell
 Get-Content requirements.txt | ForEach-Object { npm install $_ }
 ```
 
+```bash
+xargs -a requirements.txt -n 1 npm install
+```
+
 This will install each dependency listed in the file.
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
