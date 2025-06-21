@@ -1,17 +1,13 @@
 "use client"
-/* */
 
-
-
-import { useTranslations } from 'next-intl'
-import {useState} from 'react'
-import {FaBars, FaTimes, FaGithub} from 'react-icons/fa'
-import {HiOutlineMail} from 'react-icons/hi'
-import {BsFillPersonLinesFill} from 'react-icons/bs'
-import {scroller} from 'react-scroll';
-import LoadingIcons from 'react-loading-icons'
+import { useLocale, useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
-import { useLocale } from 'next-intl'
+import { useState } from 'react'
+import { BsFillPersonLinesFill } from 'react-icons/bs'
+import { FaBars, FaGithub, FaTimes } from 'react-icons/fa'
+import { HiOutlineMail } from 'react-icons/hi'
+import LoadingIcons from 'react-loading-icons'
+import { scroller } from 'react-scroll'
 
 const Navbar = () => {
   const t = useTranslations();

@@ -1,9 +1,9 @@
 "use client";
 
-import { HiArrowNarrowRight } from 'react-icons/hi'
-import { ReactTyped } from 'react-typed';
-import { scroller } from 'react-scroll';
 import { useTranslations } from 'next-intl';
+import { HiArrowNarrowRight } from 'react-icons/hi';
+import { scroller } from 'react-scroll';
+import { ReactTyped } from 'react-typed';
 
 const Home = () => {
   const t = useTranslations();

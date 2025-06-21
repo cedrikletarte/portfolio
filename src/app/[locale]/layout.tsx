@@ -1,8 +1,8 @@
+import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
-import "../globals.css";
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
+import "../globals.css";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

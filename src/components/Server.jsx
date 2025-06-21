@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
 
 const Server = () => {
   const t = useTranslations();

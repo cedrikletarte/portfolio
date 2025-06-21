@@ -1,13 +1,12 @@
 "use client"
-/* */
 
 import { useTranslations } from 'next-intl';
-import {useState} from 'react'
+import { useState } from 'react';
+import { scroller } from 'react-scroll';
+import Ai from './Ai';
+import Gaming from './Gaming';
 import Server from './Server';
 import Website from './Website';
-import Gaming from './Gaming';
-import Ai from './Ai';
-import {scroller} from 'react-scroll';
 
 function Work() {
   const t = useTranslations();

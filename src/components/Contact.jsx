@@ -1,9 +1,7 @@
-"use client";
+"use client"
 
-
-import React from 'react'
-import {MdSend} from 'react-icons/md'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+import { MdSend } from 'react-icons/md';
 
 const Contact = () => {
   const t = useTranslations();

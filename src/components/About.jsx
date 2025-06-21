@@ -1,6 +1,5 @@
-"use client";
+"use client"
   
-
 import { useTranslations } from 'next-intl';
 
 const About = () => {
