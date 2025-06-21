@@ -15,13 +15,6 @@ build-job:
   before_script:
     # download docker file from docker-configs repo
     - wget -O /opt/Dockerfile --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/dockerfiles%2Fportfolio%2Fportfolio.cloud.Dockerfile/raw\?ref=master
-    - docker --version
-    - echo "=== Contenu du Dockerfile téléchargé ==="
-    - head -20 /opt/Dockerfile
-    - echo "=== Fin du contenu ==="
-    - docker --version
-    - docker info 
-    - docker info  # Verify Docker connection
   script:
     - docker build -f /opt/Dockerfile -t "${IMAGE_TAGGED_NAME}" --no-cache --network=host .
   rules:
@@ -34,8 +27,6 @@ deploy-job:
   before_script:
     # download docker-compose file from docker-configs repo
     - wget -O /opt/docker-compose.yml --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/docker-compose%2Fportfolio%2Fdocker-compose.yml/raw\?ref=master
-    - docker --version
-    - docker info  # Verify Docker connection
   script:
     - docker compose -f /opt/docker-compose.yml down || true
     - docker compose -f /opt/docker-compose.yml up -d --build
