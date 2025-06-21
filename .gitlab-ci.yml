@@ -28,7 +28,7 @@ deploy-job:
     # download docker-compose file from docker-configs repo
     - wget -O /opt/docker-compose.yml --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/docker-compose%2Fportfolio%2Fdocker-compose.yml/raw\?ref=master
   script:
-    - docker compose -f /opt/docker-compose.yml down || true
-    - docker compose -f /opt/docker-compose.yml up -d --build
+    - docker-compose -f /opt/docker-compose.yml down || true
+    - docker-compose -f /opt/docker-compose.yml up -d --build
   rules:
     - if: $CI_COMMIT_BRANCH == "master" && $CI_PROJECT_ID == "1"
