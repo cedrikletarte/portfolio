@@ -1,6 +1,7 @@
 variables:
   IMAGE_TAGGED_NAME: "portfolio-app:latest"
   GIT_STRATEGY: clone
+  # Use the internal network hostname that matches your docker-compose service name
   CI_REPOSITORY_URL: "http://gitlab:8929/cedrik/portfolio.git"
 
 stages:
@@ -9,20 +10,40 @@ stages:
 
 build-job:
   stage: build
-  image: docker
+  image: docker:latest
+  services:
+    - name: docker:dind
+      alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: 1
+    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
   before_script:
+    # Add gitlab to /etc/hosts for hostname resolution
+    - echo "172.31.0.2 gitlab" >> /etc/hosts
     - wget -O /opt/Dockerfile --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/dockerfiles%2Fportfolio%2Fportfolio.cloud.Dockerfile/raw\?ref=master
     - docker --version
   script:
-    - docker build -f /opt/Dockerfile -t "${IMAGE_TAGGED_NAME}" --no-cache --network=host .
+    - docker build -f /opt/Dockerfile -t "${IMAGE_TAGGED_NAME}" --no-cache .
   rules:
     - if: $CI_COMMIT_BRANCH == "master" && $CI_PROJECT_ID == "1"
 
 deploy-job:
   stage: deploy
   image: docker/compose:latest
+  services:
+    - name: docker:dind
+      alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: 1
+    DOCKER_CERT_PATH: "$DOCKER_TLS_CERTDIR/client"
   needs: [build-job]
   before_script:
+    # Add gitlab to /etc/hosts for hostname resolution
+    - echo "172.31.0.2 gitlab" >> /etc/hosts
     - wget -O /opt/docker-compose.yml --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/docker-compose%2Fportfolio%2Fdocker-compose.yml/raw\?ref=master
   script:
     - docker compose -f /opt/docker-compose.yml down || true
