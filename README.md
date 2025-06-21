@@ -17,6 +17,22 @@ Install all required dependencies (this will create the `node_modules` folder):
 npm install
 ```
 
+To automatically install all libraries listed in `requirements.txt`, run the following command in PowerShell or Bash at the root of the project depending of your OS:
+
+powershell
+```powershell
+Get-Content requirements.txt | ForEach-Object { npm install $_ }
+```
+
+bash
+```bash
+xargs -a requirements.txt -n 1 npm install
+```
+
+This will install each dependency listed in the file.
+
+
+
 ### 3. Run the development server
 
 Start the Next.js development server:
@@ -24,20 +40,6 @@ Start the Next.js development server:
 ```bash
 npm run dev
 ```
-
-## Installation
-
-To automatically install all libraries listed in `requirements.txt`, run the following command in PowerShell and Bash at the root of the project:
-
-```powershell
-Get-Content requirements.txt | ForEach-Object { npm install $_ }
-```
-
-```bash
-xargs -a requirements.txt -n 1 npm install
-```
-
-This will install each dependency listed in the file.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
