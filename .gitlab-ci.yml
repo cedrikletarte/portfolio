@@ -1,5 +1,7 @@
 variables:
   IMAGE_TAGGED_NAME: "portfolio-app:latest"
+  GIT_STRATEGY: clone
+  CI_REPOSITORY_URL: "http://gitlab:8929/cedrik/portfolio.git"
 
 stages:
   - build
@@ -9,7 +11,6 @@ build-job:
   stage: build
   image: docker
   before_script:
-    # download docker file from docker-configs repo
     - wget -O /opt/Dockerfile --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/dockerfiles%2Fportfolio%2Fportfolio.cloud.Dockerfile/raw\?ref=master
     - docker --version
   script:
@@ -22,7 +23,6 @@ deploy-job:
   image: docker/compose:latest
   needs: [build-job]
   before_script:
-    # download docker-compose file from docker-configs repo
     - wget -O /opt/docker-compose.yml --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/2/repository/files/docker-compose%2Fportfolio%2Fdocker-compose.yml/raw\?ref=master
   script:
     - docker compose -f /opt/docker-compose.yml down || true
