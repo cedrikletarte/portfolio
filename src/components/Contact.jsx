@@ -63,7 +63,8 @@ const Contact = () => {
         setSent(true);
         setTimeout(() => setSent(false), 1200);
       } else {
-        alert(t('error.sending'));
+        const error = await res.json();
+        alert(error.error || t('error.sending'));
       }
     } finally {
       setLoading(false);
