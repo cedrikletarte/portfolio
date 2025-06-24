@@ -11,7 +11,6 @@ import { useEffect, useRef, useState } from 'react';
 import { MdSend } from 'react-icons/md';
 import CircularProgress from '@mui/material/CircularProgress';
 
-
 // Dynamically import the Editor component (Quill-based), only on client side
 const Editor = dynamic(() => import('./Editor'), { ssr: false });
 
