@@ -40,7 +40,6 @@ const Gaming = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        bgcolor: (theme) => theme.palette.background.default,
         color: (theme) => theme.palette.text.primary,
         display: 'flex',
         justifyContent: 'center',

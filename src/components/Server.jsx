@@ -22,7 +22,6 @@ const Server = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        bgcolor: (theme) => theme.palette.background.default,
         color: (theme) => theme.palette.text.primary,
         display: 'flex',
         justifyContent: 'center',
@@ -136,9 +135,7 @@ const Server = () => {
           {/* Display each technology as a card with icon and name */}
           {t.raw('server.techs').map((tech, idx) => (
             <Grid
-              item
-              xs={6}
-              sm={3}
+              size={{ xs: 6, sm: 3 }}
               key={tech}
               sx={{ display: 'flex', justifyContent: 'center' }}
             >

@@ -13,8 +13,6 @@ const Website = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        bgcolor: (theme) => theme.palette.background.default,
-        color: 'white',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

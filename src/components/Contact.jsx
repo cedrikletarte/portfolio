@@ -77,9 +77,8 @@ const Contact = () => {
     // Main container with centered form and background styling
     <Box
       sx={{
-        width: '100%',
+        width: '100%',  
         minHeight: '100vh',
-        bgcolor: (theme) => theme.palette.background.default,
         color: (theme) => theme.palette.text.primary,
         display: 'flex',
         justifyContent: 'center',

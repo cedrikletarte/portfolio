@@ -85,7 +85,7 @@ function Projects() {
   return (
     <>
       {/* Main container for the projects section */}
-      <Box name="work" sx={{ width: '100%', minHeight: '100vh', bgcolor: (theme) => theme.palette.background.default, color: (theme) => theme.palette.text.primary, py: 6 }}>
+      <Box name="work" sx={{ width: '100%', minHeight: '100vh', color: (theme) => theme.palette.text.primary, py: 6 }}>
         <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2 }}>
           {/* Section title and subtitle */}
           <Box sx={{ pb: 4 }}>
@@ -110,10 +110,7 @@ function Projects() {
             {projects.map((project) => (
               <Grid
                 key={project.key}
-                item
-                xs={12}
-                sm={6}
-                md="auto"
+                size={{ xs: 12, sm: 6, md: "auto" }}
                 sx={{
                   display: 'flex',
                   justifyContent: { xs: 'center', md: 'flex-start' },

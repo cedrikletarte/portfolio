@@ -27,7 +27,6 @@ const Home = () => {
       sx={{
         width: '100%',
         minHeight: '100vh',
-        bgcolor: (theme) => theme.palette.background.default,
         color: (theme) => theme.palette.text.primary,
         display: 'flex',
         alignItems: 'center',

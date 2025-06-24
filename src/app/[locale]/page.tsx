@@ -1,4 +1,5 @@
 import About from '../../components/About';
+import AnimatedThemeWrapper from '../../components/AnimatedThemeWrapper';
 import Contact from '../../components/Contact';
 import Home from '../../components/Home';
 import Navbar from '../../components/Navbar';
@@ -9,12 +10,14 @@ import { CustomThemeProvider } from '../../theme/ThemeContext';
 export default function App() {
   return (
     <CustomThemeProvider>
-      <Navbar/>
-      <Home/>
-      <About/>
-      <Skills/>
-      <Projects/>
-      <Contact/>
+      <AnimatedThemeWrapper>
+        <Navbar />
+        <Home />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </AnimatedThemeWrapper>
     </CustomThemeProvider>
   );
 }
