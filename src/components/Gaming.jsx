@@ -1,13 +1,17 @@
 "use client"
 
-import { useTranslations } from 'next-intl';
-import { useState } from 'react';
-import { Box, Paper, Typography, Button, Divider, IconButton } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Box, Divider, IconButton, Paper } from '@mui/material';
+import Text from '@mui/material/Typography';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 const Gaming = () => {
+  // Initialize translation function
   const t = useTranslations();
+
+  // Array of media items (images for now, can add videos)
   const media = [
     { type: 'image', src: "/assets/menu.png" },
     { type: 'image', src: "/assets/orthogonal.png" },
@@ -18,17 +22,21 @@ const Gaming = () => {
     // Add more media items here
   ];
 
+  // State to track the current media index
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Handler for previous media button
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? media.length - 1 : prevIndex - 1));
   };
 
+  // Handler for next media button
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex === media.length - 1 ? 0 : prevIndex + 1));
   };
 
   return (
+    // Main container with centered content and background styling
     <Box
       sx={{
         minHeight: '100vh',
@@ -40,6 +48,7 @@ const Gaming = () => {
         p: 4,
       }}
     >
+      {/* Paper component for card-like appearance */}
       <Paper
         elevation={6}
         sx={{
@@ -54,7 +63,8 @@ const Gaming = () => {
           alignItems: 'stretch',
         }}
       >
-        <Typography
+        {/* Main title with underline and centered */}
+        <Text
           variant="h3"
           component="h1"
           fontWeight="bold"
@@ -69,50 +79,51 @@ const Gaming = () => {
           }}
         >
           {t('gaming.title')}
-        </Typography>
-
-        <Typography variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
+        </Text>
+        {/* Introduction text */}
+        <Text variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
           {t('gaming.intro')}
-        </Typography>
-
-        <Typography variant="h6" fontWeight="bold" sx={{ width: '100%', textAlign: 'left' }}>
+        </Text>
+        {/* Objectives section title */}
+        <Text variant="h6" fontWeight="bold" sx={{ width: '100%', textAlign: 'left' }}>
           {t('gaming.objectives')}
-        </Typography>
-
+        </Text>
+        {/* Divider for visual separation */}
         <Divider sx={{ my: 2, bgcolor: '#ec4899', width: '100%' }} />
-
-        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
+        {/* List of goals with subtitles and descriptions */}
+        <Text variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
           {t('gaming.goal1Title')}
-        </Typography>
-        <Typography variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
+        </Text>
+        <Text variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
           {t('gaming.goal1Desc')}
-        </Typography>
+        </Text>
         <br />
 
-        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
+        <Text variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
           {t('gaming.goal2Title')}
-        </Typography>
-        <Typography variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
+        </Text>
+        <Text variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
           {t('gaming.goal2Desc')}
-        </Typography>
+        </Text>
         <br />
 
-        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
+        <Text variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
           {t('gaming.goal3Title')}
-        </Typography>
-        <Typography variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
+        </Text>
+        <Text variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
           {t('gaming.goal3Desc')}
-        </Typography>
+        </Text>
         <br />
 
-        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
+        <Text variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
           {t('gaming.goal4Title')}
-        </Typography>
-        <Typography variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
+        </Text>
+        <Text variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
           {t('gaming.goal4Desc')}
-        </Typography>
+        </Text>
         <br />
 
+        {/* Media carousel section with navigation buttons */}
         <Box
           sx={{
             position: 'relative',
@@ -125,6 +136,7 @@ const Gaming = () => {
             justifyContent: 'center',
           }}
         >
+          {/* Display image or video depending on media type */}
           {media[currentIndex].type === 'image' ? (
             <Box
               component="img"
@@ -150,6 +162,7 @@ const Gaming = () => {
               }}
             />
           )}
+          {/* Previous media button */}
           <IconButton
             onClick={handlePrev}
             sx={{
@@ -164,6 +177,7 @@ const Gaming = () => {
           >
             <ArrowBackIosNewIcon />
           </IconButton>
+          {/* Next media button */}
           <IconButton
             onClick={handleNext}
             sx={{

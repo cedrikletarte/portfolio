@@ -1,13 +1,13 @@
 "use client"
 
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
-import CircularProgress from '@mui/material/CircularProgress'
-import { useLocale, useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
-import { scroller } from 'react-scroll'
-import { useThemeMode } from '../theme/ThemeContext'
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { scroller } from 'react-scroll';
+import { useThemeMode } from '../theme/ThemeContext';
 
 import {
   AppBar,
@@ -20,21 +20,34 @@ import {
   ListItemButton,
   ListItemText,
   Toolbar,
-} from '@mui/material'
+} from '@mui/material';
 
-import GitHubIcon from '@mui/icons-material/GitHub'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
-import MenuIcon from '@mui/icons-material/Menu'
-import SchoolIcon from '@mui/icons-material/School'
+import GitHubIcon from '@mui/icons-material/GitHub';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import MenuIcon from '@mui/icons-material/Menu';
+import SchoolIcon from '@mui/icons-material/School';
 
+// Navbar component definition
 const Navbar = () => {
+  // Initialize translation function
   const t = useTranslations()
+
+  // State for mobile drawer open/close
   const [drawerOpen, setDrawerOpen] = useState(false)
+
+  // State for loading spinner (CV download)
   const [loading, setLoading] = useState(false)
+
+  // Theme mode and toggle function from context
   const { mode, toggleTheme } = useThemeMode();
+
+  // Current locale (fr/en)
   const locale = useLocale()
+
+  // Next.js router for navigation
   const router = useRouter()
 
+  // Function to scroll smoothly to a section by name
   const scrollTo = (elementName) => {
     scroller.scrollTo(elementName, {
       duration: 800,
@@ -43,6 +56,7 @@ const Navbar = () => {
     })
   }
 
+  // Handler for downloading the CV (shows loading spinner)
   const handleDownload = () => {
     setLoading(true)
     setTimeout(() => {
@@ -51,6 +65,7 @@ const Navbar = () => {
     }, 2000)
   }
 
+  // Helper to trigger file download for the correct locale
   const downloadFile = () => {
     const fileUrl = locale === 'fr' ? '/cv_fr.pdf' : '/cv_en.pdf'
     const filename = "Cedrik_Letarte_CV.pdf"
@@ -60,6 +75,7 @@ const Navbar = () => {
     link.click()
   }
 
+  // Navigation links for sections
   const navLinks = [
     { label: t('navbar.home'), to: 'home' },
     { label: t('navbar.about'), to: 'about' },
@@ -70,12 +86,14 @@ const Navbar = () => {
 
   return (
     <>
+      {/* AppBar: main navigation bar, fixed at the top */}
       <AppBar position="fixed" sx={{ background: (theme) => theme.palette.background.paper, color: (theme) => theme.palette.text.primary, boxShadow: 0 }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', minHeight: 80 }}>
+          {/* Logo and link to homepage */}
           <a href="https://www.cedrikletarte.com" style={{ display: 'flex', alignItems: 'center' }}>
             <img src="/assets/logo2.png" alt="Logo" style={{ width: 50 }} />
           </a>
-          {/* Desktop nav */}
+          {/* Desktop navigation links and actions */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
             {navLinks.map((item) => (
               <Button
@@ -86,7 +104,7 @@ const Navbar = () => {
                   textTransform: 'none',
                   fontWeight: 500,
                   boxShadow: 'none',
-                  // Hover dynamique selon le thème
+                  // Dynamic hover style based on theme
                   '&:hover': {
                     backgroundColor: (theme) =>
                       theme.palette.mode === 'dark'
@@ -110,6 +128,7 @@ const Navbar = () => {
                 {item.label}
               </Button>
             ))}
+            {/* Language switch button */}
             <Button
               color="inherit"
               onClick={() => router.replace(`/${locale === 'fr' ? 'en' : 'fr'}`)}
@@ -117,6 +136,7 @@ const Navbar = () => {
             >
               {locale === 'fr' ? 'EN' : 'FR'}
             </Button>
+            {/* Theme toggle button */}
             <IconButton onClick={toggleTheme} color="inherit"
               sx={{
                 color: (theme) => theme.palette.mode === 'dark'
@@ -130,7 +150,7 @@ const Navbar = () => {
               }
             </IconButton>
           </Box>
-          {/* Mobile menu button */}
+          {/* Mobile menu button (hamburger icon) */}
           <IconButton
             edge="end"
             color="inherit"
@@ -142,7 +162,7 @@ const Navbar = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {/* Drawer for mobile */}
+      {/* Drawer for mobile navigation */}
       <Drawer
         anchor="right"
         open={drawerOpen}
@@ -153,6 +173,7 @@ const Navbar = () => {
       >
         <Box sx={{ mt: 2 }}>
           <List>
+            {/* Navigation links in drawer */}
             {navLinks.map((item) => (
               <ListItem key={item.to} disablePadding>
                 <ListItemButton
@@ -165,6 +186,7 @@ const Navbar = () => {
                 </ListItemButton>
               </ListItem>
             ))}
+            {/* Language switch in drawer */}
             <ListItem disablePadding>
               <ListItemButton
                 onClick={() => {
@@ -173,6 +195,28 @@ const Navbar = () => {
                 }}
               >
                 <ListItemText primary={locale === 'fr' ? 'EN' : 'FR'} />
+              </ListItemButton>
+            </ListItem>
+            {/* Theme toggle in drawer */}
+            <ListItem disablePadding>
+              <ListItemButton
+                onClick={() => {
+                  toggleTheme();
+                  setDrawerOpen(false);
+                }}
+                sx={{
+                  color: (theme) => theme.palette.mode === 'dark'
+                    ? theme.palette.warning.main
+                    : theme.palette.primary.main
+                }}
+              >
+                <ListItemText
+                  primary={mode === 'dark' ? t('navbar.lightMode') || 'Light Mode' : t('navbar.darkMode') || 'Dark Mode'}
+                />
+                {mode === 'dark'
+                  ? <Brightness7Icon sx={{ ml: 1 }} />
+                  : <Brightness4Icon sx={{ ml: 1 }} />
+                }
               </ListItemButton>
             </ListItem>
           </List>
@@ -190,6 +234,7 @@ const Navbar = () => {
             gap: 2,
           }}
         >
+          {/* GitHub icon */}
           <IconButton
             component="a"
             href="https://github.com/Cedrik12"
@@ -200,6 +245,7 @@ const Navbar = () => {
           >
             <GitHubIcon fontSize="large" />
           </IconButton>
+          {/* Email icon */}
           <IconButton
             component="a"
             href="https://mail.google.com/mail/u/0/?fs=1&to=cedrikletarte@gmail.com&tf=cm"
@@ -210,6 +256,7 @@ const Navbar = () => {
           >
             <MailOutlineIcon fontSize="large" />
           </IconButton>
+          {/* CV download icon with loading spinner */}
           <IconButton
             onClick={handleDownload}
             color="inherit"
@@ -224,7 +271,7 @@ const Navbar = () => {
           </IconButton>
         </Box>
       </Drawer>
-      {/* Social icons (desktop only) */}
+      {/* Social icons (desktop only, fixed on the left) */}
       <Box
         sx={{
           display: { xs: 'none', lg: 'flex' },
@@ -236,6 +283,7 @@ const Navbar = () => {
         }}
       >
         <Box component="ul" sx={{ listStyle: 'none', p: 0, m: 0 }}>
+          {/* GitHub link */}
           <Box
             component="li"
             sx={{
@@ -270,6 +318,7 @@ const Navbar = () => {
               <GitHubIcon fontSize="large" sx={{ verticalAlign: 'middle' }} />
             </a>
           </Box>
+          {/* Email link */}
           <Box
             component="li"
             sx={{
@@ -304,6 +353,7 @@ const Navbar = () => {
               <MailOutlineIcon fontSize="large" sx={{ verticalAlign: 'middle' }} />
             </a>
           </Box>
+          {/* CV download button */}
           <Box
             component="li"
             sx={{
@@ -318,7 +368,7 @@ const Navbar = () => {
               px: 0,
             }}
           >
-            { }
+            {/* Button for downloading CV */}
             <Button
               onClick={handleDownload}
               color="inherit"
@@ -327,7 +377,7 @@ const Navbar = () => {
                 color: '#e2e8f0',
                 justifyContent: 'space-between',
                 pl: 2.5,
-                pr: '30px', // <-- 30px du bord droit
+                pr: '30px',
                 bgcolor: 'transparent',
                 fontWeight: 500,
                 textTransform: 'none',
@@ -348,7 +398,7 @@ const Navbar = () => {
           </Box>
         </Box>
       </Box>
-      {/* Spacer for AppBar */}
+      {/* Spacer for AppBar to avoid content being hidden behind navbar */}
       <Toolbar sx={{ minHeight: 80 }} />
     </>
   )

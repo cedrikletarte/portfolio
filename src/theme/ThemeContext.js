@@ -1,7 +1,7 @@
 "use client"
 
-import { createContext, useMemo, useState, useContext } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createContext, useContext, useMemo, useState } from 'react';
 
 const ThemeModeContext = createContext();
 
@@ -10,7 +10,15 @@ export function useThemeMode() {
 }
 
 export function CustomThemeProvider({ children }) {
-  const [mode, setMode] = useState('dark'); // par défaut dark
+
+  const getDefaultMode = () => {
+    if (typeof window !== "undefined" && window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'dark'; // fallback
+  };
+
+  const [mode, setMode] = useState(getDefaultMode);
 
   const theme = useMemo(
     () =>

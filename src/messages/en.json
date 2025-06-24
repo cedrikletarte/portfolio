@@ -54,7 +54,9 @@
     "cv": "CV",
     "downloadCv": "Download CV",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "lightMode": "Light mode",
+    "darkMode": "Dark mode"
   },
   "server": {
     "title": "Media Server",

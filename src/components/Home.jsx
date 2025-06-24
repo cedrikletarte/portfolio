@@ -1,16 +1,17 @@
 "use client"
 
-import { useTranslations } from 'next-intl'
-import { HiArrowNarrowRight } from 'react-icons/hi'
-import { scroller } from 'react-scroll'
-import { ReactTyped } from 'react-typed'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Text from '@mui/material/Typography';
+import { useTranslations } from 'next-intl';
+import { scroller } from 'react-scroll';
+import { ReactTyped } from 'react-typed';
 
 const Home = () => {
+  // Initialize translation function
   const t = useTranslations()
 
+  // Function to scroll smoothly to a section by name
   const scrollTo = (elementName) => {
     scroller.scrollTo(elementName, {
       duration: 800,
@@ -20,6 +21,7 @@ const Home = () => {
   }
 
   return (
+    // Main container with responsive padding and background color
     <Box
       name="home"
       sx={{
@@ -32,6 +34,7 @@ const Home = () => {
         py: { xs: 4, md: 0 },
       }}
     >
+      {/* Inner content box, centered and responsive */}
       <Box
         sx={{
           maxWidth: 1000,
@@ -44,10 +47,12 @@ const Home = () => {
           height: { xs: 'auto', md: '100%' },
         }}
       >
-        <Typography sx={{ color: '#ec4899', fontWeight: 600, mb: { xs: 1, md: 2 }, fontSize: { xs: 18, md: 22 } }}>
+        {/* Greeting text */}
+        <Text sx={{ color: '#ec4899', fontWeight: 600, mb: { xs: 1, md: 2 }, fontSize: { xs: 18, md: 22 } }}>
           {t('home.hello')}
-        </Typography>
-        <Typography
+        </Text>
+        {/* Main name/title */}
+        <Text
           variant="h2"
           sx={{
             fontWeight: 'bold',
@@ -57,8 +62,9 @@ const Home = () => {
           }}
         >
           Cédrik
-        </Typography>
-        <Typography
+        </Text>
+        {/* Animated typing effect for roles/descriptions */}
+        <Text
           component="div"
           sx={{
             fontWeight: 500,
@@ -74,10 +80,12 @@ const Home = () => {
             backSpeed={50}
             loop
           />
-        </Typography>
-        <Typography sx={{ py: 2, maxWidth: 900, textAlign: 'justify', fontSize: { xs: 15, md: 18 } }}>
+        </Text>
+        {/* Description paragraph */}
+        <Text sx={{ py: 2, maxWidth: 900, textAlign: 'justify', fontSize: { xs: 15, md: 18 } }}>
           {t('home.desc')}
-        </Typography>
+        </Text>
+        {/* Call-to-action button to scroll to "work" section */}
         <Button
           variant="outlined"
           onClick={() => scrollTo('work')}

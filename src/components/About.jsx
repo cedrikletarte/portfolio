@@ -1,14 +1,18 @@
 "use client"
 
-import { useTranslations } from 'next-intl'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Text from '@mui/material/Typography';
+import { useTranslations } from 'next-intl';
 
+// About component definition
 const About = () => {
+
+    // Initialize the translation function
     const t = useTranslations()
 
     return (
+        // Main container with responsive padding and background color
         <Box
             sx={{
                 width: '100%',
@@ -22,9 +26,10 @@ const About = () => {
             }}
             name="about"
         >
-            <Grid 
-                container 
-                spacing={{ xs: 3, md: 4 }} 
+            {/* Grid container for layout, centered and responsive */}
+            <Grid
+                container
+                spacing={{ xs: 3, md: 4 }}
                 sx={{
                     alignItems: 'center',
                     maxWidth: 1200,
@@ -32,7 +37,7 @@ const About = () => {
                     width: '100%',
                 }}
             >
-                {/* Titre - Toujours en pleine largeur */}
+                {/* Title section - always full width */}
                 <Grid size={12}>
                     <Box
                         sx={{
@@ -40,7 +45,8 @@ const About = () => {
                             mb: { xs: 2, md: 4 },
                         }}
                     >
-                        <Typography
+                        {/* Main title, bold with a pink underline */}
+                        <Text
                             variant="h3"
                             sx={{
                                 fontWeight: 'bold',
@@ -50,12 +56,13 @@ const About = () => {
                                 pb: 1,
                             }}
                         >
+                            {/* Translated title */}
                             {t('about.title')}
-                        </Typography>
+                        </Text>
                     </Box>
                 </Grid>
 
-                {/* Section Introduction */}
+                {/* Introduction section - left column on desktop */}
                 <Grid size={{ xs: 12, md: 6 }}>
                     <Box
                         sx={{
@@ -64,27 +71,29 @@ const About = () => {
                             mb: { xs: 2, md: 0 },
                         }}
                     >
-                        <Typography 
-                            variant="h5" 
-                            sx={{ 
+                        {/* Translated introduction text, bold and larger */}
+                        <Text
+                            variant="h5"
+                            sx={{
                                 fontWeight: 700,
                                 fontSize: { xs: 20, sm: 24, md: 28 },
                                 lineHeight: 1.3,
                             }}
                         >
                             {t('about.intro')}
-                        </Typography>
+                        </Text>
                     </Box>
                 </Grid>
 
-                {/* Section Description */}
+                {/* Description section - right column on desktop */}
                 <Grid size={{ xs: 12, md: 6 }}>
                     <Box
                         sx={{
                             pl: { md: 2 },
                         }}
                     >
-                        <Typography
+                        {/* Translated description text, justified alignment */}
+                        <Text
                             sx={{
                                 textAlign: { xs: 'justify', md: 'justify' },
                                 fontSize: { xs: 14, sm: 15, md: 16 },
@@ -93,7 +102,7 @@ const About = () => {
                             }}
                         >
                             {t('about.desc')}
-                        </Typography>
+                        </Text>
                     </Box>
                 </Grid>
             </Grid>

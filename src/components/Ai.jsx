@@ -1,12 +1,17 @@
 "use client"
 
+import { Box, List, ListItem, ListItemText, Paper } from '@mui/material';
+import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
-import { Box, Paper, Typography, List, ListItem, ListItemText } from '@mui/material';
 
+// Ai component definition
 const Ai = () => {
+
+  // Initialize the translation function
   const t = useTranslations();
 
   return (
+    // Main container with centered content and background styling
     <Box
       sx={{
         minHeight: '100vh',
@@ -18,6 +23,7 @@ const Ai = () => {
         p: 4,
       }}
     >
+      {/* Paper component for card-like appearance */}
       <Paper
         elevation={6}
         sx={{
@@ -32,7 +38,8 @@ const Ai = () => {
           alignItems: 'stretch',
         }}
       >
-        <Typography
+        {/* Main title with underline and centered */}
+        <Text
           variant="h3"
           component="h1"
           fontWeight="bold"
@@ -46,17 +53,21 @@ const Ai = () => {
             width: '100%',
           }}
         >
+          {/* Translated title */}
           {t('ai.title')}
-        </Typography>
+        </Text>
 
-        <Typography variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
+        {/* Introduction text, justified alignment */}
+        <Text variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
           {t('ai.intro')}
-        </Typography>
+        </Text>
 
-        <Typography variant="h6" fontWeight="bold" sx={{ width: '100%', textAlign: 'left', mt: 2 }}>
+        {/* Technologies section title */}
+        <Text variant="h6" fontWeight="bold" sx={{ width: '100%', textAlign: 'left', mt: 2 }}>
           {t('ai.techTitle')}
-        </Typography>
+        </Text>
 
+        {/* List of AI technologies/features */}
         <List sx={{ width: '100%', pl: 2 }}>
           <ListItem>
             <ListItemText primary={t('ai.minimax')} />
@@ -72,6 +83,7 @@ const Ai = () => {
           </ListItem>
         </List>
 
+        {/* Image section, centered */}
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
           <Box
             component="img"

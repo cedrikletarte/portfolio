@@ -3,23 +3,26 @@
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { scroller } from 'react-scroll';
+
 import Ai from './Ai';
 import Gaming from './Gaming';
 import Server from './Server';
 import Website from './Website';
 
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Text from '@mui/material/Typography';
 
 function Projects() {
+  // Initialize translation function
   const t = useTranslations();
+  // State to track which project is selected
   const [nav, setnav] = useState('');
 
+  // Function to scroll smoothly to a section by name
   const scrollTo = (elementName) => {
     scroller.scrollTo(elementName, {
       duration: 800,
@@ -28,15 +31,17 @@ function Projects() {
     });
   };
 
+  // Handle click on a project card
   const handleClick = (e) => {
     if (nav !== e) {
       setnav(e);
-      scrollTo('handleDetails');
+      scrollTo('handleDetails'); // Scroll to details section
     } else {
       setnav('');
     }
   };
 
+  // Render the selected project details component
   const handleDetails = () => {
     if (nav === 'server') {
       return <Server />
@@ -53,6 +58,7 @@ function Projects() {
     return null;
   }
 
+  // List of projects to display as cards
   const projects = [
     {
       key: 'server',
@@ -78,21 +84,24 @@ function Projects() {
 
   return (
     <>
+      {/* Main container for the projects section */}
       <Box name="work" sx={{ width: '100%', minHeight: '100vh', bgcolor: (theme) => theme.palette.background.default, color: (theme) => theme.palette.text.primary, py: 6 }}>
         <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2 }}>
+          {/* Section title and subtitle */}
           <Box sx={{ pb: 4 }}>
-            <Typography variant="h3" component="h2" fontWeight="bold" sx={{
+            <Text variant="h3" component="h2" fontWeight="bold" sx={{
               fontWeight: 'bold',
               borderBottom: '4px solid #ec4899',
               fontSize: { xs: 28, md: 36 },
               display: 'inline-block',
             }}>
               {t('work.projects')}
-            </Typography>
-            <Typography variant="subtitle1" sx={{ py: 2 }}>
+            </Text>
+            <Text variant="subtitle1" sx={{ py: 2 }}>
               {t('work.recent')}
-            </Typography>
+            </Text>
           </Box>
+          {/* Grid of project cards */}
           <Grid
             container
             spacing={3}
@@ -110,6 +119,7 @@ function Projects() {
                   justifyContent: { xs: 'center', md: 'flex-start' },
                 }}
               >
+                {/* Project card with background image */}
                 <Card
                   sx={{
                     height: 300,
@@ -128,6 +138,7 @@ function Projects() {
                   }}
                   elevation={6}
                 >
+                  {/* Card action area for click interaction */}
                   <CardActionArea
                     onClick={() => handleClick(project.key)}
                     sx={{
@@ -144,6 +155,7 @@ function Projects() {
                       cursor: 'pointer',
                     }}
                   >
+                    {/* Card content: project title and details button */}
                     <CardContent
                       sx={{
                         textAlign: 'center',
@@ -156,9 +168,9 @@ function Projects() {
                         p: 2,
                       }}
                     >
-                      <Typography variant="h5" fontWeight="bold" gutterBottom >
+                      <Text variant="h5" fontWeight="bold" gutterBottom >
                         {project.title}
-                      </Typography>
+                      </Text>
                       <Box
                         sx={{
                           mt: 2,
@@ -181,9 +193,11 @@ function Projects() {
           </Grid>
         </Box>
       </Box>
+      {/* Section for displaying the selected project's details */}
       <Box id="handleDetails">{handleDetails()}</Box>
     </>
   );
 }
 
-export default Projects
+// Export the Projects component as default
+export default Projects;

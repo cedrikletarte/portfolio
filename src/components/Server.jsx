@@ -9,14 +9,16 @@ import {
   ListItem,
   ListItemText,
   Paper,
-  Typography,
 } from '@mui/material';
+import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 
 const Server = () => {
+  // Initialize translation function
   const t = useTranslations();
 
   return (
+    // Main container with centered content and background styling
     <Box
       sx={{
         minHeight: '100vh',
@@ -28,6 +30,7 @@ const Server = () => {
         p: 4,
       }}
     >
+      {/* Paper component for card-like appearance */}
       <Paper
         elevation={6}
         sx={{
@@ -42,7 +45,8 @@ const Server = () => {
           alignItems: 'center',
         }}
       >
-        <Typography
+        {/* Main title with underline and centered */}
+        <Text
           variant="h3"
           component="h1"
           fontWeight="bold"
@@ -57,22 +61,24 @@ const Server = () => {
           }}
         >
           {t('server.title')}
-        </Typography>
+        </Text>
 
-        <Typography variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%'}}>
+        {/* Introduction text */}
+        <Text variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
           {t('server.intro')}
-        </Typography>
+        </Text>
 
         {/* Docker Section */}
-        <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%'}}>
+        <Text variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%' }}>
           {t('server.dockerTitle')}
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 1, width: '100%' }}>
+        </Text>
+        <Text variant="body2" sx={{ mb: 1, width: '100%' }}>
           {t('server.dockerDesc')}
-        </Typography>
+        </Text>
+        {/* Docker features list */}
         <List dense sx={{ width: '100%' }}>
           {t.raw('server.dockerList').map((item, idx) => (
-            <ListItem key={idx} sx={{ pl: 2}}>
+            <ListItem key={idx} sx={{ pl: 2 }}>
               <ListItemText
                 primary={
                   <span dangerouslySetInnerHTML={{ __html: item }} />
@@ -82,18 +88,20 @@ const Server = () => {
           ))}
         </List>
 
+        {/* Divider for visual separation */}
         <Divider sx={{ my: 3, bgcolor: '#ec4899', width: '100%' }} />
 
         {/* Security Section */}
-        <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%'}}>
+        <Text variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%' }}>
           {t('server.securityTitle')}
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 1, width: '100%' }}>
+        </Text>
+        <Text variant="body2" sx={{ mb: 1, width: '100%' }}>
           {t('server.securityDesc')}
-        </Typography>
+        </Text>
+        {/* Security features list */}
         <List dense sx={{ width: '100%' }}>
           {t.raw('server.securityList').map((item, idx) => (
-            <ListItem key={idx} sx={{ pl: 2}}>
+            <ListItem key={idx} sx={{ pl: 2 }}>
               <ListItemText
                 primary={
                   <span dangerouslySetInnerHTML={{ __html: item }} />
@@ -103,17 +111,19 @@ const Server = () => {
           ))}
         </List>
 
+        {/* Divider for visual separation */}
         <Divider sx={{ my: 3, bgcolor: '#ec4899', width: '100%' }} />
 
         {/* Automation Section */}
-        <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%' }}>
+        <Text variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%' }}>
           {t('server.autoTitle')}
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, width: '100%' }}>
+        </Text>
+        <Text variant="body2" sx={{ mb: 2, width: '100%' }}>
+          {/* Rich translation with bold text */}
           {t.rich('server.autoDesc', {
             b: (chunks) => <b>{chunks}</b>,
           })}
-        </Typography>
+        </Text>
 
         {/* Technologies Grid */}
         <Grid
@@ -123,6 +133,7 @@ const Server = () => {
           justifyContent="center"
           alignItems="center"
         >
+          {/* Display each technology as a card with icon and name */}
           {t.raw('server.techs').map((tech, idx) => (
             <Grid
               item
@@ -147,15 +158,17 @@ const Server = () => {
                   '&:hover': { transform: 'scale(1.08)' },
                 }}
               >
+                {/* Technology icon */}
                 <Avatar
                   src={`/assets/${tech.toLowerCase()}.png`}
                   alt={tech}
                   sx={{ width: 56, height: 56, mx: 'auto', mb: 1 }}
                   variant="rounded"
                 />
-                <Typography variant="subtitle1">
+                {/* Technology name */}
+                <Text variant="subtitle1">
                   {tech}
-                </Typography>
+                </Text>
               </Paper>
             </Grid>
           ))}

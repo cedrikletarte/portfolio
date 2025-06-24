@@ -3,7 +3,7 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import 'quill/dist/quill.snow.css';
@@ -11,19 +11,29 @@ import { useEffect, useRef, useState } from 'react';
 import { MdSend } from 'react-icons/md';
 import CircularProgress from '@mui/material/CircularProgress';
 
+// Dynamically import the Editor component (Quill-based), only on client side
 const Editor = dynamic(() => import('./Editor'), { ssr: false });
 
 const Contact = () => {
+  // Initialize translation function
   const t = useTranslations();
+
+  // State for form fields
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+
+  // State for Quill default value
   const [defaultValue, setDefaultValue] = useState(null);
+
+  // State for loading and sent animation
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
+  // Ref for the Quill editor
   const quillRef = useRef();
 
+  // Initialize Quill Delta for the editor's default value on mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
       // eslint-disable-next-line global-require
@@ -34,11 +44,12 @@ const Contact = () => {
     }
   }, []);
 
-
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
+      // Send form data to the API endpoint
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -49,8 +60,8 @@ const Contact = () => {
         }),
       });
       if (res.ok) {
-        setSent(true); // Lance l'animation
-        setTimeout(() => setSent(false), 1200); // Réinitialise après l'animation
+        setSent(true);
+        setTimeout(() => setSent(false), 1200);
       } else {
         alert(t('error.sending'));
       }
@@ -63,6 +74,7 @@ const Contact = () => {
   };
 
   return (
+    // Main container with centered form and background styling
     <Box
       sx={{
         width: '100%',
@@ -76,6 +88,7 @@ const Contact = () => {
       }}
       name="contact"
     >
+      {/* Contact form box */}
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -90,16 +103,18 @@ const Contact = () => {
           boxShadow: 6,
         }}
       >
+        {/* Title and description */}
         <Box sx={{ pb: 3 }}>
-          <Typography variant="h4" component="h2" fontWeight="bold" sx={{
+          <Text variant="h4" component="h2" fontWeight="bold" sx={{
             fontWeight: 'bold',
             borderBottom: '4px solid #ec4899',
             fontSize: { xs: 28, md: 36 },
             display: 'inline-block',
           }}>
             {t('contact.title')}
-          </Typography>
-          <Typography variant="body1" sx={{ py: 1 }}>
+          </Text>
+          <Text variant="body1" sx={{ py: 1 }}>
+            {/* Rich translation with clickable mailto link */}
             {t.rich('contact.desc', {
               link: (chunks) => (
                 <a
@@ -112,8 +127,9 @@ const Contact = () => {
                 </a>
               ),
             })}
-          </Typography>
+          </Text>
         </Box>
+        {/* Name input field */}
         <TextField
           label={t('contact.name')}
           name="name"
@@ -124,15 +140,16 @@ const Contact = () => {
             bgcolor: '#ccd6f6',
             borderRadius: 1,
             '& .MuiInputLabel-root': {
-              color: '#000000', // couleur du label
+              color: '#000000',
             },
             '& .MuiInputLabel-root.Mui-focused': {
-              color: '#000000', // couleur du label quand focus
+              color: '#000000',
             },
           }}
           onChange={(e) => setName(e.target.value)}
 
         />
+        {/* Email input field */}
         <TextField
           label={t('contact.email')}
           name="email"
@@ -144,14 +161,15 @@ const Contact = () => {
             bgcolor: '#ccd6f6',
             borderRadius: 1,
             '& .MuiInputLabel-root': {
-              color: '#000000', // couleur du label
+              color: '#000000',
             },
             '& .MuiInputLabel-root.Mui-focused': {
-              color: '#000000', // couleur du label quand focus
+              color: '#000000',
             },
           }}
           onChange={(e) => setEmail(e.target.value)}
         />
+        {/* Rich text editor for the message */}
         <Editor
           ref={quillRef}
           defaultValue={defaultValue}
@@ -161,9 +179,10 @@ const Contact = () => {
           required
         />
         <Box sx={{ mb: 2 }}>
-          {/* Champ caché pour envoyer le contenu Quill */}
+          {/* Hidden input to send Quill content */}
           <input type="hidden" name="message" value={message} />
         </Box>
+        {/* Submit button with loading and sent animation */}
         <Button
           type="submit"
           variant="contained"
@@ -177,7 +196,6 @@ const Contact = () => {
             py: 1.5,
             bgcolor: '#ec4899',
             '&:hover': { bgcolor: '#db2777' },
-            // Style personnalisé quand disabled
             '&.Mui-disabled': {
               bgcolor: '#a1a1aa',
               color: '#fff',

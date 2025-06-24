@@ -1,9 +1,11 @@
 "use client"
 
+import { Box, Grid, Paper } from '@mui/material';
+import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { Box, Typography, Grid, Paper } from '@mui/material';
 
+// Array of skill objects with image source, alt text, and translation label
 const skills = [
     { src: "/assets/java.png", alt: "JAVA", label: "skills.java" },
     { src: "/assets/csharp.png", alt: "C#", label: "skills.csharp" },
@@ -16,9 +18,11 @@ const skills = [
 ];
 
 const Skills = () => {
+    // Initialize translation function
     const t = useTranslations();
 
     return (
+        // Main section container with responsive background and alignment
         <Box
             component="section"
             id="skills"
@@ -32,8 +36,10 @@ const Skills = () => {
                 py: { xs: 4, md: 0 },
             }}
         >
+            {/* Inner box to center content and set max width */}
             <Box sx={{ maxWidth: 1000, mx: 'auto', }}>
-                <Typography
+                {/* Section title with underline */}
+                <Text
                     variant="h3"
                     sx={{
                         fontWeight: 'bold',
@@ -43,13 +49,16 @@ const Skills = () => {
                     }}
                 >
                     {t('skills.title')}
-                </Typography>
-                <Typography variant="subtitle1" sx={{ py: 2 }}>
+                </Text>
+                {/* Section description */}
+                <Text variant="subtitle1" sx={{ py: 2 }}>
                     {t('skills.desc')}
-                </Typography>
+                </Text>
+                {/* Grid of skill cards */}
                 <Grid container spacing={3} sx={{ py: 4 }}>
                     {skills.map((skill, idx) => (
                         <Grid size={3} key={skill.alt}>
+                            {/* Paper card for each skill */}
                             <Paper
                                 elevation={6}
                                 sx={{
@@ -60,6 +69,7 @@ const Skills = () => {
                                     bgcolor: (theme) => theme.palette.background.paper,
                                 }}
                             >
+                                {/* Skill icon */}
                                 <Image
                                     src={skill.src}
                                     alt={skill.alt}
@@ -67,9 +77,10 @@ const Skills = () => {
                                     height={80}
                                     style={{ margin: '0 auto' }}
                                 />
-                                <Typography variant="body1" sx={{ mt: 2 }}>
+                                {/* Skill label */}
+                                <Text variant="body1" sx={{ mt: 2 }}>
                                     {t(skill.label)}
-                                </Typography>
+                                </Text>
                             </Paper>
                         </Grid>
                     ))}
