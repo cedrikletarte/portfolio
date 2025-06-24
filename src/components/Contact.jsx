@@ -35,32 +35,32 @@ const Contact = () => {
   }, []);
 
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  try {
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-      }),
-    });
-    if (res.ok) {
-      setSent(true); // Lance l'animation
-      setTimeout(() => setSent(false), 1200); // Réinitialise après l'animation
-    } else {
-      alert(t('error.sending'));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+      if (res.ok) {
+        setSent(true); // Lance l'animation
+        setTimeout(() => setSent(false), 1200); // Réinitialise après l'animation
+      } else {
+        alert(t('error.sending'));
+      }
+    } finally {
+      setLoading(false);
+      setMessage('');
+      setName('');
+      setEmail('');
     }
-  } finally {
-    setLoading(false);
-    setMessage('');
-    setName('');
-    setEmail('');
-  }
-};
+  };
 
   return (
     <Box
@@ -99,7 +99,7 @@ const handleSubmit = async (e) => {
           }}>
             {t('contact.title')}
           </Typography>
-          <Typography variant="body1" sx={{  py: 1 }}>
+          <Typography variant="body1" sx={{ py: 1 }}>
             {t.rich('contact.desc', {
               link: (chunks) => (
                 <a
@@ -119,9 +119,19 @@ const handleSubmit = async (e) => {
           name="name"
           required
           variant="filled"
-          sx={{ mb: 2, bgcolor: '#ccd6f6', borderRadius: 1 }}
-          InputProps={{ style: { color: '#222' } }}
+          sx={{
+            mb: 2,
+            bgcolor: '#ccd6f6',
+            borderRadius: 1,
+            '& .MuiInputLabel-root': {
+              color: '#000000', // couleur du label
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: '#000000', // couleur du label quand focus
+            },
+          }}
           onChange={(e) => setName(e.target.value)}
+
         />
         <TextField
           label={t('contact.email')}
@@ -129,8 +139,17 @@ const handleSubmit = async (e) => {
           required
           variant="filled"
           type="email"
-          sx={{ mb: 2, bgcolor: '#ccd6f6', borderRadius: 1 }}
-          InputProps={{ style: { color: '#222' } }}
+          sx={{
+            mb: 2,
+            bgcolor: '#ccd6f6',
+            borderRadius: 1,
+            '& .MuiInputLabel-root': {
+              color: '#000000', // couleur du label
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color: '#000000', // couleur du label quand focus
+            },
+          }}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Editor
@@ -149,7 +168,7 @@ const handleSubmit = async (e) => {
           type="submit"
           variant="contained"
           color="secondary"
-          endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <MdSend className={sent ? 'send-fly': ''} />}
+          endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <MdSend className={sent ? 'send-fly' : ''} />}
           sx={{
             mt: 2,
             fontWeight: 'bold',
