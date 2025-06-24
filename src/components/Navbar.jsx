@@ -1,10 +1,13 @@
 "use client"
 
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
+import CircularProgress from '@mui/material/CircularProgress'
 import { useLocale, useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import LoadingIcons from 'react-loading-icons'
 import { scroller } from 'react-scroll'
+import { useThemeMode } from '../theme/ThemeContext'
 
 import {
   AppBar,
@@ -28,6 +31,7 @@ const Navbar = () => {
   const t = useTranslations()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const { mode, toggleTheme } = useThemeMode();
   const locale = useLocale()
   const router = useRouter()
 
@@ -66,7 +70,7 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ background: '#0a192f', color: '#e2e8f0', boxShadow: 0 }}>
+      <AppBar position="fixed" sx={{ background: (theme) => theme.palette.background.paper, color: (theme) => theme.palette.text.primary, boxShadow: 0 }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', minHeight: 80 }}>
           <a href="https://www.cedrikletarte.com" style={{ display: 'flex', alignItems: 'center' }}>
             <img src="/assets/logo2.png" alt="Logo" style={{ width: 50 }} />
@@ -81,9 +85,24 @@ const Navbar = () => {
                 sx={{
                   textTransform: 'none',
                   fontWeight: 500,
-                  '&:hover': { backgroundColor: '#1a2236' }, // couleur au survol
-                  '&:active': { backgroundColor: '#22304a' }, // couleur au clic
                   boxShadow: 'none',
+                  // Hover dynamique selon le thème
+                  '&:hover': {
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary.dark
+                        : theme.palette.primary.light,
+                    color: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary.contrastText
+                        : '#22223b',
+                  },
+                  '&:active': {
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary.main
+                        : theme.palette.primary.light,
+                  },
                 }}
                 className="border-effect"
                 disableRipple
@@ -94,10 +113,22 @@ const Navbar = () => {
             <Button
               color="inherit"
               onClick={() => router.replace(`/${locale === 'fr' ? 'en' : 'fr'}`)}
-              sx={{ minWidth: 40, fontWeight: 700 }}
+              sx={{ minWidth: 40, fontWeight: 700, textTransform: 'none' }}
             >
               {locale === 'fr' ? 'EN' : 'FR'}
             </Button>
+            <IconButton onClick={toggleTheme} color="inherit"
+              sx={{
+                color: (theme) => theme.palette.mode === 'dark'
+                  ? theme.palette.warning.main
+                  : theme.palette.primary.main
+              }}
+            >
+              {mode === 'dark'
+                ? <Brightness7Icon />
+                : <Brightness4Icon />
+              }
+            </IconButton>
           </Box>
           {/* Mobile menu button */}
           <IconButton
@@ -117,7 +148,7 @@ const Navbar = () => {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         PaperProps={{
-          sx: { background: '#0a192f', color: '#e2e8f0', width: 250 }
+          sx: { background: (theme) => theme.palette.background.paper, color: (theme) => theme.palette.text.primary, width: 250 }
         }}
       >
         <Box sx={{ mt: 2 }}>
@@ -187,7 +218,7 @@ const Navbar = () => {
             disabled={loading}
           >
             {loading
-              ? <LoadingIcons.ThreeDots width="30px" height="30px" />
+              ? <CircularProgress size={30} color="inherit" />
               : <SchoolIcon fontSize="large" />
             }
           </IconButton>
@@ -310,7 +341,7 @@ const Navbar = () => {
               <span style={{ display: 'flex', alignItems: 'center', height: '100%' }}>CV</span>
               {
                 loading
-                  ? <LoadingIcons.ThreeDots width="30px" height="30px" style={{ marginRight: "15px" }} />
+                  ? <CircularProgress size={30} color="inherit" />
                   : <SchoolIcon fontSize="large" sx={{ marginRight: "-15px" }} />
               }
             </Button>

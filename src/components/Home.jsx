@@ -25,7 +25,8 @@ const Home = () => {
       sx={{
         width: '100%',
         minHeight: '100vh',
-        bgcolor: '#0a192f',
+        bgcolor: (theme) => theme.palette.background.default,
+        color: (theme) => theme.palette.text.primary,
         display: 'flex',
         alignItems: 'center',
         py: { xs: 4, md: 0 },
@@ -41,7 +42,6 @@ const Home = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           height: { xs: 'auto', md: '100%' },
-          color: 'grey.300',
         }}
       >
         <Typography sx={{ color: '#ec4899', fontWeight: 600, mb: { xs: 1, md: 2 }, fontSize: { xs: 18, md: 22 } }}>
@@ -51,7 +51,6 @@ const Home = () => {
           variant="h2"
           sx={{
             fontWeight: 'bold',
-            color: '#ccd6f6',
             fontSize: { xs: 32, sm: 40, md: 56 },
             mb: { xs: 1, md: 2 },
             lineHeight: 1.1,
@@ -81,10 +80,8 @@ const Home = () => {
         </Typography>
         <Button
           variant="outlined"
-          color="secondary"
           onClick={() => scrollTo('work')}
           sx={{
-            color: '#fff',
             borderColor: '#ec4899',
             px: { xs: 2, md: 3 },
             py: { xs: 1, md: 1.5 },

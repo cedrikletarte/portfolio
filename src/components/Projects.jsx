@@ -16,7 +16,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-function Work() {
+function Projects() {
   const t = useTranslations();
   const [nav, setnav] = useState('');
 
@@ -78,13 +78,12 @@ function Work() {
 
   return (
     <>
-      <Box name="work" sx={{ width: '100%', minHeight: '100vh', bgcolor: '#0a192f', color: 'grey.300', py: 6 }}>
+      <Box name="work" sx={{ width: '100%', minHeight: '100vh', bgcolor: (theme) => theme.palette.background.default, color: (theme) => theme.palette.text.primary, py: 6 }}>
         <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2 }}>
           <Box sx={{ pb: 4 }}>
             <Typography variant="h3" component="h2" fontWeight="bold" sx={{
               fontWeight: 'bold',
               borderBottom: '4px solid #ec4899',
-              color: '#e2e8f0',
               fontSize: { xs: 28, md: 36 },
               display: 'inline-block',
             }}>
@@ -157,7 +156,7 @@ function Work() {
                         p: 2,
                       }}
                     >
-                      <Typography variant="h5" fontWeight="bold" gutterBottom>
+                      <Typography variant="h5" fontWeight="bold" gutterBottom >
                         {project.title}
                       </Typography>
                       <Box
@@ -187,4 +186,4 @@ function Work() {
   );
 }
 
-export default Work
+export default Projects

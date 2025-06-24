@@ -67,7 +67,8 @@ const handleSubmit = async (e) => {
       sx={{
         width: '100%',
         minHeight: '100vh',
-        bgcolor: '#0a192f',
+        bgcolor: (theme) => theme.palette.background.default,
+        color: (theme) => theme.palette.text.primary,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -93,13 +94,12 @@ const handleSubmit = async (e) => {
           <Typography variant="h4" component="h2" fontWeight="bold" sx={{
             fontWeight: 'bold',
             borderBottom: '4px solid #ec4899',
-            color: '#e2e8f0',
             fontSize: { xs: 28, md: 36 },
             display: 'inline-block',
           }}>
             {t('contact.title')}
           </Typography>
-          <Typography variant="body1" sx={{ color: '#e2e8f0', py: 1 }}>
+          <Typography variant="body1" sx={{  py: 1 }}>
             {t.rich('contact.desc', {
               link: (chunks) => (
                 <a
@@ -158,7 +158,6 @@ const handleSubmit = async (e) => {
             py: 1.5,
             bgcolor: '#ec4899',
             '&:hover': { bgcolor: '#db2777' },
-            color: 'white',
             // Style personnalisé quand disabled
             '&.Mui-disabled': {
               bgcolor: '#a1a1aa',

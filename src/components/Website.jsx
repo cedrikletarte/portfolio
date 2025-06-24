@@ -10,7 +10,7 @@ const Website = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        bgcolor: '#0a192f',
+        bgcolor: (theme) => theme.palette.background.default,
         color: 'white',
         display: 'flex',
         justifyContent: 'center',
@@ -25,9 +25,9 @@ const Website = () => {
           width: '100%',
           mx: 'auto',
           p: { xs: 2, md: 4 },
-          bgcolor: '#112240',
+          bgcolor: (theme) => theme.palette.background.paper,
+          color: (theme) => theme.palette.text.primary,
           borderRadius: 3,
-          color: 'white',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'stretch',

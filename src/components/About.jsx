@@ -13,35 +13,31 @@ const About = () => {
             sx={{
                 width: '100%',
                 minHeight: '100vh',
-                bgcolor: '#0a192f',
+                bgcolor: (theme) => theme.palette.background.default,
+                color: (theme) => theme.palette.text.primary,
                 display: 'flex',
                 alignItems: 'center',
-                py: { xs: 4, md: 0 },
+                py: { xs: 4, md: 8 },
+                px: { xs: 2, md: 4 },
             }}
             name="about"
         >
-            <Grid
-                container
-                spacing={2}
+            <Grid 
+                container 
+                spacing={{ xs: 3, md: 4 }} 
                 sx={{
-                    bgcolor: '#0a192f',
-                    color: 'grey.300',
                     alignItems: 'center',
-                    maxWidth: 1000,
+                    maxWidth: 1200,
                     mx: 'auto',
-                    display: 'flex',
+                    width: '100%',
                 }}
-                direction={{ xs: 'column', md: 'row' }} // Ajouté pour le responsive
             >
-                <Grid item xs={12}>
+                {/* Titre - Toujours en pleine largeur */}
+                <Grid size={12}>
                     <Box
                         sx={{
-                            textAlign: { xs: 'left', md: 'right' },
-                            fontWeight: 'bold',
-                            fontSize: { xs: 22, md: 28 },
-                            color: '#e2e8f0',
-                            display: 'flex',
-                            justifyContent: { xs: 'flex-start', md: 'center' },
+                            textAlign: 'center',
+                            mb: { xs: 2, md: 4 },
                         }}
                     >
                         <Typography
@@ -49,34 +45,51 @@ const About = () => {
                             sx={{
                                 fontWeight: 'bold',
                                 borderBottom: '4px solid #ec4899',
-                                fontSize: { xs: 28, md: 36 },
+                                fontSize: { xs: 24, sm: 28, md: 36 },
+                                display: 'inline-block',
+                                pb: 1,
                             }}
                         >
                             {t('about.title')}
                         </Typography>
                     </Box>
                 </Grid>
-                <Grid item xs={12} md={6}>
+
+                {/* Section Introduction */}
+                <Grid size={{ xs: 12, md: 6 }}>
                     <Box
                         sx={{
-                            textAlign: { xs: 'left', sm: 'right' },
-                            fontWeight: 'bold',
-                            fontSize: { xs: 22, md: 28 },
-                            color: '#e2e8f0',
+                            textAlign: { md: 'right' },
+                            pr: { md: 2 },
+                            mb: { xs: 2, md: 0 },
                         }}
                     >
-                        <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                        <Typography 
+                            variant="h5" 
+                            sx={{ 
+                                fontWeight: 700,
+                                fontSize: { xs: 20, sm: 24, md: 28 },
+                                lineHeight: 1.3,
+                            }}
+                        >
                             {t('about.intro')}
                         </Typography>
                     </Box>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <Box>
+
+                {/* Section Description */}
+                <Grid size={{ xs: 12, md: 6 }}>
+                    <Box
+                        sx={{
+                            pl: { md: 2 },
+                        }}
+                    >
                         <Typography
                             sx={{
-                                textAlign: 'justify',
-                                fontSize: { xs: 14, md: 16 },
-                                color: 'grey.300',
+                                textAlign: { xs: 'justify', md: 'justify' },
+                                fontSize: { xs: 14, sm: 15, md: 16 },
+                                lineHeight: 1.6,
+                                maxWidth: { xs: '100%', md: 'none' },
                             }}
                         >
                             {t('about.desc')}

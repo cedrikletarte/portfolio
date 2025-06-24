@@ -20,8 +20,8 @@ const Server = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        bgcolor: '#0a192f',
-        color: 'white',
+        bgcolor: (theme) => theme.palette.background.default,
+        color: (theme) => theme.palette.text.primary,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -35,9 +35,8 @@ const Server = () => {
           width: '100%',
           mx: 'auto',
           p: { xs: 2, md: 4 },
-          bgcolor: '#112240',
+          bgcolor: (theme) => theme.palette.background.paper,
           borderRadius: 3,
-          color: 'white',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -60,12 +59,12 @@ const Server = () => {
           {t('server.title')}
         </Typography>
 
-        <Typography variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
+        <Typography variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%'}}>
           {t('server.intro')}
         </Typography>
 
         {/* Docker Section */}
-        <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%' }}>
+        <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%'}}>
           {t('server.dockerTitle')}
         </Typography>
         <Typography variant="body2" sx={{ mb: 1, width: '100%' }}>
@@ -73,7 +72,7 @@ const Server = () => {
         </Typography>
         <List dense sx={{ width: '100%' }}>
           {t.raw('server.dockerList').map((item, idx) => (
-            <ListItem key={idx} sx={{ pl: 2 }}>
+            <ListItem key={idx} sx={{ pl: 2}}>
               <ListItemText
                 primary={
                   <span dangerouslySetInnerHTML={{ __html: item }} />
@@ -86,7 +85,7 @@ const Server = () => {
         <Divider sx={{ my: 3, bgcolor: '#ec4899', width: '100%' }} />
 
         {/* Security Section */}
-        <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%' }}>
+        <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ width: '100%'}}>
           {t('server.securityTitle')}
         </Typography>
         <Typography variant="body2" sx={{ mb: 1, width: '100%' }}>
@@ -94,7 +93,7 @@ const Server = () => {
         </Typography>
         <List dense sx={{ width: '100%' }}>
           {t.raw('server.securityList').map((item, idx) => (
-            <ListItem key={idx} sx={{ pl: 2 }}>
+            <ListItem key={idx} sx={{ pl: 2}}>
               <ListItemText
                 primary={
                   <span dangerouslySetInnerHTML={{ __html: item }} />
@@ -139,7 +138,7 @@ const Server = () => {
                   width: 150,
                   height: 150,
                   textAlign: 'center',
-                  bgcolor: '#0a192f',
+                  bgcolor: (theme) => theme.palette.background.paper,
                   transition: 'transform 0.3s',
                   display: 'flex',
                   flexDirection: 'column',
@@ -154,7 +153,7 @@ const Server = () => {
                   sx={{ width: 56, height: 56, mx: 'auto', mb: 1 }}
                   variant="rounded"
                 />
-                <Typography variant="subtitle1" sx={{ color: 'white' }}>
+                <Typography variant="subtitle1">
                   {tech}
                 </Typography>
               </Paper>

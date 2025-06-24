@@ -25,7 +25,8 @@ const Skills = () => {
             sx={{
                 width: '100%',
                 minHeight: '100vh',
-                bgcolor: '#0a192f',
+                bgcolor: (theme) => theme.palette.background.default,
+                color: (theme) => theme.palette.text.primary,
                 display: 'flex',
                 alignItems: 'center',
                 py: { xs: 4, md: 0 },
@@ -37,7 +38,6 @@ const Skills = () => {
                     sx={{
                         fontWeight: 'bold',
                         borderBottom: '4px solid #ec4899',
-                        color: '#e2e8f0',
                         fontSize: { xs: 28, md: 36 },
                         display: 'inline-block',
                     }}
@@ -57,8 +57,7 @@ const Skills = () => {
                                     textAlign: 'center',
                                     transition: 'transform 0.3s',
                                     '&:hover': { transform: 'scale(1.08)' },
-                                    bgcolor: '#112240',
-                                    color: 'grey.100',
+                                    bgcolor: (theme) => theme.palette.background.paper,
                                 }}
                             >
                                 <Image

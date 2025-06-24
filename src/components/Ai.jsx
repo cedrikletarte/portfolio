@@ -10,8 +10,8 @@ const Ai = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        bgcolor: '#0a192f',
-        color: 'white',
+        bgcolor: (theme) => theme.palette.background.default,
+        color: (theme) => theme.palette.text.primary,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -25,9 +25,8 @@ const Ai = () => {
           width: '100%',
           mx: 'auto',
           p: { xs: 2, md: 4 },
-          bgcolor: '#112240',
+          bgcolor: (theme) => theme.palette.background.paper,
           borderRadius: 3,
-          color: 'white',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'stretch',
