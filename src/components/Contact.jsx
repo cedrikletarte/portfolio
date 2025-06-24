@@ -72,6 +72,9 @@ const Contact = () => {
       setMessage('');
       setName('');
       setEmail('');
+      if (quillRef.current) {
+        quillRef.current.setContents([]);
+      }
     }
   };
 
@@ -79,7 +82,7 @@ const Contact = () => {
     // Main container with centered form and background styling
     <Box
       sx={{
-        width: '100%',  
+        width: '100%',
         minHeight: '100vh',
         color: (theme) => theme.palette.text.primary,
         display: 'flex',
@@ -136,6 +139,7 @@ const Contact = () => {
           name="name"
           required
           variant="filled"
+          value={name}
           sx={{
             mb: 2,
             bgcolor: '#ccd6f6',
@@ -145,6 +149,9 @@ const Contact = () => {
             },
             '& .MuiInputLabel-root.Mui-focused': {
               color: '#000000',
+            },
+            '& .MuiInputBase-input': {
+              color: '#000000', // <-- texte noir
             },
           }}
           onChange={(e) => setName(e.target.value)}
@@ -157,6 +164,7 @@ const Contact = () => {
           required
           variant="filled"
           type="email"
+          value={email}
           sx={{
             mb: 2,
             bgcolor: '#ccd6f6',
@@ -166,6 +174,9 @@ const Contact = () => {
             },
             '& .MuiInputLabel-root.Mui-focused': {
               color: '#000000',
+            },
+            '& .MuiInputBase-input': {
+              color: '#000000', // <-- texte noir
             },
           }}
           onChange={(e) => setEmail(e.target.value)}
@@ -177,6 +188,7 @@ const Contact = () => {
           onTextChange={(_delta, _oldDelta, source, quill) => {
             setMessage(quill.root.innerHTML);
           }}
+
           required
         />
         <Box sx={{ mb: 2 }}>
