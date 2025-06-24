@@ -1,34 +1,123 @@
 "use client"
 
+import { Box, Divider, Paper } from '@mui/material';
+import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 
 const Website = () => {
+  // Initialize translation function
   const t = useTranslations();
 
   return (
-    <div className='w-full min-h-screen bg-[#0a192f] text-gray-300 flex justify-center items-center p-4'>
-        {/* Container */}
-        <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
-            <div>
-                <p className='text-4xl font-bold inline border-b-4 border-pink-600'>{t('website.title')}</p>
-                <p style={{textAlign: 'justify'}} className='py-4 max-w[700px]'>{t('website.intro')}</p>
-                <p className='font-bold'>{t('website.objectives')}</p> <br/><br/>
+    // Main container with centered content and background styling
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        p: 4,
+      }}
+    >
+      {/* Paper component for card-like appearance */}
+      <Paper
+        elevation={6}
+        sx={{
+          maxWidth: 1000,
+          width: '100%',
+          mx: 'auto',
+          p: { xs: 2, md: 4 },
+          bgcolor: (theme) => theme.palette.background.paper,
+          color: (theme) => theme.palette.text.primary,
+          borderRadius: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'stretch',
+        }}
+      >
+        {/* Main title with underline and centered */}
+        <Text
+          variant="h3"
+          component="h1"
+          fontWeight="bold"
+          gutterBottom
+          sx={{
+            borderBottom: 3,
+            borderBottom: '4px solid #ec4899',
+            display: 'inline-block',
+            mb: 2,
+            textAlign: 'center',
+            width: '100%',
+          }}
+        >
+          {t('website.title')}
+        </Text>
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.skillsTitle')}</p> {t('website.skillsDesc')} <br/><br/>
+        {/* Introduction text */}
+        <Text variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
+          {t('website.intro')}
+        </Text>
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.projectsTitle')}</p> {t('website.projectsDesc')}<br/><br/>
+        {/* Objectives section title */}
+        <Text variant="h6" fontWeight="bold" sx={{ width: '100%' }}>
+          {t('website.objectives')}
+        </Text>
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.uxTitle')}</p> {t('website.uxDesc')} <br/><br/>
+        {/* Divider for visual separation */}
+        <Divider sx={{ my: 2, bgcolor: '#ec4899', width: '100%' }} />
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.securityTitle')}</p> {t('website.securityDesc')} <br/><br/>
+        {/* Skills section */}
+        <Text variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.skillsTitle')}
+        </Text>
+        <Text variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.skillsDesc')}
+        </Text>
+        <br /><br />
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.designTitle')}</p> {t('website.designDesc')} <br/><br/>
+        {/* Projects section */}
+        <Text variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.projectsTitle')}
+        </Text>
+        <Text variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.projectsDesc')}
+        </Text>
+        <br /><br />
 
-                {t('website.conclusion')}
-            </div>
-        </div>
-    </div>
-  )
-}
+        {/* UX section */}
+        <Text variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.uxTitle')}
+        </Text>
+        <Text variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.uxDesc')}
+        </Text>
+        <br /><br />
 
-export default Website
+        {/* Security section */}
+        <Text variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.securityTitle')}
+        </Text>
+        <Text variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.securityDesc')}
+        </Text>
+        <br /><br />
+
+        {/* Design section */}
+        <Text variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.designTitle')}
+        </Text>
+        <Text variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.designDesc')}
+        </Text>
+        <br /><br />
+
+        {/* Conclusion text */}
+        <Text variant="body1" sx={{ width: '100%' }}>
+          {t('website.conclusion')}
+        </Text>
+      </Paper>
+    </Box>
+  );
+};
+
+export default Website;
