@@ -2,55 +2,82 @@
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { Box, Typography, Grid, Paper } from '@mui/material';
+
+const skills = [
+    { src: "/assets/java.png", alt: "JAVA", label: "skills.java" },
+    { src: "/assets/csharp.png", alt: "C#", label: "skills.csharp" },
+    { src: "/assets/python.png", alt: "PYTHON", label: "skills.python" },
+    { src: "/assets/react.png", alt: "REACT", label: "skills.react" },
+    { src: "/assets/ubuntu.png", alt: "UBUNTU SERVER", label: "skills.ubuntu" },
+    { src: "/assets/docker.png", alt: "DOCKER", label: "skills.docker" },
+    { src: "/assets/mariadb.png", alt: "MARIADB", label: "skills.mariadb" },
+    { src: "/assets/mongo.png", alt: "MongoDB", label: "skills.mongodb" },
+];
 
 const Skills = () => {
-  const t = useTranslations();
+    const t = useTranslations();
 
-  return (
-    <div name='skills' className='w-full h-screen bg-[#0a192f] text-gray-300'>
-        {/* Container */}
-        <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
-            <div>
-                <p className='text-4xl font-bold inline border-b-4 border-pink-600'>{t('skills.title')}</p>
-                <p className='py-4'>{t('skills.desc')}</p>
-            </div>
-            <div className='w-full grid grid-cols-2 sm:grid-cols-4 gap-4 text-center py-8'>
-                <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-                    <Image className='w-20 mx-auto' src="/assets/java.png" alt='JAVA' width={80} height={80}/>
-                    <p className='my-4'>{t('skills.java')}</p>
-                </div>
-                <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-                    <Image className='w-20 mx-auto' src="/assets/csharp.png" alt='C#' width={80} height={80}/>
-                    <p className='my-4'>{t('skills.csharp')}</p>
-                </div>
-                <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-                    <Image className='w-20 mx-auto' src="/assets/python.png" alt='PYTHON' width={80} height={80}/>
-                    <p className='my-4'>{t('skills.python')}</p>
-                </div>
-                <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-                    <Image className='w-20 mx-auto' src="/assets/react.png" alt='REACT' width={80} height={80}/>
-                    <p className='my-4'>{t('skills.react')}</p>
-                </div>
-                <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-                    <Image className='w-20 mx-auto' src="/assets/ubuntu.png" alt='UBUNTU SERVER' width={80} height={80}/>
-                    <p className='my-4'>{t('skills.ubuntu')}</p>
-                </div>
-                <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-                    <Image className='w-20 mx-auto' src="/assets/docker.png" alt='DOCKER' width={80} height={80}/>
-                    <p className='my-4'>{t('skills.docker')}</p>
-                </div>
-                <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-                    <Image className='w-20 mx-auto' src="/assets/mariadb.png" alt='MARIADB' width={80} height={80}/>
-                    <p className='my-4'>{t('skills.mariadb')}</p>
-                </div>
-                <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-                    <Image className='w-20 mx-auto' src="/assets/mongo.png" alt='MongoDB' width={80} height={80}/>
-                    <p className='my-4'>{t('skills.mongodb')}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-  )
-}
+    return (
+        <Box
+            component="section"
+            id="skills"
+            sx={{
+                width: '100%',
+                minHeight: '100vh',
+                bgcolor: '#0a192f',
+                display: 'flex',
+                alignItems: 'center',
+                py: { xs: 4, md: 0 },
+            }}
+        >
+            <Box sx={{ maxWidth: 1000, mx: 'auto', }}>
+                <Typography
+                    variant="h3"
+                    sx={{
+                        fontWeight: 'bold',
+                        borderBottom: '4px solid #ec4899',
+                        color: '#e2e8f0',
+                        fontSize: { xs: 28, md: 36 },
+                        display: 'inline-block',
+                    }}
+                >
+                    {t('skills.title')}
+                </Typography>
+                <Typography variant="subtitle1" sx={{ py: 2 }}>
+                    {t('skills.desc')}
+                </Typography>
+                <Grid container spacing={3} sx={{ py: 4 }}>
+                    {skills.map((skill, idx) => (
+                        <Grid size={3} key={skill.alt}>
+                            <Paper
+                                elevation={6}
+                                sx={{
+                                    p: 2,
+                                    textAlign: 'center',
+                                    transition: 'transform 0.3s',
+                                    '&:hover': { transform: 'scale(1.08)' },
+                                    bgcolor: '#112240',
+                                    color: 'grey.100',
+                                }}
+                            >
+                                <Image
+                                    src={skill.src}
+                                    alt={skill.alt}
+                                    width={80}
+                                    height={80}
+                                    style={{ margin: '0 auto' }}
+                                />
+                                <Typography variant="body1" sx={{ mt: 2 }}>
+                                    {t(skill.label)}
+                                </Typography>
+                            </Paper>
+                        </Grid>
+                    ))}
+                </Grid>
+            </Box>
+        </Box>
+    );
+};
 
-export default Skills
+export default Skills;

@@ -1,30 +1,91 @@
 "use client"
-  
-import { useTranslations } from 'next-intl';
+
+import { useTranslations } from 'next-intl'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
 
 const About = () => {
-  const t = useTranslations();
+    const t = useTranslations()
 
-  return (
-    <div name='about' className='w-full h-screen bg-[#0a192f] text-gray-300'>
-        <div className='flex flex-col justify-center items-center w-full h-full'>
-            <div className='max-w-[1000px] w-full grid grid-cols-2 gap-8'>
-                <div className='sm:text-right pb-8 pl-4'>
-                    <p className='text-4xl font-bold inline border-b-4 border-pink-600'>{t('about.title')}</p>
-                </div>
-            </div>
-            <div></div>
-            <div className='max-w-[1000px] w-full grid sm:grid-cols-2 gap-8 px-4'>
-                <div className='sm:text-right text-3xl font-bold'>
-                    <p>{t('about.intro')}</p>
-                </div>
-                <div>
-                    <p style={{textAlign: 'justify', fontSize: '13px'}}>{t('about.desc')}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-  )
+    return (
+        <Box
+            sx={{
+                width: '100%',
+                minHeight: '100vh',
+                bgcolor: '#0a192f',
+                display: 'flex',
+                alignItems: 'center',
+                py: { xs: 4, md: 0 },
+            }}
+            name="about"
+        >
+            <Grid
+                container
+                spacing={2}
+                sx={{
+                    bgcolor: '#0a192f',
+                    color: 'grey.300',
+                    alignItems: 'center',
+                    maxWidth: 1000,
+                    mx: 'auto',
+                    display: 'flex',
+                }}
+                direction={{ xs: 'column', md: 'row' }} // Ajouté pour le responsive
+            >
+                <Grid item xs={12}>
+                    <Box
+                        sx={{
+                            textAlign: { xs: 'left', md: 'right' },
+                            fontWeight: 'bold',
+                            fontSize: { xs: 22, md: 28 },
+                            color: '#e2e8f0',
+                            display: 'flex',
+                            justifyContent: { xs: 'flex-start', md: 'center' },
+                        }}
+                    >
+                        <Typography
+                            variant="h3"
+                            sx={{
+                                fontWeight: 'bold',
+                                borderBottom: '4px solid #ec4899',
+                                fontSize: { xs: 28, md: 36 },
+                            }}
+                        >
+                            {t('about.title')}
+                        </Typography>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Box
+                        sx={{
+                            textAlign: { xs: 'left', sm: 'right' },
+                            fontWeight: 'bold',
+                            fontSize: { xs: 22, md: 28 },
+                            color: '#e2e8f0',
+                        }}
+                    >
+                        <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                            {t('about.intro')}
+                        </Typography>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Box>
+                        <Typography
+                            sx={{
+                                textAlign: 'justify',
+                                fontSize: { xs: 14, md: 16 },
+                                color: 'grey.300',
+                            }}
+                        >
+                            {t('about.desc')}
+                        </Typography>
+                    </Box>
+                </Grid>
+            </Grid>
+        </Box>
+    )
 }
 
 export default About

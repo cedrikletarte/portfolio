@@ -2,6 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { Box, Paper, Typography, Button, Divider, IconButton } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const Gaming = () => {
   const t = useTranslations();
@@ -26,42 +29,160 @@ const Gaming = () => {
   };
 
   return (
-    <div className='w-full min-h-screen bg-[#0a192f] text-gray-300 flex flex-col justify-center items-center p-4'>
-      {/* Container */}
-      <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
-        <div>
-          <p className='text-4xl font-bold inline border-b-4 border-pink-600'>{t('gaming.title')}</p>
-          <p style={{ textAlign: 'justify' }} className='py-4 max-w[700px]'>
-            {t('gaming.intro')}
-          </p>
-          <br /><br />
-          <p className='font-bold'>{t('gaming.objectives')}</p>
-          <br /><br />
-          <p style={{ fontWeight: 'bold', display: 'inline', fontSize: 20 }}>{t('gaming.goal1Title')}</p> {t('gaming.goal1Desc')}
-          <br /><br />
-          <p style={{ fontWeight: 'bold', display: 'inline', fontSize: 20 }}>{t('gaming.goal2Title')}</p> {t('gaming.goal2Desc')}
-          <br /><br />
-          <p style={{ fontWeight: 'bold', display: 'inline', fontSize: 20 }}>{t('gaming.goal3Title')}</p> {t('gaming.goal3Desc')}
-          <br /><br />
-          <p style={{ fontWeight: 'bold', display: 'inline', fontSize: 20 }}>{t('gaming.goal4Title')}</p> {t('gaming.goal4Desc')}
-          <br /><br />
-        </div>
-        <div className='relative w-full max-w-[700px] mx-auto'>
-          {media[currentIndex].type === 'image' ? (
-            <img src={media[currentIndex].src} alt={`media-${currentIndex}`} className='w-full h-auto' />
-          ) : (
-            <video src={media[currentIndex].src} controls className='w-full h-auto' />
-          )}
-          <button onClick={handlePrev} className='absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full'>
-            &#9664;
-          </button>
-          <button onClick={handleNext} className='absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full'>
-            &#9654;
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
+    <Box
+      sx={{
+        minHeight: '100vh',
+        bgcolor: '#0a192f',
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        p: 4,
+      }}
+    >
+      <Paper
+        elevation={6}
+        sx={{
+          maxWidth: 1000,
+          width: '100%',
+          mx: 'auto',
+          p: { xs: 2, md: 4 },
+          bgcolor: '#112240',
+          borderRadius: 3,
+          color: 'white',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'stretch',
+        }}
+      >
+        <Typography
+          variant="h3"
+          component="h1"
+          fontWeight="bold"
+          gutterBottom
+          sx={{
+            borderBottom: 3,
+            borderBottom: '4px solid #ec4899',
+            display: 'inline-block',
+            mb: 2,
+            textAlign: 'center',
+            width: '100%',
+          }}
+        >
+          {t('gaming.title')}
+        </Typography>
 
-export default Gaming
+        <Typography variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
+          {t('gaming.intro')}
+        </Typography>
+
+        <Typography variant="h6" fontWeight="bold" sx={{ width: '100%', textAlign: 'left' }}>
+          {t('gaming.objectives')}
+        </Typography>
+
+        <Divider sx={{ my: 2, bgcolor: '#ec4899', width: '100%' }} />
+
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
+          {t('gaming.goal1Title')}
+        </Typography>
+        <Typography variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
+          {t('gaming.goal1Desc')}
+        </Typography>
+        <br />
+
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
+          {t('gaming.goal2Title')}
+        </Typography>
+        <Typography variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
+          {t('gaming.goal2Desc')}
+        </Typography>
+        <br />
+
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
+          {t('gaming.goal3Title')}
+        </Typography>
+        <Typography variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
+          {t('gaming.goal3Desc')}
+        </Typography>
+        <br />
+
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ fontSize: 20, textAlign: 'left', width: '100%', display: 'block' }}>
+          {t('gaming.goal4Title')}
+        </Typography>
+        <Typography variant="body2" sx={{ ml: 1, width: '100%', display: 'block', textAlign: 'left' }}>
+          {t('gaming.goal4Desc')}
+        </Typography>
+        <br />
+
+        <Box
+          sx={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: 700,
+            mx: 'auto',
+            my: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {media[currentIndex].type === 'image' ? (
+            <Box
+              component="img"
+              src={media[currentIndex].src}
+              alt={`media-${currentIndex}`}
+              sx={{
+                width: '100%',
+                height: 'auto',
+                borderRadius: 2,
+                boxShadow: 3,
+              }}
+            />
+          ) : (
+            <Box
+              component="video"
+              src={media[currentIndex].src}
+              controls
+              sx={{
+                width: '100%',
+                height: 'auto',
+                borderRadius: 2,
+                boxShadow: 3,
+              }}
+            />
+          )}
+          <IconButton
+            onClick={handlePrev}
+            sx={{
+              position: 'absolute',
+              left: 0,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              bgcolor: 'rgba(30,30,30,0.7)',
+              color: 'white',
+              '&:hover': { bgcolor: 'rgba(236,72,153,0.8)' },
+            }}
+          >
+            <ArrowBackIosNewIcon />
+          </IconButton>
+          <IconButton
+            onClick={handleNext}
+            sx={{
+              position: 'absolute',
+              right: 0,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              bgcolor: 'rgba(30,30,30,0.7)',
+              color: 'white',
+              '&:hover': { bgcolor: 'rgba(236,72,153,0.8)' },
+            }}
+          >
+            <ArrowForwardIosIcon />
+          </IconButton>
+        </Box>
+      </Paper>
+    </Box>
+  );
+};
+
+export default Gaming;

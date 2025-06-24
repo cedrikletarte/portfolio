@@ -1,34 +1,111 @@
 "use client"
 
 import { useTranslations } from 'next-intl';
+import { Box, Paper, Typography, Divider } from '@mui/material';
 
 const Website = () => {
   const t = useTranslations();
 
   return (
-    <div className='w-full min-h-screen bg-[#0a192f] text-gray-300 flex justify-center items-center p-4'>
-        {/* Container */}
-        <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full'>
-            <div>
-                <p className='text-4xl font-bold inline border-b-4 border-pink-600'>{t('website.title')}</p>
-                <p style={{textAlign: 'justify'}} className='py-4 max-w[700px]'>{t('website.intro')}</p>
-                <p className='font-bold'>{t('website.objectives')}</p> <br/><br/>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        bgcolor: '#0a192f',
+        color: 'white',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        p: 4,
+      }}
+    >
+      <Paper
+        elevation={6}
+        sx={{
+          maxWidth: 1000,
+          width: '100%',
+          mx: 'auto',
+          p: { xs: 2, md: 4 },
+          bgcolor: '#112240',
+          borderRadius: 3,
+          color: 'white',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'stretch',
+        }}
+      >
+        <Typography
+          variant="h3"
+          component="h1"
+          fontWeight="bold"
+          gutterBottom
+          sx={{
+            borderBottom: 3,
+            borderBottom: '4px solid #ec4899',
+            display: 'inline-block',
+            mb: 2,
+            textAlign: 'center',
+            width: '100%',
+          }}
+        >
+          {t('website.title')}
+        </Typography>
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.skillsTitle')}</p> {t('website.skillsDesc')} <br/><br/>
+        <Typography variant="body1" sx={{ textAlign: 'justify', mb: 3, width: '100%' }}>
+          {t('website.intro')}
+        </Typography>
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.projectsTitle')}</p> {t('website.projectsDesc')}<br/><br/>
+        <Typography variant="h6" fontWeight="bold" sx={{ width: '100%' }}>
+          {t('website.objectives')}
+        </Typography>
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.uxTitle')}</p> {t('website.uxDesc')} <br/><br/>
+        <Divider sx={{ my: 2, bgcolor: '#ec4899', width: '100%' }} />
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.securityTitle')}</p> {t('website.securityDesc')} <br/><br/>
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.skillsTitle')}
+        </Typography>
+        <Typography variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.skillsDesc')}
+        </Typography>
+        <br /><br />
 
-                <p style={{fontWeight: 'bold', display: 'inline', fontSize: 20}}>{t('website.designTitle')}</p> {t('website.designDesc')} <br/><br/>
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.projectsTitle')}
+        </Typography>
+        <Typography variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.projectsDesc')}
+        </Typography>
+        <br /><br />
 
-                {t('website.conclusion')}
-            </div>
-        </div>
-    </div>
-  )
-}
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.uxTitle')}
+        </Typography>
+        <Typography variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.uxDesc')}
+        </Typography>
+        <br /><br />
 
-export default Website
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.securityTitle')}
+        </Typography>
+        <Typography variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.securityDesc')}
+        </Typography>
+        <br /><br />
+
+        <Typography variant="subtitle1" fontWeight="bold" sx={{ display: 'inline', fontSize: 20 }}>
+          {t('website.designTitle')}
+        </Typography>
+        <Typography variant="body2" sx={{ display: 'inline', ml: 1 }}>
+          {t('website.designDesc')}
+        </Typography>
+        <br /><br />
+
+        <Typography variant="body1" sx={{ width: '100%' }}>
+          {t('website.conclusion')}
+        </Typography>
+      </Paper>
+    </Box>
+  );
+};
+
+export default Website;

@@ -119,3 +119,55 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background: transparent;
 }
+
+
+
+/* globals.css ou un fichier importé globalement */
+.custom-quill-editor .ql-toolbar {
+  background: #ccd6f6;
+  color: #e2e8f0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.custom-quill-editor .ql-container {
+  background: #ccd6f6;
+  color: #e2e8f0;
+  border: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  min-height: 200px;
+}
+.custom-quill-editor .ql-editor {
+  color: #222;
+  font-size: 1rem;
+  min-height: 150px;
+}
+.custom-quill-editor .ql-toolbar button,
+.custom-quill-editor .ql-toolbar .ql-picker-label,
+.custom-quill-editor .ql-toolbar .ql-picker-item {
+  color: #222 !important;
+  fill: #222 !important;
+}
+.custom-quill-editor .ql-toolbar button:hover,
+.custom-quill-editor .ql-toolbar .ql-picker-label:hover,
+.custom-quill-editor .ql-toolbar .ql-picker-item:hover {
+  color: #1976d2 !important;
+  fill: #1976d2 !important;
+}
+.custom-quill-editor .ql-toolbar .ql-active {
+  color: #1976d2 !important;
+  fill: #1976d2 !important;
+}
+
+
+
+@keyframes fly-away {
+  0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+  60%  { transform: translateY(-40px) scale(1.2) rotate(-20deg); opacity: 1; }
+  100% { transform: translateY(-120px) scale(0.5) rotate(-40deg); opacity: 0; }
+}
+
+.send-fly {
+  animation: fly-away 1.2s cubic-bezier(0.4,0,0.2,1);
+  display: inline-block;
+}

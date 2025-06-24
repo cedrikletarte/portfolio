@@ -40,7 +40,8 @@
     "email": "Email",
     "emailTitle": "Here is an example of a valid email: example@gmail.com",
     "message": "Message",
-    "button": "Let's work together"
+    "button": "Let's work together",
+    "buttonLoading": "Sending..."
     },
   "navbar": {
     "home": "Home",
@@ -120,5 +121,8 @@
     "heuristic": "Optimized heuristic evaluation function to prioritize the best moves and speed up decisions.",
     "moves": "Generation of valid moves taking into account the constraints of the board.",
     "network": "Interaction with a game server via a network interface to test our AI against other agents."
+  },
+    "error": {
+    "sending": "An error occurred while sending your message. Please try again later."
   }
 }

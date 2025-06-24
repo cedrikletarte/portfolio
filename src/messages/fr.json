@@ -40,7 +40,8 @@
     "email": "Courriel",
     "emailTitle": "Voici un exemple d'email valide : exemple@gmail.com",
     "message": "Message",
-    "button": "Travaillons ensemble"
+    "button": "Travaillons ensemble",
+    "buttonLoading": "Envoi en cours..."
   },
   "navbar": {
     "home": "Accueil",
@@ -120,5 +121,8 @@
     "heuristic": "Fonction d’évaluation heuristique optimisée pour prioriser les meilleurs coups et accélérer les décisions.",
     "moves": "Génération de mouvements valides prenant en compte les contraintes du plateau.",
     "network": "Interaction avec un serveur de jeu via une interface réseau pour tester notre IA contre d'autres agents."
+  },
+  "error": {
+    "sending": "Erreur lors de l'envoi du message. Veuillez réessayer plus tard."
   }
 }
