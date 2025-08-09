@@ -10,6 +10,7 @@ import 'quill/dist/quill.snow.css';
 import { useEffect, useRef, useState } from 'react';
 import { MdSend } from 'react-icons/md';
 import CircularProgress from '@mui/material/CircularProgress';
+import Reveal from './Reveal';
 
 // Dynamically import the Editor component (Quill-based), only on client side
 const Editor = dynamic(() => import('./Editor'), { ssr: false });
@@ -107,117 +108,126 @@ const Contact = () => {
         }}
       >
         {/* Title and description */}
-        <Box sx={{ pb: 3 }}>
-          <Text variant="h4" component="h2" fontWeight="bold" sx={{
-            fontWeight: 'bold',
-            borderBottom: '4px solid #ec4899',
-            fontSize: { xs: 28, md: 36 },
-            display: 'inline-block',
-          }}>
-            {t('contact.title')}
-          </Text>
-          <Text variant="body1" sx={{ py: 1 }}>
-            {/* Rich translation with clickable mailto link */}
-            {t.rich('contact.desc', {
-              link: (chunks) => (
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://mail.google.com/mail/u/0/?fs=1&to=cedrikletarte@gmail.com&tf=cm"
-                  style={{ textDecoration: 'underline', color: '#ec4899' }}
-                >
-                  {chunks}
-                </a>
-              ),
-            })}
-          </Text>
-        </Box>
+        <Reveal direction="up" distance={40}>
+          <Box sx={{ pb: 3 }}>
+            <Text variant="h4" component="h2" fontWeight="bold" sx={{
+              fontWeight: 'bold',
+              borderBottom: '4px solid #ec4899',
+              fontSize: { xs: 28, md: 36 },
+              display: 'inline-block',
+            }}>
+              {t('contact.title')}
+            </Text>
+            <Text variant="body1" sx={{ py: 1 }}>
+              {/* Rich translation with clickable mailto link */}
+              {t.rich('contact.desc', {
+                link: (chunks) => (
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://mail.google.com/mail/u/0/?fs=1&to=cedrikletarte@gmail.com&tf=cm"
+                    style={{ textDecoration: 'underline', color: '#ec4899' }}
+                  >
+                    {chunks}
+                  </a>
+                ),
+              })}
+            </Text>
+          </Box>
+        </Reveal>
         {/* Name input field */}
-        <TextField
-          label={t('contact.name')}
-          name="name"
-          required
-          variant="filled"
-          value={name}
-          sx={{
-            mb: 2,
-            bgcolor: '#ccd6f6',
-            borderRadius: 1,
-            '& .MuiInputLabel-root': {
-              color: '#000000',
-            },
-            '& .MuiInputLabel-root.Mui-focused': {
-              color: '#000000',
-            },
-            '& .MuiInputBase-input': {
-              color: '#000000', // <-- texte noir
-            },
-          }}
-          onChange={(e) => setName(e.target.value)}
-
-        />
+        <Reveal direction="up" distance={40} delay={0.05} style={{ width: '100%' }}>
+          <TextField
+            label={t('contact.name')}
+            name="name"
+            required
+            variant="filled"
+            value={name}
+            fullWidth
+            sx={{
+              mb: 2,
+              bgcolor: '#ccd6f6',
+              borderRadius: 1,
+              '& .MuiInputLabel-root': {
+                color: '#000000',
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#000000',
+              },
+              '& .MuiInputBase-input': {
+                color: '#000000',
+              },
+            }}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Reveal>
         {/* Email input field */}
-        <TextField
-          label={t('contact.email')}
-          name="email"
-          required
-          variant="filled"
-          type="email"
-          value={email}
-          sx={{
-            mb: 2,
-            bgcolor: '#ccd6f6',
-            borderRadius: 1,
-            '& .MuiInputLabel-root': {
-              color: '#000000',
-            },
-            '& .MuiInputLabel-root.Mui-focused': {
-              color: '#000000',
-            },
-            '& .MuiInputBase-input': {
-              color: '#000000', // <-- texte noir
-            },
-          }}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <Reveal direction="up" distance={40} delay={0.1} style={{ width: '100%' }}>
+          <TextField
+            label={t('contact.email')}
+            name="email"
+            required
+            variant="filled"
+            type="email"
+            value={email}
+            fullWidth
+            sx={{
+              mb: 2,
+              bgcolor: '#ccd6f6',
+              borderRadius: 1,
+              '& .MuiInputLabel-root': {
+                color: '#000000',
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#000000',
+              },
+              '& .MuiInputBase-input': {
+                color: '#000000',
+              },
+            }}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Reveal>
         {/* Rich text editor for the message */}
-        <Editor
-          ref={quillRef}
-          defaultValue={defaultValue}
-          onTextChange={(_delta, _oldDelta, source, quill) => {
-            setMessage(quill.root.innerHTML);
-          }}
-
-          required
-        />
+        <Reveal direction="up" distance={40} delay={0.15} style={{ width: '100%' }}>
+          <Editor
+            ref={quillRef}
+            defaultValue={defaultValue}
+            onTextChange={(_delta, _oldDelta, source, quill) => {
+              setMessage(quill.root.innerHTML);
+            }}
+            required
+          />
+        </Reveal>
         <Box sx={{ mb: 2 }}>
           {/* Hidden input to send Quill content */}
           <input type="hidden" name="message" value={message} />
         </Box>
         {/* Submit button with loading and sent animation */}
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <MdSend className={sent ? 'send-fly' : ''} />}
-          sx={{
-            mt: 2,
-            fontWeight: 'bold',
-            alignSelf: 'center',
-            px: 4,
-            py: 1.5,
-            bgcolor: '#ec4899',
-            '&:hover': { bgcolor: '#db2777' },
-            '&.Mui-disabled': {
-              bgcolor: '#a1a1aa',
-              color: '#fff',
-              opacity: 1,
-            },
-          }}
-          disabled={loading}
-        >
-          {loading ? t('contact.buttonLoading') : t('contact.button')}
-        </Button>
+        <Reveal direction="up" distance={40} delay={0.2} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <MdSend className={sent ? 'send-fly' : ''} />}
+            sx={{
+              mt: 2,
+              fontWeight: 'bold',
+              px: 4,
+              py: 1.5,
+              bgcolor: '#ec4899',
+              '&:hover': { bgcolor: '#db2777' },
+              '&.Mui-disabled': {
+                bgcolor: '#a1a1aa',
+                color: '#fff',
+                opacity: 1,
+              },
+            }}
+            disabled={loading}
+          >
+            {loading ? t('contact.buttonLoading') : t('contact.button')}
+          </Button>
+        </Reveal>
       </Box>
     </Box>
   );
