@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
+import Reveal from './Reveal';
 
 // About component definition
 const About = () => {
@@ -44,20 +45,21 @@ const About = () => {
                             mb: { xs: 2, md: 4 },
                         }}
                     >
-                        {/* Main title, bold with a pink underline */}
-                        <Text
-                            variant="h3"
-                            sx={{
-                                fontWeight: 'bold',
-                                borderBottom: '4px solid #ec4899',
-                                fontSize: { xs: 24, sm: 28, md: 36 },
-                                display: 'inline-block',
-                                pb: 1,
-                            }}
-                        >
-                            {/* Translated title */}
-                            {t('about.title')}
-                        </Text>
+                        <Reveal direction="up" distance={40}>
+                            <Text
+                                variant="h3"
+                                sx={{
+                                    fontWeight: 'bold',
+                                    borderBottom: '4px solid #ec4899',
+                                    fontSize: { xs: 24, sm: 28, md: 36 },
+                                    display: 'inline-block',
+                                    pb: 1,
+                                }}
+                            >
+                                {/* Translated title */}
+                                {t('about.title')}
+                            </Text>
+                        </Reveal>
                     </Box>
                 </Grid>
 
@@ -70,17 +72,19 @@ const About = () => {
                             mb: { xs: 2, md: 0 },
                         }}
                     >
-                        {/* Translated introduction text, bold and larger */}
-                        <Text
-                            variant="h5"
-                            sx={{
-                                fontWeight: 700,
-                                fontSize: { xs: 20, sm: 24, md: 28 },
-                                lineHeight: 1.3,
-                            }}
-                        >
-                            {t('about.intro')}
-                        </Text>
+                        <Reveal direction="left" distance={50}>
+                            {/* Translated introduction text, bold and larger */}
+                            <Text
+                                variant="h5"
+                                sx={{
+                                    fontWeight: 700,
+                                    fontSize: { xs: 20, sm: 24, md: 28 },
+                                    lineHeight: 1.3,
+                                }}
+                            >
+                                {t('about.intro')}
+                            </Text>
+                        </Reveal>
                     </Box>
                 </Grid>
 
@@ -91,17 +95,19 @@ const About = () => {
                             pl: { md: 2 },
                         }}
                     >
-                        {/* Translated description text, justified alignment */}
-                        <Text
-                            sx={{
-                                textAlign: { xs: 'justify', md: 'justify' },
-                                fontSize: { xs: 14, sm: 15, md: 16 },
-                                lineHeight: 1.6,
-                                maxWidth: { xs: '100%', md: 'none' },
-                            }}
-                        >
-                            {t('about.desc')}
-                        </Text>
+                        <Reveal direction="right" distance={50} delay={0.05}>
+                            {/* Translated description text, justified alignment */}
+                            <Text
+                                sx={{
+                                    textAlign: { xs: 'justify', md: 'justify' },
+                                    fontSize: { xs: 14, sm: 15, md: 16 },
+                                    lineHeight: 1.6,
+                                    maxWidth: { xs: '100%', md: 'none' },
+                                }}
+                            >
+                                {t('about.desc')}
+                            </Text>
+                        </Reveal>
                     </Box>
                 </Grid>
             </Grid>
