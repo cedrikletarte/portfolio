@@ -24,7 +24,7 @@ const Server = () => {
   // Initialize translation function
   const t = useTranslations();
   // Technologies needing subdued styling (avoid double pink emphasis)
-  const subduedTechs = ['cloudflare','wireguard','jellyfin','vaultwarden'];
+  const subduedTechs = ['cloudflare','wireguard','plex','vaultwarden'];
 
   return (
     // Main container with centered content and background styling
@@ -207,11 +207,7 @@ const Server = () => {
                       height: 60,
                       mx: 'auto',
                       mb: 1,
-                      boxShadow: isSubdued ? '0 6px 18px -6px rgba(0,0,0,0.45)' : '0 0 0 4px rgba(236,72,153,0.25)',
-                      border: isSubdued ? '1px solid rgba(0,0,0,0.15)' : '2px solid rgba(236,72,153,0.55)',
-                      background:'#fff',
-                      position:'relative',
-                      '&:after': isSubdued ? { content:'""', position:'absolute', inset:0, borderRadius:'inherit', boxShadow:'inset 0 0 0 1px rgba(255,255,255,0.4)' } : undefined
+                      position:'relative'
                     }}
                     variant="rounded"
                   />

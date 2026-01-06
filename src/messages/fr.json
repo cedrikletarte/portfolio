@@ -64,7 +64,7 @@
     "dockerTitle": "1. Mise en place de conteneurs Docker",
     "dockerDesc": "J’ai déployé et orchestré plusieurs services à l’aide de Docker, chacun fonctionnant dans un environnement isolé pour maximiser la sécurité et la modularité :",
     "dockerList": [
-      "<b>Jellyfin</b> pour le streaming multimédia personnel",
+      "<b>Plex</b> pour le streaming multimédia personnel",
       "<b>Radarr</b>, <b>Sonarr</b>, <b>qBittorrent</b> et <b>Jackett</b> pour l’organisation de contenu",
       "<b>Vaultwarden</b> pour la gestion des mots de passe",
       "<b>Portainer</b> pour superviser et administrer facilement tous les conteneurs"
@@ -78,11 +78,11 @@
       "<b>Réseau VPN :</b> configuration d'un conteneur WireGuard pour établir un réseau privé virtuel (VPN), garantissant une sécurité optimale lors de l'accès à distance à mon serveur. Cette configuration isole les connexions sensibles et assure la confidentialité des communications, tout en permettant une gestion sécurisée des services hébergés."
     ],
     "autoTitle": "3. Automatisation et maintenance",
-    "autoDesc": "J’ai intégré <b>Watchtower</b> pour automatiser les mises à jour des conteneurs Docker, ainsi que les <b>« unattended updates »</b> d’Ubuntu. Cette approche garantit que chaque service et le système d’exploitation restent à jour sans intervention manuelle, réduisant ainsi les risques liés aux vulnérabilités et minimisant les efforts de maintenance.",
+    "autoDesc": "J’ai intégré un script pour automatiser les mises à jour des conteneurs Docker, ainsi que les <b>« unattended updates »</b> d’Ubuntu. Cette approche garantit que chaque service et le système d’exploitation restent à jour sans intervention manuelle, réduisant ainsi les risques liés aux vulnérabilités et minimisant les efforts de maintenance.",
     "techs": [
       "Cloudflare",
       "Wireguard",
-      "Jellyfin",
+      "Plex",
       "Vaultwarden"
     ]
   },

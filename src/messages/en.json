@@ -64,7 +64,7 @@
     "dockerTitle": "1. Docker Containers Setup",
     "dockerDesc": "I deployed and orchestrated several services using Docker, each running in an isolated environment to maximize security and modularity:",
     "dockerList": [
-      "<b>Jellyfin</b> for personal media streaming",
+      "<b>Plex</b> for personal media streaming",
       "<b>Radarr</b>, <b>Sonarr</b>, <b>qBittorrent</b> and <b>Jackett</b> for content organization",
       "<b>Vaultwarden</b> for password management",
       "<b>Portainer</b> to easily supervise and manage all containers"
@@ -78,11 +78,11 @@
       "<b>VPN network:</b> configured a WireGuard container to establish a virtual private network (VPN), ensuring optimal security for remote server access. This setup isolates sensitive connections and ensures communication confidentiality while allowing secure management of hosted services."
     ],
     "autoTitle": "3. Automation and Maintenance",
-    "autoDesc": "I integrated <b>Watchtower</b> to automate Docker container updates, as well as Ubuntu's <b>unattended updates</b>. This approach ensures that each service and the operating system remain up to date without manual intervention, reducing vulnerability risks and minimizing maintenance efforts.",
+    "autoDesc": "I integrated a script to automate Docker container updates, as well as Ubuntu's <b>unattended updates</b>. This approach ensures that each service and the operating system remain up to date without manual intervention, reducing vulnerability risks and minimizing maintenance efforts.",
     "techs": [
       "Cloudflare",
       "Wireguard",
-      "Jellyfin",
+      "Plex",
       "Vaultwarden"
     ]
   },
