@@ -26,7 +26,7 @@ deploy-job:
   needs: [build-job]
   before_script:
     # download docker-compose file from docker-configs repo
-    - wget -O /opt/docker-compose.yml --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/17/repository/files/deployments%2F2Fportfolio%2Fdocker-compose.yml/raw\?ref=main
+    - wget -O /opt/docker-compose.yml --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/17/repository/files/deployments%2Fportfolio%2Fdocker-compose.yml/raw\?ref=main
   script:
     - docker-compose -f /opt/docker-compose.yml down || true
     - docker-compose -f /opt/docker-compose.yml up -d --build
