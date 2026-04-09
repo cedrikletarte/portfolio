@@ -59,7 +59,7 @@ const Skills = () => {
                 {/* Grid of skill cards */}
                 <Grid container spacing={3} sx={{ py: 4 }}>
                     {skills.map((skill, idx) => (
-                        <Grid size={3} key={skill.alt}>
+                        <Grid size={{ xs: 6, sm: 4, md: 3 }} key={skill.alt}>
                             <Reveal direction="up" distance={50} delay={idx * 0.05}>
                                 {/* Paper card for each skill */}
                                 <Paper
@@ -67,6 +67,9 @@ const Skills = () => {
                                     sx={{
                                         p: 2,
                                         textAlign: 'center',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
                                         transition: 'transform 0.3s',
                                         '&:hover': { transform: 'scale(1.08)' },
                                         bgcolor: (theme) => theme.palette.background.paper,
@@ -81,7 +84,16 @@ const Skills = () => {
                                         style={{ margin: '0 auto' }}
                                     />
                                     {/* Skill label */}
-                                    <Text variant="body1" sx={{ mt: 2 }}>
+                                    <Text
+                                        variant="body1"
+                                        sx={{
+                                            mt: 2,
+                                            width: '100%',
+                                            textAlign: 'center',
+                                            fontSize: { xs: '0.9rem', sm: '1rem' },
+                                            lineHeight: 1.3,
+                                        }}
+                                    >
                                         {t(skill.label)}
                                     </Text>
                                 </Paper>

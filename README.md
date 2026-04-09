@@ -118,3 +118,39 @@ EOF'
 - The Docker socket volume (`/var/run/docker.sock:/var/run/docker.sock`) is required for Docker-in-Docker builds.
 - Make sure your runner has network access to your GitLab instance.
 - For more information, see the [Next.js Deployment Documentation](https://nextjs.org/docs/deployment) and [GitLab Runner Docs](https://docs.gitlab.com/runner/).
+
+---
+
+## 🔍 SEO & Indexing (Google + Bing)
+
+### Google Search Console
+
+1. Open Google Search Console and add your domain:  
+  https://search.google.com/search-console?resource_id=sc-domain%3Acedrikletarte.com
+2. Verify ownership by following Google instructions (recommended: DNS TXT record at the domain level).
+3. Once the property is verified, use the **URL Inspection** tool:
+  - Enter `https://www.cedrikletarte.com/`.
+  - If the page is not indexed, click **Request indexing**.
+4. Repeat for other important pages if needed (project pages, etc.).
+
+> Note: indexing is never instant. Even after requesting indexing, Google can take from a few minutes to several days to index or re-index a page.
+
+### Bing / IndexNow
+
+1. Create the IndexNow key file (already done in this project):
+  - File: `public/10781fabffa84997949378633b23406e.txt`
+  - File content: `10781fabffa84997949378633b23406e`
+  - After build and deployment, it must be publicly accessible at:  
+    `https://www.cedrikletarte.com/10781fabffa84997949378633b23406e.txt`
+2. Build and deploy the Next.js app (Docker or any hosting provider). Bing must be able to access the website on the public internet.
+3. Submit a URL to IndexNow (simple GET method):
+  - Call this URL in a browser or via curl:  
+    `https://api.indexnow.org/indexnow?url=https://www.cedrikletarte.com/&key=10781fabffa84997949378633b23406e&keyLocation=https://www.cedrikletarte.com/10781fabffa84997949378633b23406e.txt`
+  - If everything is configured correctly, the API should return HTTP 200.
+4. (Optional) Submit multiple URLs with a JSON POST request to `https://api.indexnow.org/indexnow` using the format from the official documentation:  
+  https://www.bing.com/indexnow/getstarted#implementation
+5. Check in **Bing Webmaster Tools**:
+  - Add and verify the site if this is not already done.
+  - In the menu, open **IndexNow** / **URL Submission** to confirm URLs were received.
+
+As with Google, receiving URLs does not guarantee instant indexing, but these steps significantly improve the chances of fast crawling and indexing.

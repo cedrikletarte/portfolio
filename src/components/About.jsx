@@ -67,7 +67,7 @@ const About = () => {
                 <Grid size={{ xs: 12, md: 6 }}>
                     <Box
                         sx={{
-                            textAlign: { md: 'right' },
+                            textAlign: { xs: 'left', md: 'right' },
                             pr: { md: 2 },
                             mb: { xs: 2, md: 0 },
                         }}
@@ -80,6 +80,11 @@ const About = () => {
                                     fontWeight: 700,
                                     fontSize: { xs: 20, sm: 24, md: 28 },
                                     lineHeight: 1.3,
+                                    width: '100%',
+                                    maxWidth: { xs: 520, md: 'none' },
+                                    mx: { xs: 'auto', md: 0 },
+                                    overflowWrap: 'anywhere',
+                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {t('about.intro')}
@@ -93,16 +98,21 @@ const About = () => {
                     <Box
                         sx={{
                             pl: { md: 2 },
+                            textAlign: { xs: 'center', md: 'left' },
                         }}
                     >
                         <Reveal direction="right" distance={50} delay={0.05}>
                             {/* Translated description text, justified alignment */}
                             <Text
                                 sx={{
-                                    textAlign: { xs: 'justify', md: 'justify' },
+                                    textAlign: 'justify',
                                     fontSize: { xs: 14, sm: 15, md: 16 },
                                     lineHeight: 1.6,
-                                    maxWidth: { xs: '100%', md: 'none' },
+                                    width: '100%',
+                                    maxWidth: { xs: 520, md: 'none' },
+                                    mx: { xs: 'auto', md: 0 },
+                                    overflowWrap: 'anywhere',
+                                    wordBreak: 'break-word',
                                 }}
                             >
                                 {t('about.desc')}

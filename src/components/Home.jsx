@@ -54,6 +54,7 @@ const Home = () => {
         </Reveal>
         <Reveal direction="up" distance={40} delay={0.05}>
           <Text
+            component="h1"
             variant="h2"
             sx={{
               fontWeight: 'bold',
