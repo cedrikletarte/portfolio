@@ -64,7 +64,7 @@ const About = () => {
                 </Grid>
 
                 {/* Introduction section - left column on desktop */}
-                <Grid size={{ xs: 12, md: 6 }}>
+                <Grid size={{ xs: 12, md: 6 }} sx={{ minWidth: 0 }}>
                     <Box
                         sx={{
                             textAlign: { xs: 'left', md: 'right' },
@@ -85,6 +85,7 @@ const About = () => {
                                     mx: { xs: 'auto', md: 0 },
                                     overflowWrap: 'anywhere',
                                     wordBreak: 'break-word',
+                                    hyphens: 'auto',
                                 }}
                             >
                                 {t('about.intro')}
@@ -94,7 +95,7 @@ const About = () => {
                 </Grid>
 
                 {/* Description section - right column on desktop */}
-                <Grid size={{ xs: 12, md: 6 }}>
+                <Grid size={{ xs: 12, md: 6 }} sx={{ minWidth: 0 }}>
                     <Box
                         sx={{
                             pl: { md: 2 },
@@ -113,6 +114,7 @@ const About = () => {
                                     mx: { xs: 'auto', md: 0 },
                                     overflowWrap: 'anywhere',
                                     wordBreak: 'break-word',
+                                    hyphens: 'auto',
                                 }}
                             >
                                 {t('about.desc')}
