@@ -1,25 +1,26 @@
 "use client"
 
-import { Box, Grid, Paper, Stack } from '@mui/material';
+import { Box, Button, Grid, Paper, Stack } from '@mui/material';
 import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import Reveal from './Reveal';
-import MemoryIcon from '@mui/icons-material/Memory';
-import HubIcon from '@mui/icons-material/Hub';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import FunctionsIcon from '@mui/icons-material/Functions';
-import PsychologyIcon from '@mui/icons-material/Psychology';
+import PublicIcon from '@mui/icons-material/Public';
+import ExploreIcon from '@mui/icons-material/Explore';
+import SearchIcon from '@mui/icons-material/Search';
+import MapIcon from '@mui/icons-material/Map';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
-const ACCENT = '#6366f1';
+const ACCENT = '#22d3ee';
 
-const Ai = () => {
+const Earth = () => {
   const t = useTranslations();
 
-  const techs = [
-    { icon: <FunctionsIcon sx={{ fontSize: 22 }} />,   text: t('ai.minimax')   },
-    { icon: <QueryStatsIcon sx={{ fontSize: 22 }} />,  text: t('ai.heuristic') },
-    { icon: <MemoryIcon sx={{ fontSize: 22 }} />,      text: t('ai.moves')     },
-    { icon: <HubIcon sx={{ fontSize: 22 }} />,         text: t('ai.network')   },
+  const features = [
+    { icon: <ExploreIcon sx={{ fontSize: 22 }} />,     title: t('earth.globeTitle'),   desc: t('earth.globeDesc')  },
+    { icon: <SearchIcon sx={{ fontSize: 22 }} />,      title: t('earth.searchTitle'),  desc: t('earth.searchDesc') },
+    { icon: <MapIcon sx={{ fontSize: 22 }} />,         title: t('earth.mapTitle'),     desc: t('earth.mapDesc')    },
+    { icon: <AutoAwesomeIcon sx={{ fontSize: 22 }} />, title: t('earth.skyboxTitle'),  desc: t('earth.skyboxDesc') },
   ];
 
   return (
@@ -32,10 +33,10 @@ const Ai = () => {
         <Reveal direction="up" distance={40}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5, mb: 4 }}>
             <Box sx={{ width: 64, height: 64, borderRadius: 2.5, background: `linear-gradient(135deg, ${ACCENT}30, ${ACCENT}10)`, border: `1px solid ${ACCENT}50`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: ACCENT, flexShrink: 0 }}>
-              <PsychologyIcon sx={{ fontSize: 36 }} />
+              <PublicIcon sx={{ fontSize: 36 }} />
             </Box>
             <Box>
-              <Text variant="h3" component="h1" fontWeight="bold" sx={{ lineHeight: 1.1 }}>{t('ai.title')}</Text>
+              <Text variant="h3" component="h1" fontWeight="bold" sx={{ lineHeight: 1.1 }}>{t('earth.title')}</Text>
               <Box sx={{ height: 4, width: 56, borderRadius: 2, background: ACCENT, mt: 0.75 }} />
             </Box>
           </Box>
@@ -43,26 +44,29 @@ const Ai = () => {
 
         <Reveal direction="up" distance={40} delay={0.05}>
           <Text variant="body1" sx={{ textAlign: 'justify', mb: 5, lineHeight: 1.7, color: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.78)' : 'rgba(0,0,0,0.72)' }}>
-            {t('ai.intro')}
+            {t('earth.intro')}
           </Text>
         </Reveal>
 
-        {/* Algorithms label */}
+        {/* Features label */}
         <Reveal direction="up" distance={50}>
           <Text variant="overline" sx={{ color: ACCENT, letterSpacing: 2, fontWeight: 600, mb: 2, display: 'block' }}>
-            {t('ai.techTitle')}
+            {t('earth.featuresTitle')}
           </Text>
         </Reveal>
 
         <Grid container spacing={2.5} sx={{ mb: 5 }}>
-          {techs.map((item, i) => (
-            <Grid key={`ai-tech-${i}`} size={{ xs: 12, sm: 6 }}>
+          {features.map((item, i) => (
+            <Grid key={`earth-feat-${i}`} size={{ xs: 12, sm: 6 }}>
               <Reveal direction="up" distance={55} delay={0.05 + i * 0.05}>
-                <Paper variant="outlined" sx={{ p: 2.2, height: '100%', borderColor: `${ACCENT}45`, background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`, backdropFilter: 'blur(4px)', position: 'relative', overflow: 'hidden', display: 'flex', gap: 1.5, alignItems: 'flex-start', borderRadius: 2 }}>
+                <Paper variant="outlined" sx={{ p: 2.5, height: '100%', borderColor: `${ACCENT}45`, background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`, backdropFilter: 'blur(4px)', position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
                   <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(circle at 70% 25%, ${ACCENT}18, transparent 65%)`, opacity: .8 }} />
-                  <Box sx={{ color: ACCENT, display: 'flex', alignItems: 'center', flexShrink: 0, mt: .1, position: 'relative' }}>{item.icon}</Box>
+                  <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1, position: 'relative' }}>
+                    <Box sx={{ color: ACCENT }}>{item.icon}</Box>
+                    <Text variant="subtitle1" fontWeight="bold" sx={{ fontSize: { xs: 14, sm: 16 } }}>{item.title}</Text>
+                  </Stack>
                   <Text variant="body2" sx={{ lineHeight: 1.6, textAlign: 'justify', color: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.78)' : 'rgba(0,0,0,0.72)', position: 'relative' }}>
-                    {item.text}
+                    {item.desc}
                   </Text>
                 </Paper>
               </Reveal>
@@ -70,19 +74,19 @@ const Ai = () => {
           ))}
         </Grid>
 
-        {/* Screenshot */}
-        <Reveal direction="up" distance={60}>
-          <Box sx={{ position: 'relative', borderRadius: 3, overflow: 'hidden', border: `1px solid ${ACCENT}40`, boxShadow: `0 0 0 1px ${ACCENT}20, 0 16px 48px -10px rgba(0,0,0,0.6)` }}>
-            {/* Top bar decoration */}
-            <Box sx={{ height: 32, bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)', borderBottom: `1px solid ${ACCENT}25`, display: 'flex', alignItems: 'center', px: 1.5, gap: .8 }}>
-              {['#ff5f57', '#febc2e', '#28c840'].map((c) => (
-                <Box key={c} sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: c, opacity: .8 }} />
-              ))}
-              <Text variant="caption" sx={{ ml: 1, color: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.35)', letterSpacing: .5 }}>
-                Giant Tic-Tac-Toe AI
-              </Text>
-            </Box>
-            <Box component="img" src="/assets/tictactoe.png" alt="Tic-Tac-Toe Géant" sx={{ width: '100%', height: 'auto', display: 'block' }} />
+        {/* GitHub link */}
+        <Reveal direction="up" distance={40} delay={0.25}>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Button
+              variant="outlined"
+              href="https://github.com/cedrikletarte/earth"
+              target="_blank"
+              rel="noopener noreferrer"
+              startIcon={<GitHubIcon />}
+              sx={{ borderColor: ACCENT, color: ACCENT, px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: `${ACCENT}15`, borderColor: ACCENT } }}
+            >
+              {t('earth.github')}
+            </Button>
           </Box>
         </Reveal>
       </Paper>
@@ -90,4 +94,4 @@ const Ai = () => {
   );
 };
 
-export default Ai;
+export default Earth;

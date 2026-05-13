@@ -11,13 +11,17 @@ import { useEffect, useRef, useState } from 'react';
 import { MdSend } from 'react-icons/md';
 import CircularProgress from '@mui/material/CircularProgress';
 import Reveal from './Reveal';
+import { useThemeMode } from '../theme/ThemeContext';
 
 // Dynamically import the Editor component (Quill-based), only on client side
-const Editor = dynamic(() => import('./Editor'), { ssr: false });
+const Editor = dynamic(() => import('./Editor'), {
+  ssr: false,
+  loading: () => <Box sx={{ minHeight: 200, bgcolor: '#ccd6f6', borderRadius: 1, mb: 2 }} />,
+});
 
 const Contact = () => {
-  // Initialize translation function
   const t = useTranslations();
+  const { mode } = useThemeMode();
 
   // State for form fields
   const [name, setName] = useState('');
@@ -123,9 +127,7 @@ const Contact = () => {
               {t.rich('contact.desc', {
                 link: (chunks) => (
                   <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://mail.google.com/mail/u/0/?fs=1&to=cedrikletarte@gmail.com&tf=cm"
+                    href="mailto:cedrikletarte@gmail.com"
                     style={{ textDecoration: 'underline', color: '#ec4899' }}
                   >
                     {chunks}
@@ -146,16 +148,16 @@ const Contact = () => {
             fullWidth
             sx={{
               mb: 2,
-              bgcolor: '#ccd6f6',
+              bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
               borderRadius: 1,
               '& .MuiInputLabel-root': {
-                color: '#000000',
+                color: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.6)' : '#000000',
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: '#000000',
+                color: (theme) => theme.palette.mode === 'dark' ? '#ec4899' : '#000000',
               },
               '& .MuiInputBase-input': {
-                color: '#000000',
+                color: (theme) => theme.palette.mode === 'dark' ? '#e2e8f0' : '#000000',
               },
             }}
             onChange={(e) => setName(e.target.value)}
@@ -173,16 +175,16 @@ const Contact = () => {
             fullWidth
             sx={{
               mb: 2,
-              bgcolor: '#ccd6f6',
+              bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
               borderRadius: 1,
               '& .MuiInputLabel-root': {
-                color: '#000000',
+                color: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.6)' : '#000000',
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: '#000000',
+                color: (theme) => theme.palette.mode === 'dark' ? '#ec4899' : '#000000',
               },
               '& .MuiInputBase-input': {
-                color: '#000000',
+                color: (theme) => theme.palette.mode === 'dark' ? '#e2e8f0' : '#000000',
               },
             }}
             onChange={(e) => setEmail(e.target.value)}
@@ -190,14 +192,16 @@ const Contact = () => {
         </Reveal>
         {/* Rich text editor for the message */}
         <Reveal direction="up" distance={40} delay={0.15} style={{ width: '100%' }}>
-          <Editor
-            ref={quillRef}
-            defaultValue={defaultValue}
-            onTextChange={(_delta, _oldDelta, source, quill) => {
-              setMessage(quill.root.innerHTML);
-            }}
-            required
-          />
+          <Box className={mode === 'dark' ? 'quill-dark' : ''}>
+            <Editor
+              ref={quillRef}
+              defaultValue={defaultValue}
+              onTextChange={(_delta, _oldDelta, source, quill) => {
+                setMessage(quill.root.innerHTML);
+              }}
+              required
+            />
+          </Box>
         </Reveal>
         <Box sx={{ mb: 2 }}>
           {/* Hidden input to send Quill content */}

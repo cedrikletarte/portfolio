@@ -11,7 +11,7 @@ A multilingual portfolio built with Next.js, Docker, and CI/CD ready for GitLab 
 Clone this project to your local machine:
 
 ```bash
-git clone ssh://git@192.168.2.100:2424/cedrik/portfolio.git
+git clone <repository-url>
 cd portfolio
 ```
 

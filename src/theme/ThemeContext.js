@@ -1,7 +1,7 @@
 "use client"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 const ThemeModeContext = createContext();
 
@@ -10,15 +10,17 @@ export function useThemeMode() {
 }
 
 export function CustomThemeProvider({ children }) {
+  const [mode, setMode] = useState('dark');
 
-  const getDefaultMode = () => {
-    if (typeof window !== "undefined" && window.matchMedia) {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      setMode(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     }
-    return 'dark'; // fallback
-  };
+  }, []);
 
-  const [mode, setMode] = useState(getDefaultMode);
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', mode);
+  }, [mode]);
 
   const theme = useMemo(
     () =>

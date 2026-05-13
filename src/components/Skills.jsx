@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Reveal from './Reveal';
 
-// Array of skill objects with image source, alt text, and translation label
 const skills = [
     { src: "/assets/java.png", alt: "JAVA", label: "skills.java" },
     { src: "/assets/csharp.png", alt: "C#", label: "skills.csharp" },
@@ -19,11 +18,9 @@ const skills = [
 ];
 
 const Skills = () => {
-    // Initialize translation function
     const t = useTranslations();
 
     return (
-        // Main section container with responsive background and alignment
         <Box
             component="section"
             id="skills"
@@ -34,10 +31,11 @@ const Skills = () => {
                 display: 'flex',
                 alignItems: 'center',
                 py: { xs: 4, md: 0 },
+                position: 'relative',
             }}
         >
-            {/* Inner box to center content and set max width */}
-            <Box sx={{ maxWidth: 1000, mx: 'auto', }}>
+            <Box sx={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: 'radial-gradient(circle at 50% 30%, rgba(236,72,153,0.18), transparent 70%)', filter: 'blur(60px)', opacity: .6, pointerEvents: 'none' }} />
+            <Box sx={{ maxWidth: 1000, mx: 'auto', position: 'relative' }}>
                 <Reveal direction="up" distance={40}>
                     <Text
                         variant="h3"
@@ -56,42 +54,60 @@ const Skills = () => {
                         {t('skills.desc')}
                     </Text>
                 </Reveal>
-                {/* Grid of skill cards */}
                 <Grid container spacing={3} sx={{ py: 4 }}>
                     {skills.map((skill, idx) => (
                         <Grid size={{ xs: 6, sm: 4, md: 3 }} key={skill.alt}>
                             <Reveal direction="up" distance={50} delay={idx * 0.05}>
-                                {/* Paper card for each skill */}
                                 <Paper
-                                    elevation={6}
+                                    elevation={0}
                                     sx={{
-                                        p: 2,
+                                        p: 2.5,
                                         textAlign: 'center',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',
-                                        transition: 'transform 0.3s',
-                                        '&:hover': { transform: 'scale(1.08)' },
-                                        bgcolor: (theme) => theme.palette.background.paper,
+                                        background: (theme) => theme.palette.mode === 'dark'
+                                            ? 'rgba(255,255,255,0.03)'
+                                            : 'rgba(236,72,153,0.04)',
+                                        border: '1px solid rgba(236,72,153,0.35)',
+                                        backdropFilter: 'blur(4px)',
+                                        borderRadius: 3,
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        boxShadow: '0 4px 18px -4px rgba(0,0,0,0.25)',
+                                        transition: 'transform .45s cubic-bezier(.22,.9,.25,1), box-shadow .4s, border-color .4s',
+                                        '&:before': {
+                                            content: '""',
+                                            position: 'absolute',
+                                            inset: 0,
+                                            background: 'radial-gradient(circle at 50% 20%, rgba(236,72,153,0.22), transparent 70%)',
+                                            opacity: 0,
+                                            transition: 'opacity .5s',
+                                        },
+                                        '&:hover:before': { opacity: 1 },
+                                        '&:hover': {
+                                            transform: 'translateY(-6px) scale(1.04)',
+                                            boxShadow: '0 14px 32px -8px rgba(0,0,0,0.5)',
+                                            borderColor: 'rgba(236,72,153,0.65)',
+                                        },
                                     }}
                                 >
-                                    {/* Skill icon */}
                                     <Image
                                         src={skill.src}
                                         alt={skill.alt}
-                                        width={80}
-                                        height={80}
-                                        style={{ margin: '0 auto' }}
+                                        width={72}
+                                        height={72}
+                                        style={{ margin: '0 auto', position: 'relative', zIndex: 1 }}
                                     />
-                                    {/* Skill label */}
                                     <Text
-                                        variant="body1"
+                                        variant="body2"
                                         sx={{
-                                            mt: 2,
-                                            width: '100%',
-                                            textAlign: 'center',
-                                            fontSize: { xs: '0.9rem', sm: '1rem' },
-                                            lineHeight: 1.3,
+                                            mt: 1.5,
+                                            fontWeight: 600,
+                                            letterSpacing: .5,
+                                            fontSize: { xs: '0.75rem', sm: '0.85rem' },
+                                            position: 'relative',
+                                            zIndex: 1,
                                         }}
                                     >
                                         {t(skill.label)}

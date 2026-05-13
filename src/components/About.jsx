@@ -6,14 +6,10 @@ import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import Reveal from './Reveal';
 
-// About component definition
 const About = () => {
-
-    // Initialize the translation function
-    const t = useTranslations()
+    const t = useTranslations();
 
     return (
-        // Main container with responsive padding and background color
         <Box
             sx={{
                 width: '100%',
@@ -23,10 +19,11 @@ const About = () => {
                 alignItems: 'center',
                 py: { xs: 4, md: 8 },
                 px: { xs: 2, md: 4 },
+                position: 'relative',
             }}
             name="about"
         >
-            {/* Grid container for layout, centered and responsive */}
+            <Box sx={{ position: 'absolute', top: '15%', left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: 'radial-gradient(circle at 50% 40%, rgba(236,72,153,0.16), transparent 70%)', filter: 'blur(70px)', opacity: .5, pointerEvents: 'none' }} />
             <Grid
                 container
                 spacing={{ xs: 3, md: 4 }}
@@ -35,16 +32,11 @@ const About = () => {
                     maxWidth: 1200,
                     mx: 'auto',
                     width: '100%',
+                    position: 'relative',
                 }}
             >
-                {/* Title section - always full width */}
                 <Grid size={12}>
-                    <Box
-                        sx={{
-                            textAlign: 'center',
-                            mb: { xs: 2, md: 4 },
-                        }}
-                    >
+                    <Box sx={{ textAlign: 'center', mb: { xs: 2, md: 4 } }}>
                         <Reveal direction="up" distance={40}>
                             <Text
                                 variant="h3"
@@ -56,24 +48,24 @@ const About = () => {
                                     pb: 1,
                                 }}
                             >
-                                {/* Translated title */}
                                 {t('about.title')}
                             </Text>
                         </Reveal>
                     </Box>
                 </Grid>
 
-                {/* Introduction section - left column on desktop */}
                 <Grid size={{ xs: 12, md: 6 }} sx={{ minWidth: 0 }}>
                     <Box
                         sx={{
                             textAlign: { xs: 'left', md: 'right' },
-                            pr: { md: 2 },
+                            pr: { md: 4 },
                             mb: { xs: 2, md: 0 },
+                            pb: { xs: 3, md: 0 },
+                            borderRight: { md: '1px solid rgba(236,72,153,0.25)' },
+                            borderBottom: { xs: '1px solid rgba(236,72,153,0.25)', md: 'none' },
                         }}
                     >
                         <Reveal direction="left" distance={50}>
-                            {/* Translated introduction text, bold and larger */}
                             <Text
                                 variant="h5"
                                 sx={{
@@ -94,16 +86,9 @@ const About = () => {
                     </Box>
                 </Grid>
 
-                {/* Description section - right column on desktop */}
                 <Grid size={{ xs: 12, md: 6 }} sx={{ minWidth: 0 }}>
-                    <Box
-                        sx={{
-                            pl: { md: 2 },
-                            textAlign: { xs: 'center', md: 'left' },
-                        }}
-                    >
+                    <Box sx={{ pl: { md: 4 }, textAlign: { xs: 'center', md: 'left' } }}>
                         <Reveal direction="right" distance={50} delay={0.05}>
-                            {/* Translated description text, justified alignment */}
                             <Text
                                 sx={{
                                     textAlign: 'justify',
@@ -124,7 +109,7 @@ const About = () => {
                 </Grid>
             </Grid>
         </Box>
-    )
-}
+    );
+};
 
-export default About
+export default About;

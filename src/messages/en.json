@@ -6,24 +6,25 @@
     "recent": "Discover some of my recent work.",
     "details": "Details",
     "server": "Media server setup",
-    "website": "Portfolio website creation",
+    "website": "Portfolio website",
     "gaming": "Video game development",
-    "ai": "Artificial intelligence creation"
+    "ai": "Artificial intelligence",
+    "earth": "3D Earth Globe"
   },
   "home": {
     "hello": "Hello, my name is",
     "typed": ["Student", "Programmer", "IT Technician"],
-    "desc": "As a new student at the École de technologie supérieure with significant experience in full-stack application development, I have acquired versatile expertise working with languages such as Java, C#, Python, and frameworks like REACT and Next.js. This experience has enabled me to design and implement efficient software solutions tailored to the specific needs of projects.",
+    "desc": "Full-stack developer studying at École de technologie supérieure, with hands-on experience in Java, C#, Python, React and Next.js.",
     "cta": "See my projects"
   },
   "about": {
     "title": "About",
-    "intro": "Hi. I'm Cédrik, nice to meet you. Please take a moment to look around my website.",
-    "desc": "With a strong background in programming and technical support, I am a versatile candidate ready to bring added value to your team. Graduating in 2023 from the Computer Science program at Cégep de Valleyfield, I have mastered programming languages such as Java, C#, and Python. My full-stack development skills allow me to design and implement efficient and scalable software solutions. As a university student, I am looking for an internship position to satisfy my thirst for learning."
+    "intro": "Hi. I'm Cédrik, nice to meet you.",
+    "desc": "Computer Science graduate from Cégep de Valleyfield (2023), now pursuing a Bachelor's at ÉTS. Experienced in full-stack development, DevOps and system administration. Currently looking for an internship to contribute and keep growing."
   },
   "skills": {
     "title": "Skills",
-    "desc": "Here are the technologies I have worked with.",
+    "desc": "Technologies I have worked with.",
     "java": "JAVA",
     "csharp": "C#",
     "python": "PYTHON",
@@ -35,14 +36,14 @@
   },
   "contact": {
     "title": "Contact",
-    "desc": "Please submit the form below or send me an email at <link>cedrikletarte@gmail.com</link>",
+    "desc": "Submit the form below or reach me at <link>cedrikletarte@gmail.com</link>",
     "name": "Name",
     "email": "Email",
     "emailTitle": "Here is an example of a valid email: example@gmail.com",
     "message": "Message",
     "button": "Let's work together",
     "buttonLoading": "Sending..."
-    },
+  },
   "navbar": {
     "home": "Home",
     "about": "About",
@@ -60,25 +61,25 @@
   },
   "server": {
     "title": "Media Server",
-    "intro": "As a personal project, I set up a complete infrastructure on an Ubuntu server, integrating modern technologies to meet various needs while ensuring security, performance, and reliability. This project demonstrates my mastery of essential software engineering tools and my ability to solve complex problems independently.",
-    "dockerTitle": "1. Docker Containers Setup",
-    "dockerDesc": "I deployed and orchestrated several services using Docker, each running in an isolated environment to maximize security and modularity:",
+    "intro": "Self-hosted Ubuntu server running containerized services with security hardening, remote access via VPN and fully automated maintenance.",
+    "dockerTitle": "1. Containerization",
+    "dockerDesc": "",
     "dockerList": [
-      "<b>Plex</b> for personal media streaming",
-      "<b>Radarr</b>, <b>Sonarr</b>, <b>qBittorrent</b> and <b>Jackett</b> for content organization",
-      "<b>Vaultwarden</b> for password management",
-      "<b>Portainer</b> to easily supervise and manage all containers"
+      "<b>Plex</b> — personal media streaming",
+      "<b>Radarr / Sonarr / qBittorrent / Jackett</b> — content automation",
+      "<b>Vaultwarden</b> — password management",
+      "<b>Portainer</b> — container administration"
     ],
-    "securityTitle": "2. Security and Accessibility Management",
-    "securityDesc": "A key aspect of this project was the implementation of advanced IT security practices:",
+    "securityTitle": "2. Security",
+    "securityDesc": "",
     "securityList": [
-      "<b>Reverse-proxy with SSL/TLS:</b> configured a reverse-proxy container (Nginx Proxy Manager) to redirect incoming connections while encrypting communications via HTTPS.",
-      "<b>Cloudflare:</b> secured the server's domain using Cloudflare's advanced protections, including IP masking and DDoS attack blocking.",
-      "<b>Robust firewall (white-list):</b> set up a strict firewall to block unauthorized connections and ensure continuous protection.",
-      "<b>VPN network:</b> configured a WireGuard container to establish a virtual private network (VPN), ensuring optimal security for remote server access. This setup isolates sensitive connections and ensures communication confidentiality while allowing secure management of hosted services."
+      "<b>Traefik</b> — reverse-proxy with SSL/TLS",
+      "<b>Crowdsec</b> — behavior-based intrusion detection",
+      "<b>Cloudflare</b> — IP masking and DDoS protection",
+      "<b>WireGuard VPN</b> — encrypted remote access"
     ],
-    "autoTitle": "3. Automation and Maintenance",
-    "autoDesc": "I integrated a script to automate Docker container updates, as well as Ubuntu's <b>unattended updates</b>. This approach ensures that each service and the operating system remain up to date without manual intervention, reducing vulnerability risks and minimizing maintenance efforts.",
+    "autoTitle": "3. Automation",
+    "autoDesc": "Automated Docker container updates and Ubuntu <b>unattended upgrades</b> keep all services patched without manual intervention.",
     "techs": [
       "Cloudflare",
       "Wireguard",
@@ -87,44 +88,58 @@
     ]
   },
   "website": {
-    "title": "Website",
-    "intro": "I undertook the design of a React web page developed as part of my studies and professional journey in IT. This project was designed to showcase my technical skills and achievements, while providing a smooth and pleasant user experience.",
-    "objectives": "Project objectives:",
-    "skillsTitle": "1. Presentation of my skills:",
-    "skillsDesc": "The portfolio is structured to present my full-stack development skills, notably using technologies such as React, Java, C#, Python, Docker, and many others. Each section of the site is dedicated to a particular aspect of my skills, allowing visitors to quickly understand my expertise.",
-    "projectsTitle": "2. Highlighting my projects:",
-    "projectsDesc": "I have included detailed sections on some of my recent projects, such as setting up a media server and creating a portfolio web page. These projects demonstrate my ability to manage complex projects, use modern technologies, and solve technical problems independently.",
-    "uxTitle": "3. User experience:",
-    "uxDesc": "I paid particular attention to user experience by integrating features such as smooth scrolling with React-Scroll, animated loading icons with React-Loading-Icons, and dynamic text effects with React-Typed. These elements make navigation on the site more intuitive and engaging.",
-    "securityTitle": "4. Security and performance:",
-    "securityDesc": "For the media server project, I implemented advanced IT security practices, such as using Docker containers, configuring robust firewalls, and integrating VPN networks. These measures ensure the security, performance, and reliability of the infrastructure.",
-    "designTitle": "5. Design and aesthetics:",
-    "designDesc": "I used royalty-free SVG illustrations from Undraw to visually enrich the content of my site. These illustrations bring a professional and modern touch to the entire portfolio.",
-    "conclusion": "This online portfolio project reflects my commitment to developing efficient and high-quality software solutions. It demonstrates not only my technical skills, but also my ability to design attractive and functional user interfaces."
+    "title": "Portfolio",
+    "intro": "Portfolio built with Next.js, TypeScript and Material UI. Supports French/English localization, dark/light mode and is deployed via Docker with a GitLab CI/CD pipeline.",
+    "objectives": "Highlights",
+    "skillsTitle": "Stack",
+    "skillsDesc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD.",
+    "projectsTitle": "Projects showcase",
+    "projectsDesc": "Each project has its own detail page with descriptions, screenshots and tech used.",
+    "uxTitle": "UX & animations",
+    "uxDesc": "Scroll-triggered animations, glass morphism UI, smooth transitions and responsive layout.",
+    "securityTitle": "Performance & SEO",
+    "securityDesc": "Server-side rendering, IndexNow indexing, secure contact form with server-side validation.",
+    "designTitle": "i18n",
+    "designDesc": "Full French and English support via next-intl, with locale-aware routing.",
+    "conclusion": "This portfolio is itself a demonstration of my front-end and DevOps skills."
   },
   "gaming": {
     "title": "Video Game",
-    "intro": "My team and I developed a video game as part of a college project to gain skills in game creation. We used Unity as the game engine and programmed all mechanics in C#. To speed up development and focus on implementing features, we integrated 3D models from the Unity Asset Store. The core concept allows players to design their own city through an intuitive 3D object selection and manipulation interface. Once the city is built, players can explore their creation in first-person view, with the ability to perform stunts to enrich their experience.",
-    "objectives": "Project objectives:",
-    "goal1Title": "1. Game development: ",
-    "goal1Desc": "Creation of an interactive environment where players can freely build and explore. Integration of mechanics that enhance immersion, such as smooth camera management and an optimized movement system.",
-    "goal2Title": "2. Designing an intuitive interface: ",
-    "goal2Desc": "Development of a 3D object selection and manipulation system allowing players to place, move, and adjust architectural elements. Implementation of an ergonomic menu, designed with Unity UI, offering smooth navigation and quick handling.",
-    "goal3Title": "3. Providing an immersive experience: ",
-    "goal3Desc": "Implementation of orthogonal, free, and FPS camera systems ensuring smooth exploration of created cities.",
-    "goal4Title": "4. Adding dynamic gameplay mechanics: ",
-    "goal4Desc": "Development of an advanced physics system using Unity Physics to allow players to perform stunts and interact with the environment. Integration of specific movement mechanics inspired by the superhero Spiderman (sprint, jump, wallrun, web-swinging)."
+    "intro": "Team project built with Unity and C#. Players design their own 3D city and explore it in first-person, with Spider-Man-inspired movement mechanics.",
+    "objectives": "Features",
+    "goal1Title": "City builder",
+    "goal1Desc": "Intuitive 3D object placement interface to build and customize a city.",
+    "goal2Title": "Unity UI menu",
+    "goal2Desc": "Ergonomic build menu with smooth navigation using Unity UI.",
+    "goal3Title": "Camera systems",
+    "goal3Desc": "Orthogonal, free and FPS cameras for a seamless transition between build and explore modes.",
+    "goal4Title": "Movement mechanics",
+    "goal4Desc": "Sprint, jump, wallrun and web-swinging powered by Unity Physics."
   },
   "ai": {
     "title": "Giant Tic-Tac-Toe AI",
-    "intro": "As part of a university project, we developed an artificial intelligence capable of playing Giant Tic-Tac-Toe, an advanced version of the famous board game. Unlike classic tic-tac-toe, this version is based on a nested grid: each cell of the main board (3x3) contains a mini tic-tac-toe game (3x3). The goal is to win three aligned mini-games to win the match. The complexity comes from the fact that each move determines the opponent's next play area, requiring advanced strategy and a global vision of the board.",
-    "techTitle": "Technologies and algorithms:",
-    "minimax": "Minimax algorithm with Alpha-Beta pruning for efficient decision-making in a very large state space.",
-    "heuristic": "Optimized heuristic evaluation function to prioritize the best moves and speed up decisions.",
-    "moves": "Generation of valid moves taking into account the constraints of the board.",
-    "network": "Interaction with a game server via a network interface to test our AI against other agents."
+    "intro": "University project: an AI agent playing Giant Tic-Tac-Toe — a nested 3×3 board where each move constrains the opponent's next play zone.",
+    "techTitle": "Algorithms & implementation",
+    "minimax": "Minimax with Alpha-Beta pruning to efficiently search a very large state space.",
+    "heuristic": "Custom heuristic evaluation function to prioritize winning moves.",
+    "moves": "Valid move generation respecting board constraints.",
+    "network": "Network interface to compete against other agents on a game server."
   },
-    "error": {
+  "earth": {
+    "title": "Earth Globe",
+    "intro": "Interactive 3D globe built with Next.js and CesiumJS, featuring city search, custom self-hosted map tiles, atmospheric controls and a space skybox.",
+    "featuresTitle": "Features",
+    "globeTitle": "3D Globe",
+    "globeDesc": "CesiumJS renders a real-time interactive Earth with satellite imagery, 3D terrain and a physically-based atmosphere.",
+    "searchTitle": "City Search",
+    "searchDesc": "Self-hosted Nominatim geocoder lets users search and fly to any city or location worldwide.",
+    "mapTitle": "Custom Map Styles",
+    "mapDesc": "Self-hosted TileServer-GL serves multiple tile styles switchable at runtime.",
+    "skyboxTitle": "Skybox & Atmosphere",
+    "skyboxDesc": "6-face space skybox with tunable atmospheric parameters for a realistic space environment.",
+    "github": "View on GitHub"
+  },
+  "error": {
     "sending": "An error occurred while sending your message. Please try again later."
   }
 }

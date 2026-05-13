@@ -61,13 +61,11 @@ const Navbar = () => {
     })
   }
 
-  // Handler for downloading the CV (shows loading spinner)
+  // Handler for downloading the CV (shows loading spinner briefly)
   const handleDownload = () => {
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      downloadFile()
-    }, 2000)
+    downloadFile()
+    setTimeout(() => setLoading(false), 300)
   }
 
   // Helper to trigger file download for the correct locale
@@ -303,9 +301,7 @@ const Navbar = () => {
           <Tooltip title="Email" arrow placement="top">
             <IconButton
               component="a"
-              href="https://mail.google.com/mail/u/0/?fs=1&to=cedrikletarte@gmail.com&tf=cm"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:cedrikletarte@gmail.com"
               aria-label="Email"
               color="inherit"
               sx={(theme)=> ({ width:58, height:58, ...socialIconStyles(theme) })}
@@ -349,7 +345,7 @@ const Navbar = () => {
             action: undefined
           },{
             label:'Email',
-            href:'https://mail.google.com/mail/u/0/?fs=1&to=cedrikletarte@gmail.com&tf=cm',
+            href:'mailto:cedrikletarte@gmail.com',
             icon:<MailOutlineIcon fontSize="small" />,
             action: undefined
           },{
@@ -358,7 +354,7 @@ const Navbar = () => {
             icon: loading ? <CircularProgress size={18} color="inherit" /> : <SchoolIcon fontSize="small" />,
             action: handleDownload
           }].map((item,i)=> (
-            <Box key={i} component="li" sx={{ ml:0 }}>
+            <Box key={`social-${item.label}`} component="li" sx={{ ml:0 }}>
               <Tooltip title={item.label} placement="right" arrow>
                 <IconButton
                   component={item.href? 'a':'button'}

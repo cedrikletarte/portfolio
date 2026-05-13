@@ -8,22 +8,23 @@
     "server": "Configuration d'un serveur multimédia",
     "website": "Création d'une page web portfolio",
     "gaming": "Réalisation d'un jeu vidéo",
-    "ai": "Création d'une intelligence artificielle"
+    "ai": "Création d'une intelligence artificielle",
+    "earth": "Globe terrestre 3D"
   },
   "home": {
     "hello": "Bonjour, mon nom est",
     "typed": ["Étudiant", "Programmeur", "Technicien en informatique"],
-    "desc": "En tant que nouveau étudiant à l'École de technologie supérieure avec une expérience significative en développement d'applications full-stack, j'ai acquis une expertise polyvalente en travaillant avec des langages tels que Java, C#, Python et des frameworks comme REACT et Next.js. Cette expérience m'a permis de concevoir et de mettre en œuvre des solutions logicielles efficaces et adaptées aux besoins spécifiques des projets.",
+    "desc": "Développeur full-stack étudiant à l'École de technologie supérieure, avec de l'expérience en Java, C#, Python, React et Next.js.",
     "cta": "Voir mes projets"
   },
   "about": {
     "title": "À propos",
-    "intro": "Salut. Je suis Cédrik, enchanté de faire ta connaissance. Prends un moment pour faire le tour de mon site.",
-    "desc": "Avec mon bagage solide en programmation et en soutien technique, je suis un candidat polyvalent et prêt à apporter une valeur ajoutée à votre équipe. Ayant gradué en 2023 de la technique en informatique du Cégep de Valleyfield, j'ai acquis une maîtrise des langages de programmation tels que Java, C#, Python. Mes compétences en développement d'applications full-stack me permettent de concevoir et de mettre en œuvre des solutions logicielles efficaces et évolutives. En tant qu'étudiant à l'université, je recherche un poste de stagiaire pour combler ma soif d'apprendre."
+    "intro": "Salut. Je suis Cédrik, enchanté de faire ta connaissance.",
+    "desc": "Diplômé en informatique du Cégep de Valleyfield (2023), maintenant au baccalauréat à l'ÉTS. Expérimenté en développement full-stack, DevOps et administration système. Actuellement à la recherche d'un stage pour contribuer et continuer à progresser."
   },
   "skills": {
     "title": "Compétences",
-    "desc": "Voici les technologies avec lesquelles j'ai travaillé.",
+    "desc": "Technologies avec lesquelles j'ai travaillé.",
     "java": "JAVA",
     "csharp": "C#",
     "python": "PYTHON",
@@ -35,10 +36,10 @@
   },
   "contact": {
     "title": "Contact",
-    "desc": "Veuillez soumettre le formulaire ci-dessous ou envoyez-moi un email à l'adresse <link>cedrikletarte@gmail.com</link>",
+    "desc": "Soumettez le formulaire ci-dessous ou rejoignez-moi à <link>cedrikletarte@gmail.com</link>",
     "name": "Nom",
     "email": "Courriel",
-    "emailTitle": "Voici un exemple d'email valide : exemple@gmail.com",
+    "emailTitle": "Voici un exemple de courriel valide : exemple@gmail.com",
     "message": "Message",
     "button": "Travaillons ensemble",
     "buttonLoading": "Envoi en cours..."
@@ -60,25 +61,25 @@
   },
   "server": {
     "title": "Serveur multimédia",
-    "intro": "Dans le cadre d’un projet personnel, j’ai configuré une infrastructure complète sur un serveur Ubuntu, intégrant des technologies modernes pour répondre à des besoins variés tout en assurant sécurité, performance et fiabilité. Ce projet démontre ma maîtrise des outils essentiels en génie logiciel et ma capacité à résoudre des problèmes complexes de manière autonome.",
-    "dockerTitle": "1. Mise en place de conteneurs Docker",
-    "dockerDesc": "J’ai déployé et orchestré plusieurs services à l’aide de Docker, chacun fonctionnant dans un environnement isolé pour maximiser la sécurité et la modularité :",
+    "intro": "Serveur Ubuntu auto-hébergé exécutant des services conteneurisés avec durcissement de la sécurité, accès distant via VPN et maintenance entièrement automatisée.",
+    "dockerTitle": "1. Conteneurisation",
+    "dockerDesc": "",
     "dockerList": [
-      "<b>Plex</b> pour le streaming multimédia personnel",
-      "<b>Radarr</b>, <b>Sonarr</b>, <b>qBittorrent</b> et <b>Jackett</b> pour l’organisation de contenu",
-      "<b>Vaultwarden</b> pour la gestion des mots de passe",
-      "<b>Portainer</b> pour superviser et administrer facilement tous les conteneurs"
+      "<b>Plex</b> — streaming multimédia personnel",
+      "<b>Radarr / Sonarr / qBittorrent / Jackett</b> — automatisation du contenu",
+      "<b>Vaultwarden</b> — gestion des mots de passe",
+      "<b>Portainer</b> — administration des conteneurs"
     ],
-    "securityTitle": "2. Gestion de la sécurité et de l’accessibilité",
-    "securityDesc": "Un aspect clé de ce projet a été la mise en œuvre de pratiques avancées en sécurité informatique :",
+    "securityTitle": "2. Sécurité",
+    "securityDesc": "",
     "securityList": [
-      "<b>Reverse-proxy avec SSL/TLS :</b> configuration d'un conteneur reverse-proxy (Nginx Proxy Manager) pour rediriger les connexions entrantes tout en chiffrant les communications via HTTPS.",
-      "<b>Cloudflare :</b> sécurisation du domaine associé au serveur en utilisant les protections avancées de Cloudflare, notamment pour masquer l’adresse IP et bloquer les attaques DDoS.",
-      "<b>Pare-feu robuste (white-list) :</b> configuration d'un pare-feu strict pour bloquer les connexions non autorisées et garantir une protection continue.",
-      "<b>Réseau VPN :</b> configuration d'un conteneur WireGuard pour établir un réseau privé virtuel (VPN), garantissant une sécurité optimale lors de l'accès à distance à mon serveur. Cette configuration isole les connexions sensibles et assure la confidentialité des communications, tout en permettant une gestion sécurisée des services hébergés."
+      "<b>Traefik</b> — reverse-proxy avec SSL/TLS",
+      "<b>Crowdsec</b> — détection d'intrusion basée sur le comportement",
+      "<b>Cloudflare</b> — masquage d'IP et protection DDoS",
+      "<b>WireGuard VPN</b> — accès distant chiffré"
     ],
-    "autoTitle": "3. Automatisation et maintenance",
-    "autoDesc": "J’ai intégré un script pour automatiser les mises à jour des conteneurs Docker, ainsi que les <b>« unattended updates »</b> d’Ubuntu. Cette approche garantit que chaque service et le système d’exploitation restent à jour sans intervention manuelle, réduisant ainsi les risques liés aux vulnérabilités et minimisant les efforts de maintenance.",
+    "autoTitle": "3. Automatisation",
+    "autoDesc": "Les mises à jour automatiques des conteneurs Docker et les <b>unattended upgrades</b> d'Ubuntu maintiennent tous les services à jour sans intervention manuelle.",
     "techs": [
       "Cloudflare",
       "Wireguard",
@@ -87,42 +88,56 @@
     ]
   },
   "website": {
-    "title": "Page Web",
-    "intro": "J'ai entrepris la conception d'une page web en React développée dans le cadre de mes études et de mon parcours professionnel en informatique. Ce projet a été conçu pour mettre en valeur mes compétences techniques et mes réalisations, tout en offrant une expérience utilisateur fluide et agréable.",
-    "objectives": "Objectifs du projet :",
-    "skillsTitle": "1. Présentation de mes compétences :",
-    "skillsDesc": "Le portfolio est structuré pour présenter mes compétences en développement full-stack, notamment en utilisant des technologies telles que React, Java, C#, Python, Docker, et bien d'autres. Chaque section du site est dédiée à un aspect particulier de mes compétences, permettant aux visiteurs de comprendre rapidement mon expertise.",
-    "projectsTitle": "2. Mise en avant de mes projets :",
-    "projectsDesc": "J'ai inclus des sections détaillées sur certains de mes projets récents, comme la configuration d'un serveur multimédia et la création d'une page web portfolio. Ces projets démontrent ma capacité à gérer des projets complexes, à utiliser des technologies modernes et à résoudre des problèmes techniques de manière autonome.",
-    "uxTitle": "3. Expérience utilisateur :",
-    "uxDesc": "J'ai accordé une attention particulière à l'expérience utilisateur en intégrant des fonctionnalités telles que le défilement fluide (smooth scrolling) avec React-Scroll, des icônes animées de chargement avec React-Loading-Icons, et des effets de texte dynamiques avec React-Typed. Ces éléments rendent la navigation sur le site plus intuitive et engageante.",
-    "securityTitle": "4. Sécurité et performance :",
-    "securityDesc": "Pour le projet de serveur multimédia, j'ai mis en place des pratiques avancées en sécurité informatique, telles que l'utilisation de conteneurs Docker, la configuration de pare-feu robustes, et l'intégration de réseaux VPN. Ces mesures assurent la sécurité, la performance et la fiabilité de l'infrastructure.",
-    "designTitle": "5. Design et esthétique :",
-    "designDesc": "J'ai utilisé des illustrations SVG libres de droit de Undraw pour enrichir visuellement le contenu de mon site. Ces illustrations apportent une touche professionnelle et moderne à l'ensemble du portfolio.",
-    "conclusion": "Ce projet de portfolio en ligne est le reflet de mon engagement à développer des solutions logicielles efficaces et de haute qualité. Il démontre non seulement mes compétences techniques, mais aussi ma capacité à concevoir des interfaces utilisateur attrayantes et fonctionnelles."
+    "title": "Portfolio",
+    "intro": "Portfolio construit avec Next.js, TypeScript et Material UI. Supporte la localisation français/anglais, le mode sombre/clair, et est déployé via Docker avec un pipeline CI/CD GitLab.",
+    "objectives": "Points forts",
+    "skillsTitle": "Stack",
+    "skillsDesc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD.",
+    "projectsTitle": "Vitrine de projets",
+    "projectsDesc": "Chaque projet possède sa propre page détaillée avec descriptions, captures d'écran et technologies utilisées.",
+    "uxTitle": "UX & animations",
+    "uxDesc": "Animations déclenchées au défilement, interface glass morphism, transitions fluides et mise en page responsive.",
+    "securityTitle": "Performance & SEO",
+    "securityDesc": "Rendu côté serveur, indexation IndexNow, formulaire de contact sécurisé avec validation côté serveur.",
+    "designTitle": "i18n",
+    "designDesc": "Support complet français et anglais via next-intl, avec routage adapté aux locales.",
+    "conclusion": "Ce portfolio est lui-même une démonstration de mes compétences front-end et DevOps."
   },
   "gaming": {
     "title": "Jeu vidéo",
-    "intro": "Mon équipe et moi avons développé un jeu vidéo dans le cadre d'un projet collégial afin d'acquérir des compétences dans le domaine de la création de jeux vidéo. Nous avons utilisé Unity comme moteur de jeu et programmé l’ensemble des mécaniques en C#. Pour accélérer le développement et nous concentrer sur l’implémentation des fonctionnalités, nous avons intégré des modèles 3D issus de l’Unity Asset Store. Le concept central permet aux joueurs de concevoir leur propre ville grâce à une interface intuitive de sélection et de manipulation d'objets en 3D. Une fois la ville construite, les joueurs peuvent explorer leur création en mode vue à la première personne, avec la possibilité de réaliser des cascades pour enrichir leur expérience.",
-    "objectives": "Objectifs du projet:",
-    "goal1Title": "1. Développement d'un jeu vidéo : ",
-    "goal1Desc": "Création d’un environnement interactif où les joueurs peuvent construire et explorer librement. Intégration de mécaniques favorisant l’immersion, telles qu’une gestion fluide de la caméra et un système de déplacements optimisé.",
-    "goal2Title": "2. Concevoir une interface intuitive: ",
-    "goal2Desc": "Développement d’un système de sélection et de manipulation d’objets en 3D permettant aux joueurs de placer, déplacer et ajuster des éléments architecturaux. Mise en place d’un menu ergonomique, conçu avec Unity UI, offrant une navigation fluide et une prise en main rapide.",
-    "goal3Title": "3. Offrir une expérience immersive: ",
-    "goal3Desc": "Implémentation d’un système de caméra orthogonale, libre et FPS assurant une exploration fluide des villes créées.",
-    "goal4Title": "4. Ajouter des mécaniques de gameplay dynamiques: ",
-    "goal4Desc": "Développement d’un système de physique avancé, utilisant Unity Physics, pour permettre aux joueurs de réaliser des cascades et interagir avec l’environnement. Intégration de mécaniques de mouvement spécifiques afin de copier la démarche du super-héro Spiderman (sprint, saut, wallrun, déplacement en tirant des toiles)."
+    "intro": "Projet d'équipe réalisé avec Unity et C#. Les joueurs conçoivent leur propre ville en 3D et l'explorent à la première personne, avec des mécaniques de mouvement inspirées de Spider-Man.",
+    "objectives": "Fonctionnalités",
+    "goal1Title": "Constructeur de ville",
+    "goal1Desc": "Interface intuitive de placement d'objets 3D pour construire et personnaliser une ville.",
+    "goal2Title": "Menu Unity UI",
+    "goal2Desc": "Menu de construction ergonomique avec navigation fluide via Unity UI.",
+    "goal3Title": "Systèmes de caméra",
+    "goal3Desc": "Caméras orthogonale, libre et FPS pour une transition fluide entre les modes construction et exploration.",
+    "goal4Title": "Mécaniques de mouvement",
+    "goal4Desc": "Sprint, saut, wallrun et déplacement en tirant des toiles propulsés par Unity Physics."
   },
   "ai": {
-    "title": "Tic-Tac-Toe Géant AI",
-    "intro": "Dans le cadre d'un projet universitaire, nous avons développé une intelligence artificielle capable de jouer au Tic-Tac-Toe Géant, une version avancée du célèbre jeu de société. Contrairement au tic-tac-toe classique, cette version repose sur une grille imbriquée : chaque case du plateau principal (3x3) contient à son tour un mini-jeu de tic-tac-toe (3x3). Le but est de gagner trois mini-jeux alignés pour remporter la partie. La complexité vient du fait que chaque coup joué détermine la zone de jeu de l’adversaire, nécessitant une stratégie avancée et une vision globale du plateau.",
-    "techTitle": "Technologies et algorithmes :",
-    "minimax": "Algorithme Minimax avec élagage Alpha-Bêta pour une prise de décision efficace dans un espace d’états très vaste.",
-    "heuristic": "Fonction d’évaluation heuristique optimisée pour prioriser les meilleurs coups et accélérer les décisions.",
-    "moves": "Génération de mouvements valides prenant en compte les contraintes du plateau.",
-    "network": "Interaction avec un serveur de jeu via une interface réseau pour tester notre IA contre d'autres agents."
+    "title": "IA Tic-Tac-Toe Géant",
+    "intro": "Projet universitaire : un agent IA jouant au Tic-Tac-Toe Géant — un plateau 3×3 imbriqué où chaque coup contraint la zone de jeu suivante de l'adversaire.",
+    "techTitle": "Algorithmes & implémentation",
+    "minimax": "Minimax avec élagage Alpha-Bêta pour explorer efficacement un espace d'états très vaste.",
+    "heuristic": "Fonction d'évaluation heuristique personnalisée pour prioriser les coups gagnants.",
+    "moves": "Génération de coups valides respectant les contraintes du plateau.",
+    "network": "Interface réseau pour s'affronter contre d'autres agents sur un serveur de jeu."
+  },
+  "earth": {
+    "title": "Globe Terrestre",
+    "intro": "Globe 3D interactif construit avec Next.js et CesiumJS, avec recherche de villes, tuiles cartographiques auto-hébergées, contrôles atmosphériques et skybox spatial.",
+    "featuresTitle": "Fonctionnalités",
+    "globeTitle": "Globe 3D",
+    "globeDesc": "CesiumJS rend une Terre interactive en temps réel avec imagerie satellite, relief 3D et atmosphère physiquement réaliste.",
+    "searchTitle": "Recherche de villes",
+    "searchDesc": "Un géocodeur Nominatim auto-hébergé permet de rechercher et naviguer vers n'importe quelle ville dans le monde.",
+    "mapTitle": "Styles de carte",
+    "mapDesc": "TileServer-GL auto-hébergé sert plusieurs styles de tuiles personnalisés commutables à l'exécution.",
+    "skyboxTitle": "Skybox & Atmosphère",
+    "skyboxDesc": "Skybox spatiale 6 faces avec paramètres atmosphériques réglables pour un environnement réaliste.",
+    "github": "Voir sur GitHub"
   },
   "error": {
     "sending": "Erreur lors de l'envoi du message. Veuillez réessayer plus tard."

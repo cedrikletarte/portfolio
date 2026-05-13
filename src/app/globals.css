@@ -108,9 +108,9 @@ body {
     overflow-x: hidden; /* Hide horizontal scrollbar */
   }
 
-/* Hide the scrollbar */
+/* Thin styled scrollbar */
 body::-webkit-scrollbar {
-  width: 0.0em;
+  width: 5px;
 }
 
 body::-webkit-scrollbar-track {
@@ -118,25 +118,24 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: transparent;
+  background: rgba(236, 72, 153, 0.45);
+  border-radius: 999px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: transparent;
+  background: rgba(236, 72, 153, 0.75);
 }
 
 
 
-/* globals.css ou un fichier importé globalement */
+/* Quill editor — light mode */
 .custom-quill-editor .ql-toolbar {
   background: #ccd6f6;
-  color: #e2e8f0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 .custom-quill-editor .ql-container {
   background: #ccd6f6;
-  color: #e2e8f0;
   border: none;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -156,12 +155,58 @@ body::-webkit-scrollbar-thumb:hover {
 .custom-quill-editor .ql-toolbar button:hover,
 .custom-quill-editor .ql-toolbar .ql-picker-label:hover,
 .custom-quill-editor .ql-toolbar .ql-picker-item:hover {
-  color: #1976d2 !important;
-  fill: #1976d2 !important;
+  color: #ec4899 !important;
+  fill: #ec4899 !important;
 }
 .custom-quill-editor .ql-toolbar .ql-active {
-  color: #1976d2 !important;
-  fill: #1976d2 !important;
+  color: #ec4899 !important;
+  fill: #ec4899 !important;
+}
+
+/* Quill editor — dark mode */
+.quill-dark .ql-toolbar.ql-snow {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(236, 72, 153, 0.35) !important;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.quill-dark .ql-container.ql-snow {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(236, 72, 153, 0.35) !important;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.quill-dark .ql-editor {
+  color: #e2e8f0 !important;
+}
+.quill-dark .ql-editor.ql-blank::before {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+.quill-dark .ql-toolbar button,
+.quill-dark .ql-toolbar .ql-picker-label,
+.quill-dark .ql-toolbar .ql-picker-item {
+  color: rgba(255, 255, 255, 0.7) !important;
+  fill: rgba(255, 255, 255, 0.7) !important;
+}
+.quill-dark .ql-toolbar .ql-stroke {
+  stroke: rgba(255, 255, 255, 0.7) !important;
+}
+.quill-dark .ql-toolbar .ql-fill {
+  fill: rgba(255, 255, 255, 0.7) !important;
+}
+.quill-dark .ql-toolbar button:hover .ql-stroke,
+.quill-dark .ql-toolbar .ql-picker-label:hover .ql-stroke {
+  stroke: #ec4899 !important;
+}
+.quill-dark .ql-toolbar button:hover .ql-fill,
+.quill-dark .ql-toolbar .ql-picker-label:hover .ql-fill {
+  fill: #ec4899 !important;
+}
+.quill-dark .ql-toolbar .ql-active .ql-stroke {
+  stroke: #ec4899 !important;
+}
+.quill-dark .ql-toolbar .ql-active .ql-fill {
+  fill: #ec4899 !important;
 }
 
 

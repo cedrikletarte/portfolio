@@ -9,20 +9,17 @@ import { ReactTyped } from 'react-typed';
 import Reveal from './Reveal';
 
 const Home = () => {
-  // Initialize translation function
-  const t = useTranslations()
+  const t = useTranslations();
 
-  // Function to scroll smoothly to a section by name
   const scrollTo = (elementName) => {
     scroller.scrollTo(elementName, {
       duration: 800,
       delay: 0,
       smooth: 'easeInOutQuart',
-    })
-  }
+    });
+  };
 
   return (
-    // Main container with responsive padding and background color
     <Box
       name="home"
       sx={{
@@ -32,9 +29,10 @@ const Home = () => {
         display: 'flex',
         alignItems: 'center',
         py: { xs: 4, md: 0 },
+        position: 'relative',
       }}
     >
-      {/* Inner content box, centered and responsive */}
+      <Box sx={{ position: 'absolute', top: '10%', left: '40%', transform: 'translateX(-50%)', width: 700, height: 700, background: 'radial-gradient(circle at 45% 40%, rgba(236,72,153,0.18), transparent 70%)', filter: 'blur(80px)', opacity: .5, pointerEvents: 'none' }} />
       <Box
         sx={{
           maxWidth: 1000,
@@ -45,6 +43,7 @@ const Home = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           height: { xs: 'auto', md: '100%' },
+          position: 'relative',
         }}
       >
         <Reveal direction="up" distance={30}>
@@ -119,7 +118,7 @@ const Home = () => {
         </Reveal>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
