@@ -1,6 +1,10 @@
 # 🚀 Portfolio Next.js
 
+🌐 [Visit the website](https://www.cedrikletarte.com)
+
 A multilingual portfolio built with Next.js, Docker, and CI/CD ready for GitLab Runner.
+
+![Thumbnail](/public/thumbnail.png)
 
 ---
 
