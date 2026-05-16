@@ -65,7 +65,7 @@ function Projects() {
           position: 'relative',
         }}
       >
-        <Box sx={{ position: 'absolute', top: '5%', left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: 'radial-gradient(circle at 50% 35%, rgba(236,72,153,0.16), transparent 70%)', filter: 'blur(65px)', opacity: .55, pointerEvents: 'none' }} />
+        <Box sx={{ position: 'absolute', top: '5%', left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: 'radial-gradient(circle at 50% 30%, rgba(236,72,153,0.16), transparent 70%)', filter: 'blur(65px)', opacity: .55, pointerEvents: 'none' }} />
         <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, width: '100%', position: 'relative' }}>
           <Box sx={{ pb: 4 }}>
             <Reveal direction="up" distance={40}>
@@ -79,6 +79,7 @@ function Projects() {
               </Text>
             </Reveal>
           </Box>
+          
 
           <Grid container spacing={3} justifyContent="center">
             {projects.map((project, idx) => {

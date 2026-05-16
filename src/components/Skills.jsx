@@ -35,7 +35,7 @@ const Skills = () => {
             }}
         >
             <Box sx={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: 'radial-gradient(circle at 50% 30%, rgba(236,72,153,0.18), transparent 70%)', filter: 'blur(60px)', opacity: .6, pointerEvents: 'none' }} />
-            <Box sx={{ maxWidth: 1000, mx: 'auto', position: 'relative' }}>
+            <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, width: '100%', position: 'relative' }}>
                 <Reveal direction="up" distance={40}>
                     <Text
                         variant="h3"

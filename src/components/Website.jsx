@@ -33,7 +33,7 @@ const Website = () => {
               <LanguageIcon sx={{ fontSize: 36 }} />
             </Box>
             <Box>
-              <Text variant="h3" component="h1" fontWeight="bold" sx={{ lineHeight: 1.1 }}>{t('website.title')}</Text>
+              <Text variant="h3" component="h1" fontWeight="bold" sx={{ lineHeight: 1.1, fontSize: { xs: 22, md: 36 } }}>{t('website.title')}</Text>
               <Box sx={{ height: 4, width: 56, borderRadius: 2, background: ACCENT, mt: 0.75 }} />
             </Box>
           </Box>
