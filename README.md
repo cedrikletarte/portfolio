@@ -18,12 +18,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
-
----
-
-## Deployment
-
-```bash
-docker build -f portfolio.cloud.Dockerfile -t portfolio-app .
-docker run -d --restart always -p 3000:3000 --name portfolio-app portfolio-app
-```
