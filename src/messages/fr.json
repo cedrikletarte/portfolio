@@ -5,7 +5,7 @@
     "projects": "Projets",
     "recent": "Découvrez certains de mes travaux récents.",
     "details": "Détails",
-    "server": "Configuration d'un serveur multimédia",
+    "server": "Configuration d'un serveur multifonction",
     "website": "Création d'une page web portfolio",
     "gaming": "Réalisation d'un jeu vidéo",
     "ai": "Création d'une intelligence artificielle",
@@ -60,13 +60,13 @@
     "darkMode": "Mode sombre"
   },
   "server": {
-    "title": "Serveur multimédia",
+    "title": "Serveur multifonction",
     "intro": "Serveur Ubuntu auto-hébergé exécutant des services conteneurisés avec durcissement de la sécurité, accès distant via VPN et maintenance entièrement automatisée.",
     "dockerTitle": "1. Conteneurisation",
     "dockerDesc": "",
     "dockerList": [
       "<b>Plex</b> — streaming multimédia personnel",
-      "<b>Radarr / Sonarr / qBittorrent / Jackett</b> — automatisation du contenu",
+      "<b>Radarr / Sonarr / Prowlarr /qBittorrent</b> — automatisation du contenu",
       "<b>Vaultwarden</b> — gestion des mots de passe",
       "<b>Portainer</b> — administration des conteneurs"
     ],

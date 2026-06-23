@@ -5,7 +5,7 @@
     "projects": "Projects",
     "recent": "Discover some of my recent work.",
     "details": "Details",
-    "server": "Media server setup",
+    "server": "Multifunctional server setup",
     "website": "Portfolio website",
     "gaming": "Video game development",
     "ai": "Artificial intelligence",
@@ -60,13 +60,13 @@
     "darkMode": "Dark mode"
   },
   "server": {
-    "title": "Media Server",
+    "title": "Multifunctional Server",
     "intro": "Self-hosted Ubuntu server running containerized services with security hardening, remote access via VPN and fully automated maintenance.",
     "dockerTitle": "1. Containerization",
     "dockerDesc": "",
     "dockerList": [
       "<b>Plex</b> — personal media streaming",
-      "<b>Radarr / Sonarr / qBittorrent / Jackett</b> — content automation",
+      "<b>Radarr / Sonarr / Prowlarr /qBittorrent</b> — content automation",
       "<b>Vaultwarden</b> — password management",
       "<b>Portainer</b> — container administration"
     ],
