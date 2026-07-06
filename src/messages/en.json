@@ -147,6 +147,9 @@
     "title": "GitHub Activity",
     "desc": "A live look at my public GitHub activity — repositories, stars and daily contributions.",
     "repos": "Public repos",
+    "memberSince": "Member since",
+    "contributionsYear": "Contributions",
+    "pinnedTitle": "Featured repositories",
     "languagesTitle": "Top languages",
     "viewProfile": "View GitHub profile",
     "unavailable": "GitHub stats are temporarily unavailable."

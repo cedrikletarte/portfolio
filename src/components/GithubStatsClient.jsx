@@ -4,9 +4,13 @@ import { Avatar, Box, Grid, Paper, Stack } from '@mui/material';
 import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
+import { useCallback, useState } from 'react';
 import 'react-github-calendar/tooltips.css';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FolderIcon from '@mui/icons-material/Folder';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import InsightsIcon from '@mui/icons-material/Insights';
+import StarIcon from '@mui/icons-material/Star';
 import { useThemeMode } from '../theme/ThemeContext';
 import OrbitBackground from './backgrounds/OrbitBackground';
 import CTAButton from './CTAButton';
@@ -28,11 +32,33 @@ const calendarTheme = {
   dark: ['rgba(255,255,255,0.06)', `${ACCENT}40`, `${ACCENT}75`, `${ACCENT}aa`, ACCENT],
 };
 
-const GithubStatsClient = ({ stats, username }) => {
+const GithubStatsClient = ({ stats, pinnedRepos, username }) => {
   const t = useTranslations();
   const { mode } = useThemeMode();
+  const [totalContributions, setTotalContributions] = useState(null);
 
   const maxLangCount = stats?.topLanguages?.[0]?.count ?? 1;
+
+  // The calendar fetches its own data client-side; piggyback on that instead
+  // of making a separate call just to get a yearly contribution count.
+  // `transformData` runs synchronously during the calendar's render, so the
+  // state update is deferred a tick to avoid updating GithubStatsClient while
+  // React is in the middle of rendering GitHubCalendar.
+  const handleCalendarData = useCallback((data) => {
+    const total = data.reduce((sum, day) => sum + day.count, 0);
+    setTimeout(() => setTotalContributions(total), 0);
+    return data;
+  }, []);
+
+  const tiles = stats
+    ? [
+        { icon: <FolderIcon sx={{ fontSize: 26 }} />, value: stats.publicRepos, label: t('githubStats.repos') },
+        { icon: <CalendarMonthIcon sx={{ fontSize: 26 }} />, value: stats.memberSince, label: t('githubStats.memberSince') },
+        ...(totalContributions !== null
+          ? [{ icon: <InsightsIcon sx={{ fontSize: 26 }} />, value: totalContributions, label: t('githubStats.contributionsYear') }]
+          : []),
+      ]
+    : [];
 
   return (
     <Box
@@ -73,33 +99,89 @@ const GithubStatsClient = ({ stats, username }) => {
         ) : (
           <>
             <Grid container spacing={2.5} sx={{ mb: 4, justifyContent: 'center' }}>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <Reveal direction="up" distance={45}>
-                  <Paper
-                    elevation={0}
-                    sx={{
-                      p: 2.5,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 2,
-                      borderRadius: 3,
-                      border: `1px solid ${ACCENT}40`,
-                      background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`,
-                      backdropFilter: 'blur(4px)',
-                    }}
-                  >
-                    <Box sx={{ width: 48, height: 48, borderRadius: 2, background: `${ACCENT}22`, color: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <FolderIcon sx={{ fontSize: 26 }} />
-                    </Box>
-                    <Box>
-                      <Text variant="h5" fontWeight="bold" sx={{ lineHeight: 1 }}>{stats.publicRepos}</Text>
-                      <Text variant="body2" sx={{ opacity: 0.7 }}>{t('githubStats.repos')}</Text>
-                    </Box>
-                  </Paper>
-                </Reveal>
-              </Grid>
+              {tiles.map((tile, idx) => (
+                <Grid key={tile.label} size={{ xs: 12, sm: 4 }}>
+                  <Reveal direction="up" distance={45} delay={idx * 0.05}>
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        p: 2.5,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 2,
+                        borderRadius: 3,
+                        border: `1px solid ${ACCENT}40`,
+                        background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`,
+                        backdropFilter: 'blur(4px)',
+                      }}
+                    >
+                      <Box sx={{ width: 48, height: 48, borderRadius: 2, background: `${ACCENT}22`, color: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        {tile.icon}
+                      </Box>
+                      <Box>
+                        <Text variant="h5" fontWeight="bold" sx={{ lineHeight: 1 }}>{tile.value}</Text>
+                        <Text variant="body2" sx={{ opacity: 0.7 }}>{tile.label}</Text>
+                      </Box>
+                    </Paper>
+                  </Reveal>
+                </Grid>
+              ))}
             </Grid>
+
+            {pinnedRepos?.length > 0 && (
+              <Reveal direction="up" distance={45} delay={0.1}>
+                <Box sx={{ mb: 4 }}>
+                  <Text variant="overline" sx={{ color: ACCENT, letterSpacing: 2, fontWeight: 600, mb: 1.5, display: 'block' }}>
+                    {t('githubStats.pinnedTitle')}
+                  </Text>
+                  <Grid container spacing={2}>
+                    {pinnedRepos.map((repo) => (
+                      <Grid key={repo.name} size={{ xs: 12, sm: 6 }}>
+                        <Paper
+                          component="a"
+                          href={repo.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          variant="outlined"
+                          sx={{
+                            display: 'block',
+                            p: 2.2,
+                            height: '100%',
+                            textDecoration: 'none',
+                            color: 'inherit',
+                            borderColor: `${ACCENT}40`,
+                            background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`,
+                            backdropFilter: 'blur(4px)',
+                            borderRadius: 2,
+                            transition: 'transform .3s, border-color .3s',
+                            '&:hover': { transform: 'translateY(-3px)', borderColor: ACCENT },
+                          }}
+                        >
+                          <Text variant="subtitle1" fontWeight="bold" sx={{ mb: 0.5 }}>
+                            {repo.name}
+                          </Text>
+                          {repo.description && (
+                            <Text variant="body2" sx={{ opacity: 0.75, mb: 1.5, lineHeight: 1.5 }}>
+                              {repo.description}
+                            </Text>
+                          )}
+                          <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+                            {repo.language && (
+                              <Text variant="caption" sx={{ opacity: 0.7 }}>{repo.language}</Text>
+                            )}
+                            <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
+                              <StarIcon sx={{ fontSize: 15, color: ACCENT }} />
+                              <Text variant="caption" sx={{ opacity: 0.7 }}>{repo.stars}</Text>
+                            </Stack>
+                          </Stack>
+                        </Paper>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </Reveal>
+            )}
 
             {stats.topLanguages.length > 0 && (
               <Reveal direction="up" distance={45} delay={0.15}>
@@ -138,6 +220,8 @@ const GithubStatsClient = ({ stats, username }) => {
                   border: `1px solid ${ACCENT}30`,
                   background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}06`,
                   overflowX: 'auto',
+                  display: 'flex',
+                  justifyContent: 'center',
                 }}
               >
                 <GitHubCalendar
@@ -147,6 +231,7 @@ const GithubStatsClient = ({ stats, username }) => {
                   fontSize={12}
                   blockSize={11}
                   blockMargin={3}
+                  transformData={handleCalendarData}
                 />
               </Paper>
             </Reveal>

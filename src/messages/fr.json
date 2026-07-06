@@ -147,6 +147,9 @@
     "title": "Activité GitHub",
     "desc": "Un aperçu en direct de mon activité GitHub publique — dépôts, étoiles et contributions quotidiennes.",
     "repos": "Dépôts publics",
+    "memberSince": "Membre depuis",
+    "contributionsYear": "Contributions",
+    "pinnedTitle": "Dépôts en vedette",
     "languagesTitle": "Langages principaux",
     "viewProfile": "Voir le profil GitHub",
     "unavailable": "Les statistiques GitHub sont temporairement indisponibles."

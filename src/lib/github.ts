@@ -3,7 +3,16 @@ export interface GithubStats {
   avatarUrl: string;
   profileUrl: string;
   publicRepos: number;
+  memberSince: number;
   topLanguages: { name: string; count: number }[];
+}
+
+export interface PinnedRepo {
+  name: string;
+  description: string | null;
+  url: string;
+  stars: number;
+  language: string | null;
 }
 
 interface GithubUser {
@@ -11,6 +20,7 @@ interface GithubUser {
   avatar_url: string;
   html_url: string;
   public_repos: number;
+  created_at: string;
 }
 
 interface GithubRepo {
@@ -68,9 +78,80 @@ export async function fetchGithubStats(username: string): Promise<GithubStats | 
       avatarUrl: user.avatar_url,
       profileUrl: user.html_url,
       publicRepos: user.public_repos,
+      memberSince: new Date(user.created_at).getFullYear(),
       topLanguages,
     };
   } catch {
     return null;
+  }
+}
+
+const PINNED_REPOS_QUERY = `
+  query($login: String!) {
+    user(login: $login) {
+      pinnedItems(first: 6, types: [REPOSITORY]) {
+        nodes {
+          ... on Repository {
+            name
+            description
+            url
+            stargazerCount
+            primaryLanguage { name }
+          }
+        }
+      }
+    }
+  }
+`;
+
+interface GraphQLPinnedResponse {
+  data?: {
+    user: {
+      pinnedItems: {
+        nodes: {
+          name: string;
+          description: string | null;
+          url: string;
+          stargazerCount: number;
+          primaryLanguage: { name: string } | null;
+        }[];
+      };
+    } | null;
+  };
+  errors?: unknown[];
+}
+
+// Pinned repos are only exposed via GitHub's GraphQL API, which always
+// requires auth (unlike the REST endpoints above). Without a token, this
+// silently returns an empty list so the section just doesn't render instead
+// of throwing.
+export async function fetchPinnedRepos(username: string): Promise<PinnedRepo[]> {
+  if (!process.env.GITHUB_TOKEN) return [];
+
+  try {
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        ...authHeaders(),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: PINNED_REPOS_QUERY, variables: { login: username } }),
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) return [];
+
+    const json: GraphQLPinnedResponse = await res.json();
+    const nodes = json.data?.user?.pinnedItems.nodes ?? [];
+
+    return nodes.map((repo) => ({
+      name: repo.name,
+      description: repo.description,
+      url: repo.url,
+      stars: repo.stargazerCount,
+      language: repo.primaryLanguage?.name ?? null,
+    }));
+  } catch {
+    return [];
   }
 }
