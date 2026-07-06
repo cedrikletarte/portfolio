@@ -10,7 +10,6 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FolderIcon from '@mui/icons-material/Folder';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InsightsIcon from '@mui/icons-material/Insights';
-import StarIcon from '@mui/icons-material/Star';
 import { useThemeMode } from '../theme/ThemeContext';
 import OrbitBackground from './backgrounds/OrbitBackground';
 import CTAButton from './CTAButton';
@@ -32,7 +31,7 @@ const calendarTheme = {
   dark: ['rgba(255,255,255,0.06)', `${ACCENT}40`, `${ACCENT}75`, `${ACCENT}aa`, ACCENT],
 };
 
-const GithubStatsClient = ({ stats, pinnedRepos, username }) => {
+const GithubStatsClient = ({ stats, username }) => {
   const t = useTranslations();
   const { mode } = useThemeMode();
   const [totalContributions, setTotalContributions] = useState(null);
@@ -128,60 +127,6 @@ const GithubStatsClient = ({ stats, pinnedRepos, username }) => {
                 </Grid>
               ))}
             </Grid>
-
-            {pinnedRepos?.length > 0 && (
-              <Reveal direction="up" distance={45} delay={0.1}>
-                <Box sx={{ mb: 4 }}>
-                  <Text variant="overline" sx={{ color: ACCENT, letterSpacing: 2, fontWeight: 600, mb: 1.5, display: 'block' }}>
-                    {t('githubStats.pinnedTitle')}
-                  </Text>
-                  <Grid container spacing={2}>
-                    {pinnedRepos.map((repo) => (
-                      <Grid key={repo.name} size={{ xs: 12, sm: 6 }}>
-                        <Paper
-                          component="a"
-                          href={repo.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          variant="outlined"
-                          sx={{
-                            display: 'block',
-                            p: 2.2,
-                            height: '100%',
-                            textDecoration: 'none',
-                            color: 'inherit',
-                            borderColor: `${ACCENT}40`,
-                            background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`,
-                            backdropFilter: 'blur(4px)',
-                            borderRadius: 2,
-                            transition: 'transform .3s, border-color .3s',
-                            '&:hover': { transform: 'translateY(-3px)', borderColor: ACCENT },
-                          }}
-                        >
-                          <Text variant="subtitle1" fontWeight="bold" sx={{ mb: 0.5 }}>
-                            {repo.name}
-                          </Text>
-                          {repo.description && (
-                            <Text variant="body2" sx={{ opacity: 0.75, mb: 1.5, lineHeight: 1.5 }}>
-                              {repo.description}
-                            </Text>
-                          )}
-                          <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-                            {repo.language && (
-                              <Text variant="caption" sx={{ opacity: 0.7 }}>{repo.language}</Text>
-                            )}
-                            <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
-                              <StarIcon sx={{ fontSize: 15, color: ACCENT }} />
-                              <Text variant="caption" sx={{ opacity: 0.7 }}>{repo.stars}</Text>
-                            </Stack>
-                          </Stack>
-                        </Paper>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Box>
-              </Reveal>
-            )}
 
             {stats.topLanguages.length > 0 && (
               <Reveal direction="up" distance={45} delay={0.15}>

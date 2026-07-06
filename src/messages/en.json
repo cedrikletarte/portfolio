@@ -4,13 +4,9 @@
   "work": {
     "projects": "Projects",
     "recent": "Discover some of my recent work.",
-    "details": "Details",
-    "server": "Multifunctional server setup",
-    "website": "Portfolio website",
-    "gaming": "Video game development",
-    "ai": "Artificial intelligence",
-    "earth": "3D Earth Globe",
-    "liveDemo": "Live Demo"
+    "liveDemo": "Live Demo",
+    "highlightsLabel": "Highlights",
+    "screenshotComingSoon": "Screenshot coming soon"
   },
   "home": {
     "hello": "Hello, my name is",
@@ -77,83 +73,79 @@
   },
   "server": {
     "title": "Multifunctional Server",
-    "intro": "Self-hosted Ubuntu server running containerized services with security hardening, remote access via VPN and fully automated maintenance.",
-    "dockerTitle": "1. Containerization",
-    "dockerDesc": "",
-    "dockerList": [
-      "<b>Plex</b> — personal media streaming",
-      "<b>Radarr / Sonarr / Prowlarr /qBittorrent</b> — content automation",
-      "<b>Vaultwarden</b> — password management",
-      "<b>Portainer</b> — container administration"
-    ],
-    "securityTitle": "2. Security",
-    "securityDesc": "",
-    "securityList": [
-      "<b>Traefik</b> — reverse-proxy with SSL/TLS",
-      "<b>Crowdsec</b> — behavior-based intrusion detection",
-      "<b>Cloudflare</b> — IP masking and DDoS protection",
-      "<b>WireGuard VPN</b> — encrypted remote access"
-    ],
-    "autoTitle": "3. Automation",
-    "autoDesc": "Automated Docker container updates and Ubuntu <b>unattended upgrades</b> keep all services patched without manual intervention.",
-    "techs": [
-      "Cloudflare",
-      "Wireguard",
-      "Plex",
-      "Vaultwarden"
+    "tagline": "Multifunctional server setup",
+    "description": "Self-hosted Ubuntu server running containerized services with security hardening, remote access via VPN and fully automated maintenance.",
+    "highlights": [
+      {
+        "title": "Containerization",
+        "desc": "",
+        "items": [
+          "<b>Plex</b> — personal media streaming",
+          "<b>Radarr / Sonarr / Prowlarr /qBittorrent</b> — content automation",
+          "<b>Vaultwarden</b> — password management",
+          "<b>Portainer</b> — container administration"
+        ]
+      },
+      {
+        "title": "Security",
+        "desc": "",
+        "items": [
+          "<b>Traefik</b> — reverse-proxy with SSL/TLS",
+          "<b>Crowdsec</b> — behavior-based intrusion detection",
+          "<b>Cloudflare</b> — IP masking and DDoS protection",
+          "<b>WireGuard VPN</b> — encrypted remote access"
+        ]
+      },
+      {
+        "title": "Automation",
+        "desc": "Automated Docker container updates and Ubuntu <b>unattended upgrades</b> keep all services patched without manual intervention."
+      }
     ]
   },
   "website": {
     "title": "Portfolio",
-    "intro": "Portfolio built with Next.js, TypeScript and Material UI. Supports French/English localization, dark/light mode and is deployed via Docker with a GitLab CI/CD pipeline.",
-    "objectives": "Highlights",
-    "skillsTitle": "Stack",
-    "skillsDesc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD.",
-    "projectsTitle": "Projects showcase",
-    "projectsDesc": "Each project has its own detail page with descriptions, screenshots and tech used.",
-    "uxTitle": "UX & animations",
-    "uxDesc": "Scroll-triggered animations, glass morphism UI, smooth transitions and responsive layout.",
-    "securityTitle": "Performance & SEO",
-    "securityDesc": "Server-side rendering, IndexNow indexing, secure contact form with server-side validation.",
-    "designTitle": "i18n",
-    "designDesc": "Full French and English support via next-intl, with locale-aware routing.",
-    "conclusion": "This portfolio is itself a demonstration of my front-end and DevOps skills."
+    "tagline": "Portfolio website",
+    "description": "Portfolio built with Next.js, TypeScript and Material UI. Supports French/English localization, dark/light mode and is deployed via Docker with a GitLab CI/CD pipeline. This portfolio is itself a demonstration of my front-end and DevOps skills.",
+    "highlights": [
+      { "title": "Stack", "desc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD." },
+      { "title": "Projects showcase", "desc": "Each project is presented with a description, screenshots and the technologies used, in an interactive scroll experience." },
+      { "title": "UX & animations", "desc": "Scroll-triggered animations, glass morphism UI, smooth transitions and responsive layout." },
+      { "title": "Performance & SEO", "desc": "Server-side rendering, IndexNow indexing, secure contact form with server-side validation." },
+      { "title": "i18n", "desc": "Full French and English support via next-intl, with locale-aware routing." }
+    ]
   },
   "gaming": {
     "title": "Video Game",
-    "intro": "Team project built with Unity and C#. Players design their own 3D city and explore it in first-person, with Spider-Man-inspired movement mechanics.",
-    "objectives": "Features",
-    "goal1Title": "City builder",
-    "goal1Desc": "Intuitive 3D object placement interface to build and customize a city.",
-    "goal2Title": "Unity UI menu",
-    "goal2Desc": "Ergonomic build menu with smooth navigation using Unity UI.",
-    "goal3Title": "Camera systems",
-    "goal3Desc": "Orthogonal, free and FPS cameras for a seamless transition between build and explore modes.",
-    "goal4Title": "Movement mechanics",
-    "goal4Desc": "Sprint, jump, wallrun and web-swinging powered by Unity Physics."
+    "tagline": "Video game development",
+    "description": "Team project built with Unity and C#. Players design their own 3D city and explore it in first-person, with Spider-Man-inspired movement mechanics.",
+    "highlights": [
+      { "title": "City builder", "desc": "Intuitive 3D object placement interface to build and customize a city." },
+      { "title": "Unity UI menu", "desc": "Ergonomic build menu with smooth navigation using Unity UI." },
+      { "title": "Camera systems", "desc": "Orthogonal, free and FPS cameras for a seamless transition between build and explore modes." },
+      { "title": "Movement mechanics", "desc": "Sprint, jump, wallrun and web-swinging powered by Unity Physics." }
+    ]
   },
   "ai": {
     "title": "Giant Tic-Tac-Toe AI",
-    "intro": "University project: an AI agent playing Giant Tic-Tac-Toe — a nested 3×3 board where each move constrains the opponent's next play zone.",
-    "techTitle": "Algorithms & implementation",
-    "minimax": "Minimax with Alpha-Beta pruning to efficiently search a very large state space.",
-    "heuristic": "Custom heuristic evaluation function to prioritize winning moves.",
-    "moves": "Valid move generation respecting board constraints.",
-    "network": "Network interface to compete against other agents on a game server."
+    "tagline": "Artificial intelligence",
+    "description": "University project: an AI agent playing Giant Tic-Tac-Toe — a nested 3×3 board where each move constrains the opponent's next play zone.",
+    "highlights": [
+      { "title": "Minimax & Alpha-Beta pruning", "desc": "Efficiently searches a very large state space to choose the best move." },
+      { "title": "Heuristic evaluation", "desc": "Custom evaluation function that prioritizes winning moves." },
+      { "title": "Move generation", "desc": "Generates valid moves while respecting the board's nested constraints." },
+      { "title": "Network play", "desc": "Network interface to compete against other agents on a game server." }
+    ]
   },
   "earth": {
     "title": "Earth Globe",
-    "intro": "Interactive 3D globe built with Next.js and CesiumJS, featuring city search, custom self-hosted map tiles, atmospheric controls and a space skybox.",
-    "featuresTitle": "Features",
-    "globeTitle": "3D Globe",
-    "globeDesc": "CesiumJS renders a real-time interactive Earth with satellite imagery, 3D terrain and a physically-based atmosphere.",
-    "searchTitle": "City Search",
-    "searchDesc": "Self-hosted Nominatim geocoder lets users search and fly to any city or location worldwide.",
-    "mapTitle": "Custom Map Styles",
-    "mapDesc": "Self-hosted TileServer-GL serves multiple tile styles switchable at runtime.",
-    "skyboxTitle": "Skybox & Atmosphere",
-    "skyboxDesc": "6-face space skybox with tunable atmospheric parameters for a realistic space environment.",
-    "github": "View on GitHub"
+    "tagline": "3D Earth Globe",
+    "description": "Interactive 3D globe built with Next.js and CesiumJS, featuring city search, custom self-hosted map tiles, atmospheric controls and a space skybox.",
+    "highlights": [
+      { "title": "3D Globe", "desc": "CesiumJS renders a real-time interactive Earth with satellite imagery, 3D terrain and a physically-based atmosphere." },
+      { "title": "City Search", "desc": "Self-hosted Nominatim geocoder lets users search and fly to any city or location worldwide." },
+      { "title": "Custom Map Styles", "desc": "Self-hosted TileServer-GL serves multiple tile styles switchable at runtime." },
+      { "title": "Skybox & Atmosphere", "desc": "6-face space skybox with tunable atmospheric parameters for a realistic space environment." }
+    ]
   },
   "error": {
     "sending": "An error occurred while sending your message. Please try again later."
@@ -164,7 +156,6 @@
     "repos": "Public repos",
     "memberSince": "Member since",
     "contributionsYear": "Contributions",
-    "pinnedTitle": "Featured repositories",
     "languagesTitle": "Top languages",
     "viewProfile": "View GitHub profile",
     "unavailable": "GitHub stats are temporarily unavailable."

@@ -108,59 +108,60 @@ export default function AnimatedThemeWrapper({ children }) {
                 style={{
                     position: "relative",
                     minHeight: "100vh",
-                    overflow: "hidden",
                     width: "100%",
                 }}
             >
-                {/* Fond affiché */}
-                <div
-                    style={{
-                        position: "absolute",
-                        inset: 0,
-                        background: backgrounds[displayedMode],
-                        zIndex: 0,
-                        transition: "background 0.3s",
-                    }}
-                />
+                <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+                    {/* Fond affiché */}
+                    <div
+                        style={{
+                            position: "absolute",
+                            inset: 0,
+                            background: backgrounds[displayedMode],
+                            zIndex: 0,
+                            transition: "background 0.3s",
+                        }}
+                    />
 
-                {/* Reveal circulaire */}
-                <AnimatePresence mode="wait">
-                    {mode !== displayedMode && maxRadius > 10 && dimensions.w > 0 && dimensions.h > 0 && (
-                        <motion.div
-                            key={mode + maxRadius}
-                            initial={{
-                                clipPath: `circle(0px at 50% 50%)`,
-                                background: backgrounds[mode],
-                            }}
-                            animate={{
-                                clipPath: `circle(${maxRadius}px at 50% 50%)`,
-                                background: backgrounds[mode],
-                            }}
-                            exit={{
-                                clipPath: `circle(0px at 50% 50%)`,
-                                background: backgrounds[mode],
-                            }}
-                            transition={{
-                                duration: 0.6,
-                                ease: "easeInOut",
-                                onUpdate: (latest) => {
-                                    const clipPath = latest.clipPath;
-                                    if (typeof clipPath === 'string') {
-                                        const match = clipPath.match(/circle\((\d+(?:\.\d+)?)px/);
-                                        if (match) setCurrentRadius(parseFloat(match[1]));
+                    {/* Reveal circulaire */}
+                    <AnimatePresence mode="wait">
+                        {mode !== displayedMode && maxRadius > 10 && dimensions.w > 0 && dimensions.h > 0 && (
+                            <motion.div
+                                key={mode + maxRadius}
+                                initial={{
+                                    clipPath: `circle(0px at 50% 50%)`,
+                                    background: backgrounds[mode],
+                                }}
+                                animate={{
+                                    clipPath: `circle(${maxRadius}px at 50% 50%)`,
+                                    background: backgrounds[mode],
+                                }}
+                                exit={{
+                                    clipPath: `circle(0px at 50% 50%)`,
+                                    background: backgrounds[mode],
+                                }}
+                                transition={{
+                                    duration: 0.6,
+                                    ease: "easeInOut",
+                                    onUpdate: (latest) => {
+                                        const clipPath = latest.clipPath;
+                                        if (typeof clipPath === 'string') {
+                                            const match = clipPath.match(/circle\((\d+(?:\.\d+)?)px/);
+                                            if (match) setCurrentRadius(parseFloat(match[1]));
+                                        }
                                     }
-                                }
-                            }}
-                            style={{
-                                position: "absolute",
-                                inset: 0,
-                                zIndex: 1,
-                                width: "100%",
-                                height: "100%",
-                            }}
-                        />
-                    )}
-                </AnimatePresence>
+                                }}
+                                style={{
+                                    position: "absolute",
+                                    inset: 0,
+                                    zIndex: 1,
+                                    width: "100%",
+                                    height: "100%",
+                                }}
+                            />
+                        )}
+                    </AnimatePresence>
+                </div>
 
                 <div style={{ position: "relative", zIndex: 2 }}>
                     {children}

@@ -4,13 +4,9 @@
   "work": {
     "projects": "Projets",
     "recent": "Découvrez certains de mes travaux récents.",
-    "details": "Détails",
-    "server": "Configuration d'un serveur multifonction",
-    "website": "Création d'une page web portfolio",
-    "gaming": "Réalisation d'un jeu vidéo",
-    "ai": "Création d'une intelligence artificielle",
-    "earth": "Globe terrestre 3D",
-    "liveDemo": "Démo en ligne"
+    "liveDemo": "Démo en ligne",
+    "highlightsLabel": "Points forts",
+    "screenshotComingSoon": "Capture d'écran à venir"
   },
   "home": {
     "hello": "Bonjour, mon nom est",
@@ -77,83 +73,79 @@
   },
   "server": {
     "title": "Serveur multifonction",
-    "intro": "Serveur Ubuntu auto-hébergé exécutant des services conteneurisés avec durcissement de la sécurité, accès distant via VPN et maintenance entièrement automatisée.",
-    "dockerTitle": "1. Conteneurisation",
-    "dockerDesc": "",
-    "dockerList": [
-      "<b>Plex</b> — streaming multimédia personnel",
-      "<b>Radarr / Sonarr / Prowlarr /qBittorrent</b> — automatisation du contenu",
-      "<b>Vaultwarden</b> — gestion des mots de passe",
-      "<b>Portainer</b> — administration des conteneurs"
-    ],
-    "securityTitle": "2. Sécurité",
-    "securityDesc": "",
-    "securityList": [
-      "<b>Traefik</b> — reverse-proxy avec SSL/TLS",
-      "<b>Crowdsec</b> — détection d'intrusion basée sur le comportement",
-      "<b>Cloudflare</b> — masquage d'IP et protection DDoS",
-      "<b>WireGuard VPN</b> — accès distant chiffré"
-    ],
-    "autoTitle": "3. Automatisation",
-    "autoDesc": "Les mises à jour automatiques des conteneurs Docker et les <b>unattended upgrades</b> d'Ubuntu maintiennent tous les services à jour sans intervention manuelle.",
-    "techs": [
-      "Cloudflare",
-      "Wireguard",
-      "Plex",
-      "Vaultwarden"
+    "tagline": "Configuration d'un serveur multifonction",
+    "description": "Serveur Ubuntu auto-hébergé exécutant des services conteneurisés avec durcissement de la sécurité, accès distant via VPN et maintenance entièrement automatisée.",
+    "highlights": [
+      {
+        "title": "Conteneurisation",
+        "desc": "",
+        "items": [
+          "<b>Plex</b> — streaming multimédia personnel",
+          "<b>Radarr / Sonarr / Prowlarr /qBittorrent</b> — automatisation du contenu",
+          "<b>Vaultwarden</b> — gestion des mots de passe",
+          "<b>Portainer</b> — administration des conteneurs"
+        ]
+      },
+      {
+        "title": "Sécurité",
+        "desc": "",
+        "items": [
+          "<b>Traefik</b> — reverse-proxy avec SSL/TLS",
+          "<b>Crowdsec</b> — détection d'intrusion basée sur le comportement",
+          "<b>Cloudflare</b> — masquage d'IP et protection DDoS",
+          "<b>WireGuard VPN</b> — accès distant chiffré"
+        ]
+      },
+      {
+        "title": "Automatisation",
+        "desc": "Les mises à jour automatiques des conteneurs Docker et les <b>unattended upgrades</b> d'Ubuntu maintiennent tous les services à jour sans intervention manuelle."
+      }
     ]
   },
   "website": {
     "title": "Portfolio",
-    "intro": "Portfolio construit avec Next.js, TypeScript et Material UI. Supporte la localisation français/anglais, le mode sombre/clair, et est déployé via Docker avec un pipeline CI/CD GitLab.",
-    "objectives": "Points forts",
-    "skillsTitle": "Stack",
-    "skillsDesc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD.",
-    "projectsTitle": "Vitrine de projets",
-    "projectsDesc": "Chaque projet possède sa propre page détaillée avec descriptions, captures d'écran et technologies utilisées.",
-    "uxTitle": "UX & animations",
-    "uxDesc": "Animations déclenchées au défilement, interface glass morphism, transitions fluides et mise en page responsive.",
-    "securityTitle": "Performance & SEO",
-    "securityDesc": "Rendu côté serveur, indexation IndexNow, formulaire de contact sécurisé avec validation côté serveur.",
-    "designTitle": "i18n",
-    "designDesc": "Support complet français et anglais via next-intl, avec routage adapté aux locales.",
-    "conclusion": "Ce portfolio est lui-même une démonstration de mes compétences front-end et DevOps."
+    "tagline": "Création d'une page web portfolio",
+    "description": "Portfolio construit avec Next.js, TypeScript et Material UI. Supporte la localisation français/anglais, le mode sombre/clair, et est déployé via Docker avec un pipeline CI/CD GitLab. Ce portfolio est lui-même une démonstration de mes compétences front-end et DevOps.",
+    "highlights": [
+      { "title": "Stack", "desc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD." },
+      { "title": "Vitrine de projets", "desc": "Chaque projet est présenté avec une description, des captures d'écran et les technologies utilisées, dans une expérience de défilement interactive." },
+      { "title": "UX & animations", "desc": "Animations déclenchées au défilement, interface glass morphism, transitions fluides et mise en page responsive." },
+      { "title": "Performance & SEO", "desc": "Rendu côté serveur, indexation IndexNow, formulaire de contact sécurisé avec validation côté serveur." },
+      { "title": "i18n", "desc": "Support complet français et anglais via next-intl, avec routage adapté aux locales." }
+    ]
   },
   "gaming": {
     "title": "Jeu vidéo",
-    "intro": "Projet d'équipe réalisé avec Unity et C#. Les joueurs conçoivent leur propre ville en 3D et l'explorent à la première personne, avec des mécaniques de mouvement inspirées de Spider-Man.",
-    "objectives": "Fonctionnalités",
-    "goal1Title": "Constructeur de ville",
-    "goal1Desc": "Interface intuitive de placement d'objets 3D pour construire et personnaliser une ville.",
-    "goal2Title": "Menu Unity UI",
-    "goal2Desc": "Menu de construction ergonomique avec navigation fluide via Unity UI.",
-    "goal3Title": "Systèmes de caméra",
-    "goal3Desc": "Caméras orthogonale, libre et FPS pour une transition fluide entre les modes construction et exploration.",
-    "goal4Title": "Mécaniques de mouvement",
-    "goal4Desc": "Sprint, saut, wallrun et déplacement en tirant des toiles propulsés par Unity Physics."
+    "tagline": "Réalisation d'un jeu vidéo",
+    "description": "Projet d'équipe réalisé avec Unity et C#. Les joueurs conçoivent leur propre ville en 3D et l'explorent à la première personne, avec des mécaniques de mouvement inspirées de Spider-Man.",
+    "highlights": [
+      { "title": "Constructeur de ville", "desc": "Interface intuitive de placement d'objets 3D pour construire et personnaliser une ville." },
+      { "title": "Menu Unity UI", "desc": "Menu de construction ergonomique avec navigation fluide via Unity UI." },
+      { "title": "Systèmes de caméra", "desc": "Caméras orthogonale, libre et FPS pour une transition fluide entre les modes construction et exploration." },
+      { "title": "Mécaniques de mouvement", "desc": "Sprint, saut, wallrun et déplacement en tirant des toiles propulsés par Unity Physics." }
+    ]
   },
   "ai": {
     "title": "IA Tic-Tac-Toe Géant",
-    "intro": "Projet universitaire : un agent IA jouant au Tic-Tac-Toe Géant — un plateau 3×3 imbriqué où chaque coup contraint la zone de jeu suivante de l'adversaire.",
-    "techTitle": "Algorithmes & implémentation",
-    "minimax": "Minimax avec élagage Alpha-Bêta pour explorer efficacement un espace d'états très vaste.",
-    "heuristic": "Fonction d'évaluation heuristique personnalisée pour prioriser les coups gagnants.",
-    "moves": "Génération de coups valides respectant les contraintes du plateau.",
-    "network": "Interface réseau pour s'affronter contre d'autres agents sur un serveur de jeu."
+    "tagline": "Création d'une intelligence artificielle",
+    "description": "Projet universitaire : un agent IA jouant au Tic-Tac-Toe Géant — un plateau 3×3 imbriqué où chaque coup contraint la zone de jeu suivante de l'adversaire.",
+    "highlights": [
+      { "title": "Minimax & élagage Alpha-Bêta", "desc": "Explore efficacement un espace d'états très vaste pour choisir le meilleur coup." },
+      { "title": "Évaluation heuristique", "desc": "Fonction d'évaluation personnalisée qui priorise les coups gagnants." },
+      { "title": "Génération de coups", "desc": "Génère les coups valides en respectant les contraintes imbriquées du plateau." },
+      { "title": "Jeu en réseau", "desc": "Interface réseau pour s'affronter contre d'autres agents sur un serveur de jeu." }
+    ]
   },
   "earth": {
     "title": "Globe Terrestre",
-    "intro": "Globe 3D interactif construit avec Next.js et CesiumJS, avec recherche de villes, tuiles cartographiques auto-hébergées, contrôles atmosphériques et skybox spatial.",
-    "featuresTitle": "Fonctionnalités",
-    "globeTitle": "Globe 3D",
-    "globeDesc": "CesiumJS rend une Terre interactive en temps réel avec imagerie satellite, relief 3D et atmosphère physiquement réaliste.",
-    "searchTitle": "Recherche de villes",
-    "searchDesc": "Un géocodeur Nominatim auto-hébergé permet de rechercher et naviguer vers n'importe quelle ville dans le monde.",
-    "mapTitle": "Styles de carte",
-    "mapDesc": "TileServer-GL auto-hébergé sert plusieurs styles de tuiles personnalisés commutables à l'exécution.",
-    "skyboxTitle": "Skybox & Atmosphère",
-    "skyboxDesc": "Skybox spatiale 6 faces avec paramètres atmosphériques réglables pour un environnement réaliste.",
-    "github": "Voir sur GitHub"
+    "tagline": "Globe terrestre 3D",
+    "description": "Globe 3D interactif construit avec Next.js et CesiumJS, avec recherche de villes, tuiles cartographiques auto-hébergées, contrôles atmosphériques et skybox spatial.",
+    "highlights": [
+      { "title": "Globe 3D", "desc": "CesiumJS rend une Terre interactive en temps réel avec imagerie satellite, relief 3D et atmosphère physiquement réaliste." },
+      { "title": "Recherche de villes", "desc": "Un géocodeur Nominatim auto-hébergé permet de rechercher et naviguer vers n'importe quelle ville dans le monde." },
+      { "title": "Styles de carte", "desc": "TileServer-GL auto-hébergé sert plusieurs styles de tuiles personnalisés commutables à l'exécution." },
+      { "title": "Skybox & Atmosphère", "desc": "Skybox spatiale 6 faces avec paramètres atmosphériques réglables pour un environnement réaliste." }
+    ]
   },
   "error": {
     "sending": "Erreur lors de l'envoi du message. Veuillez réessayer plus tard."
@@ -164,7 +156,6 @@
     "repos": "Dépôts publics",
     "memberSince": "Membre depuis",
     "contributionsYear": "Contributions",
-    "pinnedTitle": "Dépôts en vedette",
     "languagesTitle": "Langages principaux",
     "viewProfile": "Voir le profil GitHub",
     "unavailable": "Les statistiques GitHub sont temporairement indisponibles."
