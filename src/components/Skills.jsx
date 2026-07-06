@@ -14,19 +14,32 @@ const skills = [
     { src: "/assets/csharp.png", alt: "C#", label: "skills.csharp" },
     { src: "/assets/python.png", alt: "PYTHON", label: "skills.python" },
     { src: "/assets/react.png", alt: "REACT", label: "skills.react" },
-    { src: "/assets/ubuntu.png", alt: "UBUNTU SERVER", label: "skills.ubuntu" },
+    { src: "/assets/nextjs.svg", alt: "NEXT.JS", label: "skills.nextjs" },
+    { src: "/assets/typescript.svg", alt: "TYPESCRIPT", label: "skills.typescript" },
+    { src: "/assets/javascript.png", alt: "JAVASCRIPT", label: "skills.javascript" },
+    { src: "/assets/html.png", alt: "HTML", label: "skills.html" },
+    { src: "/assets/css.png", alt: "CSS", label: "skills.css" },
+    { src: "/assets/tailwind.png", alt: "TAILWIND CSS", label: "skills.tailwind" },
+    { src: "/assets/dotnet.svg", alt: "ASP.NET", label: "skills.dotnet" },
+    { src: "/assets/unity.svg", alt: "UNITY", label: "skills.unity" },
+    { src: "/assets/android.svg", alt: "ANDROID", label: "skills.android" },
+    { src: "/assets/apple.svg", alt: "IOS", label: "skills.ios" },
+    { src: "/assets/linux.svg", alt: "LINUX", label: "skills.linux" },
+    { src: "/assets/bash.svg", alt: "BASH", label: "skills.bash" },
+    { src: "/assets/powershell.svg", alt: "POWERSHELL", label: "skills.powershell" },
     { src: "/assets/docker.png", alt: "DOCKER", label: "skills.docker" },
+    { src: "/assets/github.png", alt: "GITHUB", label: "skills.github" },
+    { src: "/assets/cloudflare.png", alt: "CLOUDFLARE", label: "skills.cloudflare" },
     { src: "/assets/mariadb.png", alt: "MARIADB", label: "skills.mariadb" },
+    { src: "/assets/mysql.svg", alt: "MYSQL", label: "skills.mysql" },
     { src: "/assets/mongo.png", alt: "MongoDB", label: "skills.mongodb" },
 ];
 
 // The marquee row isn't width-constrained (unlike the rest of the site) so it
-// can stretch edge-to-edge on very wide screens. With only 2 copies of the 8
-// skills, one "half" of the track is ~1392px — narrower than a typical wide
-// monitor window, so the visible strip could scroll past the end of the
-// duplicated content and show a blank gap. Repeating the list several times
-// per half keeps each half comfortably wider than any realistic viewport.
-const HALF_REPEATS = 3;
+// can stretch edge-to-edge on very wide screens. One "half" of the track needs
+// to stay comfortably wider than any realistic viewport, or the visible strip
+// could scroll past the end of the duplicated content and show a blank gap.
+const HALF_REPEATS = 2;
 
 // Marquee rows use a per-tile margin instead of a container `gap`. With a flex
 // `gap`, translateX(-50%) lands half a gap short of the true repeat-unit width
