@@ -10,6 +10,7 @@ import 'quill/dist/quill.snow.css';
 import { useEffect, useRef, useState } from 'react';
 import { MdSend } from 'react-icons/md';
 import CircularProgress from '@mui/material/CircularProgress';
+import DotsDriftBackground from './backgrounds/DotsDriftBackground';
 import Reveal from './Reveal';
 import { useThemeMode } from '../theme/ThemeContext';
 
@@ -93,9 +94,11 @@ const Contact = () => {
         justifyContent: 'center',
         alignItems: 'center',
         py: 6,
+        position: 'relative',
       }}
       name="contact"
     >
+      <DotsDriftBackground />
       {/* Contact form box */}
       <Box
         component="form"
@@ -109,6 +112,7 @@ const Contact = () => {
           p: 4,
           borderRadius: 2,
           boxShadow: 6,
+          position: 'relative',
         }}
       >
         {/* Title and description */}

@@ -5,8 +5,10 @@ import { useState } from 'react';
 import { scroller } from 'react-scroll';
 
 import Ai from './Ai';
+import BlueprintGridBackground from './backgrounds/BlueprintGridBackground';
 import Earth from './Earth';
 import Gaming from './Gaming';
+import ParallaxGlow from './ParallaxGlow';
 import Server from './Server';
 import Website from './Website';
 import Reveal from './Reveal';
@@ -65,7 +67,8 @@ function Projects() {
           position: 'relative',
         }}
       >
-        <Box sx={{ position: 'absolute', top: '5%', left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: 'radial-gradient(circle at 50% 30%, rgba(236,72,153,0.16), transparent 70%)', filter: 'blur(65px)', opacity: .55, pointerEvents: 'none' }} />
+        <BlueprintGridBackground />
+        <ParallaxGlow top="5%" origin="50% 30%" color="rgba(236,72,153,0.16)" blur={65} opacity={0.55} />
         <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, width: '100%', position: 'relative' }}>
           <Box sx={{ pb: 4 }}>
             <Reveal direction="up" distance={40}>

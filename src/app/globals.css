@@ -211,6 +211,11 @@ body::-webkit-scrollbar-thumb:hover {
 
 
 
+@keyframes skills-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @keyframes fly-away {
   0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
   60%  { transform: translateY(-40px) scale(1.2) rotate(-20deg); opacity: 1; }

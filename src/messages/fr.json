@@ -1,6 +1,6 @@
 {
-  "title": "Bienvenue sur mon portfolio",
-  "description": "Généré par create next app",
+  "title": "Cédrik Letarte — Développeur Full-Stack",
+  "description": "Portfolio de Cédrik Letarte, développeur full-stack étudiant à l'École de technologie supérieure, avec de l'expérience concrète en Java, C#, Python, React et Next.js.",
   "work": {
     "projects": "Projets",
     "recent": "Découvrez certains de mes travaux récents.",
@@ -9,7 +9,8 @@
     "website": "Création d'une page web portfolio",
     "gaming": "Réalisation d'un jeu vidéo",
     "ai": "Création d'une intelligence artificielle",
-    "earth": "Globe terrestre 3D"
+    "earth": "Globe terrestre 3D",
+    "liveDemo": "Démo en ligne"
   },
   "home": {
     "hello": "Bonjour, mon nom est",
@@ -141,5 +142,25 @@
   },
   "error": {
     "sending": "Erreur lors de l'envoi du message. Veuillez réessayer plus tard."
+  },
+  "githubStats": {
+    "title": "Activité GitHub",
+    "desc": "Un aperçu en direct de mon activité GitHub publique — dépôts, étoiles et contributions quotidiennes.",
+    "repos": "Dépôts publics",
+    "languagesTitle": "Langages principaux",
+    "viewProfile": "Voir le profil GitHub",
+    "unavailable": "Les statistiques GitHub sont temporairement indisponibles."
+  },
+  "commandPalette": {
+    "placeholder": "Tapez une commande ou une recherche...",
+    "noResults": "Aucune commande correspondante.",
+    "sections": "Aller à la section",
+    "actions": "Actions",
+    "toggleTheme": "Basculer le thème clair/sombre",
+    "switchLanguage": "Passer en {locale}",
+    "downloadCv": "Télécharger le CV",
+    "openGithub": "Ouvrir le profil GitHub",
+    "sendEmail": "Envoyer un courriel",
+    "hint": "Ouvrir la palette de commandes"
   }
 }

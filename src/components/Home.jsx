@@ -1,11 +1,13 @@
 "use client"
 
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import { scroller } from 'react-scroll';
 import { ReactTyped } from 'react-typed';
+import CTAButton from './CTAButton';
+import HeroCanvas from './HeroCanvas';
+import ParallaxGlow from './ParallaxGlow';
 import Reveal from './Reveal';
 
 const Home = () => {
@@ -32,7 +34,8 @@ const Home = () => {
         position: 'relative',
       }}
     >
-      <Box sx={{ position: 'absolute', top: '10%', left: '40%', transform: 'translateX(-50%)', width: 700, height: 700, background: 'radial-gradient(circle at 45% 40%, rgba(236,72,153,0.18), transparent 70%)', filter: 'blur(80px)', opacity: .5, pointerEvents: 'none' }} />
+      <ParallaxGlow top="10%" left="40%" origin="45% 40%" size={700} color="rgba(236,72,153,0.18)" blur={80} opacity={0.5} />
+      <HeroCanvas />
       <Box
         sx={{
           maxWidth: 1000,
@@ -90,7 +93,7 @@ const Home = () => {
           </Text>
         </Reveal>
         <Reveal direction="up" distance={40} delay={0.2}>
-          <Button
+          <CTAButton
             variant="outlined"
             onClick={() => scrollTo('work')}
             sx={{
@@ -114,7 +117,7 @@ const Home = () => {
             }}
           >
             {t('home.cta')}
-          </Button>
+          </CTAButton>
         </Reveal>
       </Box>
     </Box>

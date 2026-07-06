@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
+import WaveBackground from './backgrounds/WaveBackground';
+import ParallaxGlow from './ParallaxGlow';
 import Reveal from './Reveal';
 
 const About = () => {
@@ -23,7 +25,8 @@ const About = () => {
             }}
             name="about"
         >
-            <Box sx={{ position: 'absolute', top: '15%', left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: 'radial-gradient(circle at 50% 40%, rgba(236,72,153,0.16), transparent 70%)', filter: 'blur(70px)', opacity: .5, pointerEvents: 'none' }} />
+            <WaveBackground />
+            <ParallaxGlow top="15%" origin="50% 40%" color="rgba(236,72,153,0.16)" opacity={0.5} />
             <Grid
                 container
                 spacing={{ xs: 3, md: 4 }}

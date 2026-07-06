@@ -4,6 +4,8 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import "../globals.css";
 
+const SITE_URL = "https://www.cedrikletarte.com";
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   let messages;
@@ -12,9 +14,32 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   } catch {
     messages = {};
   }
+  const title = messages.title || "Portfolio";
+  const description = messages.description || "Portfolio";
+
   return {
-    title: messages.title || "Portfolio",
-    description: messages.description || "Portfolio"
+    metadataBase: new URL(SITE_URL),
+    title,
+    description,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { fr: "/fr", en: "/en" },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/${locale}`,
+      siteName: "Cédrik Letarte",
+      locale: locale === "fr" ? "fr_CA" : "en_US",
+      type: "website",
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/opengraph-image"],
+    },
   };
 }
 

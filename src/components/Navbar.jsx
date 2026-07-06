@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { scroller } from 'react-scroll';
+import { useCvDownload } from '../hooks/useCvDownload';
 import { useThemeMode } from '../theme/ThemeContext';
 
 import {
@@ -34,8 +35,8 @@ const Navbar = () => {
   const t = useTranslations()
   // State for mobile drawer open/close
   const [drawerOpen, setDrawerOpen] = useState(false)
-  // State for loading spinner (CV download)
-  const [loading, setLoading] = useState(false)
+  // CV download (shared with the command palette)
+  const { download: handleDownload, loading } = useCvDownload();
   // Glass toujours actif
   const scrolled = true;
   // Theme mode and toggle function from context
@@ -61,28 +62,12 @@ const Navbar = () => {
     })
   }
 
-  // Handler for downloading the CV (shows loading spinner briefly)
-  const handleDownload = () => {
-    setLoading(true)
-    downloadFile()
-    setTimeout(() => setLoading(false), 300)
-  }
-
-  // Helper to trigger file download for the correct locale
-  const downloadFile = () => {
-    const fileUrl = locale === 'fr' ? '/cv_fr.pdf' : '/cv_en.pdf'
-    const filename = "Cedrik_Letarte_CV.pdf"
-    const link = document.createElement('a')
-    link.href = fileUrl
-    link.download = filename
-    link.click()
-  }
-
   // Navigation links for sections
   const navLinks = [
     { label: t('navbar.home'), to: 'home' },
     { label: t('navbar.about'), to: 'about' },
     { label: t('navbar.skills'), to: 'skills' },
+    { label: t('navbar.github'), to: 'github' },
     { label: t('navbar.work'), to: 'work' },
     { label: t('navbar.contact'), to: 'contact' },
   ]
@@ -185,6 +170,35 @@ const Navbar = () => {
             >
               {locale === 'fr' ? 'EN' : 'FR'}
             </Button>
+            {/* Command palette hint */}
+            <Tooltip title={t('commandPalette.hint')} arrow>
+              <Box
+                component="button"
+                type="button"
+                onClick={() => window.dispatchEvent(new Event('open-command-palette'))}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 0.5,
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: 1,
+                  border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)'}`,
+                  background: 'transparent',
+                  color: 'inherit',
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: 0.5,
+                  opacity: 0.75,
+                  transition: 'opacity .2s, border-color .2s',
+                  '&:hover': { opacity: 1, borderColor: '#ec4899' },
+                }}
+              >
+                ⌘K
+              </Box>
+            </Tooltip>
             {/* Theme toggle button */}
             <IconButton onClick={toggleTheme} color="inherit"
               sx={{

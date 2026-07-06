@@ -1,17 +1,23 @@
 "use client"
 
-import { Box, Button, Grid, Paper, Stack } from '@mui/material';
+import { Box, Grid, Paper, Stack } from '@mui/material';
 import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import Reveal from './Reveal';
+import BlueprintGridBackground from './backgrounds/BlueprintGridBackground';
+import CTAButton from './CTAButton';
+import ParallaxGlow from './ParallaxGlow';
 import PublicIcon from '@mui/icons-material/Public';
 import ExploreIcon from '@mui/icons-material/Explore';
 import SearchIcon from '@mui/icons-material/Search';
 import MapIcon from '@mui/icons-material/Map';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { getProjectMeta } from '@/data/projects';
 
 const ACCENT = '#22d3ee';
+const { repoUrl, liveUrl } = getProjectMeta('earth');
 
 const Earth = () => {
   const t = useTranslations();
@@ -25,7 +31,8 @@ const Earth = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', color: (theme) => theme.palette.text.primary, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', py: 10, px: 3, position: 'relative' }}>
-      <Box sx={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: `radial-gradient(circle at 50% 35%, ${ACCENT}30, transparent 70%)`, filter: 'blur(70px)', opacity: .45, pointerEvents: 'none' }} />
+      <BlueprintGridBackground />
+      <ParallaxGlow origin="50% 35%" color={`${ACCENT}30`} opacity={0.45} />
       <Paper elevation={0} sx={{ maxWidth: 1000, width: '100%', mx: 'auto', p: { xs: 3, md: 5 }, bgcolor: (theme) => theme.palette.background.default, borderRadius: 3, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)' }}>
         <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', '&:before': { content: '""', position: 'absolute', inset: 0, background: `linear-gradient(150deg, ${ACCENT}12, transparent 50%)` } }} />
 
@@ -74,19 +81,33 @@ const Earth = () => {
           ))}
         </Grid>
 
-        {/* GitHub link */}
+        {/* GitHub / Live demo links */}
         <Reveal direction="up" distance={40} delay={0.25}>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Button
-              variant="outlined"
-              href="https://github.com/cedrikletarte/earth"
-              target="_blank"
-              rel="noopener noreferrer"
-              startIcon={<GitHubIcon />}
-              sx={{ borderColor: ACCENT, color: ACCENT, px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: `${ACCENT}15`, borderColor: ACCENT } }}
-            >
-              {t('earth.github')}
-            </Button>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+            {repoUrl && (
+              <CTAButton
+                variant="outlined"
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<GitHubIcon />}
+                sx={{ borderColor: ACCENT, color: ACCENT, px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: `${ACCENT}15`, borderColor: ACCENT } }}
+              >
+                {t('earth.github')}
+              </CTAButton>
+            )}
+            {liveUrl && (
+              <CTAButton
+                variant="contained"
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<OpenInNewIcon />}
+                sx={{ bgcolor: ACCENT, color: '#0a192f', px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: ACCENT, filter: 'brightness(1.1)' } }}
+              >
+                {t('work.liveDemo')}
+              </CTAButton>
+            )}
           </Box>
         </Reveal>
       </Paper>

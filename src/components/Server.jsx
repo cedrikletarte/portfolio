@@ -3,7 +3,6 @@
 import {
   Avatar,
   Box,
-  Button,
   Chip,
   Divider,
   Grid,
@@ -18,9 +17,15 @@ import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 import LayersIcon from '@mui/icons-material/Layers';
 import DnsIcon from '@mui/icons-material/Dns';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { getProjectMeta } from '@/data/projects';
+import BlueprintGridBackground from './backgrounds/BlueprintGridBackground';
+import CTAButton from './CTAButton';
+import ParallaxGlow from './ParallaxGlow';
 import Reveal from './Reveal';
 
 const ACCENT = '#6fc2b0';
+const { repoUrl, liveUrl } = getProjectMeta('server');
 
 const renderBold = (html) => {
   const parts = html.split(/(<b>.*?<\/b>)/g);
@@ -50,7 +55,8 @@ const Server = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', color: (theme) => theme.palette.text.primary, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', py: 10, px: 3, position: 'relative' }}>
-      <Box sx={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: `radial-gradient(circle at 50% 30%, ${ACCENT}30, transparent 70%)`, filter: 'blur(70px)', opacity: .45, pointerEvents: 'none' }} />
+      <BlueprintGridBackground />
+      <ParallaxGlow origin="50% 30%" color={`${ACCENT}30`} opacity={0.45} />
       <Paper elevation={0} sx={{ maxWidth: 1000, width: '100%', mx: 'auto', p: { xs: 3, md: 5 }, bgcolor: (theme) => theme.palette.background.default, borderRadius: 3, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)' }}>
         <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', '&:before': { content: '""', position: 'absolute', inset: 0, background: `linear-gradient(140deg, ${ACCENT}12, transparent 40%)` } }} />
 
@@ -149,19 +155,33 @@ const Server = () => {
           </Box>
         </Reveal>
 
-        {/* GitHub link */}
+        {/* GitHub / Live demo links */}
         <Reveal direction="up" distance={40} delay={0.1}>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-            <Button
-              variant="outlined"
-              href="https://github.com/cedrikletarte/homelab-infra"
-              target="_blank"
-              rel="noopener noreferrer"
-              startIcon={<GitHubIcon />}
-              sx={{ borderColor: ACCENT, color: ACCENT, px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: `${ACCENT}15`, borderColor: ACCENT } }}
-            >
-              {t('navbar.github')}
-            </Button>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 4, flexWrap: 'wrap' }}>
+            {repoUrl && (
+              <CTAButton
+                variant="outlined"
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<GitHubIcon />}
+                sx={{ borderColor: ACCENT, color: ACCENT, px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: `${ACCENT}15`, borderColor: ACCENT } }}
+              >
+                {t('navbar.github')}
+              </CTAButton>
+            )}
+            {liveUrl && (
+              <CTAButton
+                variant="contained"
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<OpenInNewIcon />}
+                sx={{ bgcolor: ACCENT, color: '#0a192f', px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: ACCENT, filter: 'brightness(1.1)' } }}
+              >
+                {t('work.liveDemo')}
+              </CTAButton>
+            )}
           </Box>
         </Reveal>
       </Paper>

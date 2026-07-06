@@ -6,6 +6,8 @@ import { Box, Grid, IconButton, Paper, Stack } from '@mui/material';
 import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import BlueprintGridBackground from './backgrounds/BlueprintGridBackground';
+import ParallaxGlow from './ParallaxGlow';
 import Reveal from './Reveal';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import SpeedIcon from '@mui/icons-material/Speed';
@@ -40,7 +42,8 @@ const Gaming = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', color: (theme) => theme.palette.text.primary, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', py: 10, px: 3, position: 'relative' }}>
-      <Box sx={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 600, height: 600, background: `radial-gradient(circle at 45% 35%, ${ACCENT}28, transparent 72%)`, filter: 'blur(70px)', opacity: .45, pointerEvents: 'none' }} />
+      <BlueprintGridBackground />
+      <ParallaxGlow origin="45% 35%" color={`${ACCENT}28`} opacity={0.45} />
       <Paper elevation={0} sx={{ maxWidth: 1000, width: '100%', mx: 'auto', p: { xs: 3, md: 5 }, bgcolor: (theme) => theme.palette.background.default, borderRadius: 3, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)' }}>
         <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', '&:before': { content: '""', position: 'absolute', inset: 0, background: `linear-gradient(150deg, ${ACCENT}10, transparent 45%)` } }} />
 
