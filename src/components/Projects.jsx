@@ -81,7 +81,7 @@ function Projects() {
           </Box>
           
 
-          <Grid container spacing={3} justifyContent="center">
+          <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
             {projects.map((project, idx) => {
               const Icon = project.icon;
               const isActive = nav === project.key;

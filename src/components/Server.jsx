@@ -31,7 +31,7 @@ const renderBold = (html) => {
 };
 
 const SectionHeader = ({ icon, title }) => (
-  <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mb: 2 }}>
+  <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', mb: 2 }}>
     <Box sx={{
       width: 36, height: 36, borderRadius: 1.5,
       background: `linear-gradient(135deg, ${ACCENT}30, ${ACCENT}10)`,
@@ -133,7 +133,7 @@ const Server = () => {
             <Text variant="overline" sx={{ color: ACCENT, letterSpacing: 2, fontWeight: 600, mb: 2, display: 'block' }}>
               Technologies
             </Text>
-            <Stack direction="row" flexWrap="wrap" gap={2} justifyContent="center">
+            <Stack direction="row" gap={2} sx={{ flexWrap: 'wrap', justifyContent: 'center' }}>
               {t.raw('server.techs').map((tech) => (
                 <Box key={tech} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
                   <Avatar

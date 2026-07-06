@@ -24,7 +24,7 @@ import {
 } from '@mui/material';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import SchoolIcon from '@mui/icons-material/School';
 
@@ -306,7 +306,7 @@ const Navbar = () => {
               color="inherit"
               sx={(theme)=> ({ width:58, height:58, ...socialIconStyles(theme) })}
             >
-              <MailOutlineIcon fontSize="medium" />
+              <MailOutlinedIcon fontSize="medium" />
             </IconButton>
           </Tooltip>
           {/* CV download icon with loading spinner */}
@@ -346,7 +346,7 @@ const Navbar = () => {
           },{
             label:'Email',
             href:'mailto:cedrikletarte@gmail.com',
-            icon:<MailOutlineIcon fontSize="small" />,
+            icon:<MailOutlinedIcon fontSize="small" />,
             action: undefined
           },{
             label:'CV',

@@ -61,7 +61,7 @@ const Earth = () => {
               <Reveal direction="up" distance={55} delay={0.05 + i * 0.05}>
                 <Paper variant="outlined" sx={{ p: 2.5, height: '100%', borderColor: `${ACCENT}45`, background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`, backdropFilter: 'blur(4px)', position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
                   <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(circle at 70% 25%, ${ACCENT}18, transparent 65%)`, opacity: .8 }} />
-                  <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1, position: 'relative' }}>
+                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mb: 1, position: 'relative' }}>
                     <Box sx={{ color: ACCENT }}>{item.icon}</Box>
                     <Text variant="subtitle1" fontWeight="bold" sx={{ fontSize: { xs: 14, sm: 16 } }}>{item.title}</Text>
                   </Stack>

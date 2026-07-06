@@ -59,7 +59,7 @@ const Website = () => {
               <Reveal direction="up" distance={50} delay={0.05 + i * 0.05}>
                 <Paper variant="outlined" sx={{ p: 2.5, height: '100%', borderColor: `${ACCENT}40`, background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}06`, backdropFilter: 'blur(4px)', position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
                   <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `radial-gradient(circle at 75% 25%, ${ACCENT}18, transparent 65%)`, opacity: .8 }} />
-                  <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
+                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mb: 1 }}>
                     <Box sx={{ width: 6, height: 6, borderRadius: '50%', background: ACCENT, flexShrink: 0 }} />
                     <Text variant="subtitle1" fontWeight="bold" sx={{ fontSize: { xs: 15, sm: 17 }, position: 'relative' }}>
                       {sect.title}
