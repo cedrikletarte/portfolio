@@ -2,10 +2,10 @@
 
 import { useTranslations } from 'next-intl';
 
-import BlueprintGridBackground from './backgrounds/BlueprintGridBackground';
-import ParallaxGlow from './ParallaxGlow';
-import ProjectsStory from './projects/ProjectsStory';
-import Reveal from './Reveal';
+import BlueprintGridBackground from '../backgrounds/BlueprintGridBackground';
+import ParallaxGlow from '../ui/ParallaxGlow';
+import ProjectsStory from '../projects/ProjectsStory';
+import Reveal from '../ui/Reveal';
 
 import Box from '@mui/material/Box';
 import Text from '@mui/material/Typography';

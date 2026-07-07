@@ -5,10 +5,10 @@ import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import { scroller } from 'react-scroll';
 import { ReactTyped } from 'react-typed';
-import CTAButton from './CTAButton';
-import HeroCanvas from './HeroCanvas';
-import ParallaxGlow from './ParallaxGlow';
-import Reveal from './Reveal';
+import CTAButton from '../ui/CTAButton';
+import HeroCanvas from '../ui/HeroCanvas';
+import ParallaxGlow from '../ui/ParallaxGlow';
+import Reveal from '../ui/Reveal';
 
 const Home = () => {
   const t = useTranslations();

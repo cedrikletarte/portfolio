@@ -10,11 +10,11 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FolderIcon from '@mui/icons-material/Folder';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InsightsIcon from '@mui/icons-material/Insights';
-import { useThemeMode } from '../theme/ThemeContext';
-import OrbitBackground from './backgrounds/OrbitBackground';
-import CTAButton from './CTAButton';
-import ParallaxGlow from './ParallaxGlow';
-import Reveal from './Reveal';
+import { useThemeMode } from '../../theme/ThemeContext';
+import OrbitBackground from '../backgrounds/OrbitBackground';
+import CTAButton from '../ui/CTAButton';
+import ParallaxGlow from '../ui/ParallaxGlow';
+import Reveal from '../ui/Reveal';
 
 // The calendar does its own client-side fetch/render pass that never matches
 // the server-rendered markup, so it's loaded client-only to avoid a hydration

@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState, useLayoutEffect, useEffect, createContext, useContext } from "react";
-import { useThemeMode } from "../theme/ThemeContext";
+import { useThemeMode } from "../../theme/ThemeContext";
 
 // Contexte pour partager l'état de l'animation
 const ThemeAnimationContext = createContext({

@@ -24,8 +24,8 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { scroller } from 'react-scroll';
-import { useCvDownload } from '../hooks/useCvDownload';
-import { useThemeMode } from '../theme/ThemeContext';
+import { useCvDownload } from '../../hooks/useCvDownload';
+import { useThemeMode } from '../../theme/ThemeContext';
 
 const CommandPalette = () => {
   const t = useTranslations();

@@ -7,8 +7,8 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { scroller } from 'react-scroll';
-import { useCvDownload } from '../hooks/useCvDownload';
-import { useThemeMode } from '../theme/ThemeContext';
+import { useCvDownload } from '../../hooks/useCvDownload';
+import { useThemeMode } from '../../theme/ThemeContext';
 
 import {
   AppBar,
@@ -134,7 +134,7 @@ const Navbar = () => {
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', minHeight: 80 }}>
           {/* Logo and link to homepage */}
           <a href="https://www.cedrikletarte.com" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="/assets/logo2.png" alt="Logo" style={{ width: 50 }} />
+            <img src="/assets/brand/logo.png" alt="Logo" style={{ width: 50 }} />
           </a>
           {/* Desktop navigation links and actions */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>

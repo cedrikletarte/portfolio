@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
-import WaveBackground from './backgrounds/WaveBackground';
-import ParallaxGlow from './ParallaxGlow';
-import Reveal from './Reveal';
+import WaveBackground from '../backgrounds/WaveBackground';
+import ParallaxGlow from '../ui/ParallaxGlow';
+import Reveal from '../ui/Reveal';
 
 const About = () => {
     const t = useTranslations();

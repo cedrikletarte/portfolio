@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-import Reveal from '@/components/Reveal';
+import Reveal from '@/components/ui/Reveal';
 import ProjectPanel from './ProjectPanel';
 import ProjectRail from './ProjectRail';
 

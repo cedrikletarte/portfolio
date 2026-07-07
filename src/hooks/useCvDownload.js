@@ -11,7 +11,7 @@ export function useCvDownload() {
 
   const download = () => {
     setLoading(true);
-    const fileUrl = locale === 'fr' ? '/cv_fr.pdf' : '/cv_en.pdf';
+    const fileUrl = locale === 'fr' ? '/documents/cv_fr.pdf' : '/documents/cv_en.pdf';
     const link = document.createElement('a');
     link.href = fileUrl;
     link.download = 'Cedrik_Letarte_CV.pdf';

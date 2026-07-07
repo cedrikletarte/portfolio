@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef } from 'react';
-import { useAnimatedCanvas } from '../hooks/useAnimatedCanvas';
-import { useThemeMode } from '../theme/ThemeContext';
+import { useAnimatedCanvas } from '../../hooks/useAnimatedCanvas';
+import { useThemeMode } from '../../theme/ThemeContext';
 
 const PARTICLE_COUNT = 70;
 const CONNECT_DISTANCE = 130;

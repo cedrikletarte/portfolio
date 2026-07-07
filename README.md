@@ -4,7 +4,7 @@ A multilingual portfolio built with Next.js, TypeScript, Tailwind CSS, and Mater
 
 Live: [cedrikletarte.com](https://www.cedrikletarte.com)
 
-![Thumbnail](/public/thumbnail.png)
+![Thumbnail](/public/assets/screenshots/thumbnail.png)
 
 ---
 

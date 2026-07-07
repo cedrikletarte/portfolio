@@ -10,12 +10,12 @@ import 'quill/dist/quill.snow.css';
 import { useEffect, useRef, useState } from 'react';
 import { MdSend } from 'react-icons/md';
 import CircularProgress from '@mui/material/CircularProgress';
-import DotsDriftBackground from './backgrounds/DotsDriftBackground';
-import Reveal from './Reveal';
-import { useThemeMode } from '../theme/ThemeContext';
+import DotsDriftBackground from '../backgrounds/DotsDriftBackground';
+import Reveal from '../ui/Reveal';
+import { useThemeMode } from '../../theme/ThemeContext';
 
 // Dynamically import the Editor component (Quill-based), only on client side
-const Editor = dynamic(() => import('./Editor'), {
+const Editor = dynamic(() => import('../ui/Editor'), {
   ssr: false,
   loading: () => <Box sx={{ minHeight: 200, bgcolor: '#ccd6f6', borderRadius: 1, mb: 2 }} />,
 });

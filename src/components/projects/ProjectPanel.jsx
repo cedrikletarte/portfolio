@@ -9,7 +9,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
-import CTAButton from '@/components/CTAButton';
+import CTAButton from '@/components/ui/CTAButton';
 import ProjectMedia from './ProjectMedia';
 import { FALLBACK_HIGHLIGHT_ICON, HEADER_ICONS, HIGHLIGHT_ICONS, renderBold } from './projectVisuals';
 

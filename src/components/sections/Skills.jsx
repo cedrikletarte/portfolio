@@ -5,34 +5,34 @@ import Text from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import CircuitBackground from './backgrounds/CircuitBackground';
-import ParallaxGlow from './ParallaxGlow';
-import Reveal from './Reveal';
+import CircuitBackground from '../backgrounds/CircuitBackground';
+import ParallaxGlow from '../ui/ParallaxGlow';
+import Reveal from '../ui/Reveal';
 
 const skills = [
-    { src: "/assets/java.png", alt: "JAVA", label: "skills.java" },
-    { src: "/assets/csharp.png", alt: "C#", label: "skills.csharp" },
-    { src: "/assets/python.png", alt: "PYTHON", label: "skills.python" },
-    { src: "/assets/react.png", alt: "REACT", label: "skills.react" },
-    { src: "/assets/nextjs.svg", alt: "NEXT.JS", label: "skills.nextjs" },
-    { src: "/assets/typescript.svg", alt: "TYPESCRIPT", label: "skills.typescript" },
-    { src: "/assets/javascript.png", alt: "JAVASCRIPT", label: "skills.javascript" },
-    { src: "/assets/html.png", alt: "HTML", label: "skills.html" },
-    { src: "/assets/css.png", alt: "CSS", label: "skills.css" },
-    { src: "/assets/tailwind.png", alt: "TAILWIND CSS", label: "skills.tailwind" },
-    { src: "/assets/dotnet.svg", alt: "ASP.NET", label: "skills.dotnet" },
-    { src: "/assets/unity.svg", alt: "UNITY", label: "skills.unity" },
-    { src: "/assets/android.svg", alt: "ANDROID", label: "skills.android" },
-    { src: "/assets/apple.svg", alt: "IOS", label: "skills.ios" },
-    { src: "/assets/linux.svg", alt: "LINUX", label: "skills.linux" },
-    { src: "/assets/bash.svg", alt: "BASH", label: "skills.bash" },
-    { src: "/assets/powershell.svg", alt: "POWERSHELL", label: "skills.powershell" },
-    { src: "/assets/docker.png", alt: "DOCKER", label: "skills.docker" },
-    { src: "/assets/github.png", alt: "GITHUB", label: "skills.github" },
-    { src: "/assets/cloudflare.png", alt: "CLOUDFLARE", label: "skills.cloudflare" },
-    { src: "/assets/mariadb.png", alt: "MARIADB", label: "skills.mariadb" },
-    { src: "/assets/mysql.svg", alt: "MYSQL", label: "skills.mysql" },
-    { src: "/assets/mongo.png", alt: "MongoDB", label: "skills.mongodb" },
+    { src: "/assets/icons/java.png", alt: "JAVA", label: "skills.java" },
+    { src: "/assets/icons/csharp.png", alt: "C#", label: "skills.csharp" },
+    { src: "/assets/icons/python.png", alt: "PYTHON", label: "skills.python" },
+    { src: "/assets/icons/react.png", alt: "REACT", label: "skills.react" },
+    { src: "/assets/icons/nextjs.svg", alt: "NEXT.JS", label: "skills.nextjs" },
+    { src: "/assets/icons/typescript.svg", alt: "TYPESCRIPT", label: "skills.typescript" },
+    { src: "/assets/icons/javascript.png", alt: "JAVASCRIPT", label: "skills.javascript" },
+    { src: "/assets/icons/html.png", alt: "HTML", label: "skills.html" },
+    { src: "/assets/icons/css.png", alt: "CSS", label: "skills.css" },
+    { src: "/assets/icons/tailwind.png", alt: "TAILWIND CSS", label: "skills.tailwind" },
+    { src: "/assets/icons/dotnet.svg", alt: "ASP.NET", label: "skills.dotnet" },
+    { src: "/assets/icons/unity.svg", alt: "UNITY", label: "skills.unity" },
+    { src: "/assets/icons/android.svg", alt: "ANDROID", label: "skills.android" },
+    { src: "/assets/icons/apple.svg", alt: "IOS", label: "skills.ios" },
+    { src: "/assets/icons/linux.svg", alt: "LINUX", label: "skills.linux" },
+    { src: "/assets/icons/bash.svg", alt: "BASH", label: "skills.bash" },
+    { src: "/assets/icons/powershell.svg", alt: "POWERSHELL", label: "skills.powershell" },
+    { src: "/assets/icons/docker.png", alt: "DOCKER", label: "skills.docker" },
+    { src: "/assets/icons/github.png", alt: "GITHUB", label: "skills.github" },
+    { src: "/assets/icons/cloudflare.png", alt: "CLOUDFLARE", label: "skills.cloudflare" },
+    { src: "/assets/icons/mariadb.png", alt: "MARIADB", label: "skills.mariadb" },
+    { src: "/assets/icons/mysql.svg", alt: "MYSQL", label: "skills.mysql" },
+    { src: "/assets/icons/mongo.png", alt: "MongoDB", label: "skills.mongodb" },
 ];
 
 // The marquee row isn't width-constrained (unlike the rest of the site) so it
