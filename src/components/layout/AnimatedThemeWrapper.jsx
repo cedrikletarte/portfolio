@@ -109,7 +109,6 @@ export default function AnimatedThemeWrapper({ children }) {
                     position: "relative",
                     minHeight: "100vh",
                     width: "100%",
-                    overflowX: "hidden",
                 }}
             >
                 <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
