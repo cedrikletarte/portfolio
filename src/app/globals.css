@@ -104,10 +104,6 @@ body {
   }
   
 
-  html {
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-  }
-
 /* Thin styled scrollbar */
 body::-webkit-scrollbar {
   width: 5px;

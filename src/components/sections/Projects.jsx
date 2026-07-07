@@ -30,7 +30,7 @@ function Projects() {
         <BlueprintGridBackground />
         <ParallaxGlow top="5%" origin="50% 30%" color="rgba(236,72,153,0.16)" blur={65} opacity={0.55} />
       </Box>
-      <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, pb: 4, mt: '-100vh', position: 'relative' }}>
+      <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, pt: { xs: 12, md: 14 }, pb: 2, mt: '-100vh', position: 'relative' }}>
         <Reveal direction="up" distance={40}>
           <Text variant="h3" component="h2" fontWeight="bold" sx={{ borderBottom: '4px solid #ec4899', fontSize: { xs: 28, md: 36 }, display: 'inline-block' }}>
             {t('work.projects')}

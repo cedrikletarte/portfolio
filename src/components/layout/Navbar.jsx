@@ -37,8 +37,6 @@ const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   // CV download (shared with the command palette)
   const { download: handleDownload, loading } = useCvDownload();
-  // Glass toujours actif
-  const scrolled = true;
   // Theme mode and toggle function from context
   const { mode, toggleTheme } = useThemeMode();
   // Current locale (fr/en)
@@ -230,8 +228,10 @@ const Navbar = () => {
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        PaperProps={{
-          sx: { background: (theme) => theme.palette.background.paper, color: (theme) => theme.palette.text.primary, width: 250 }
+        slotProps={{
+          paper: {
+            sx: { background: (theme) => theme.palette.background.paper, color: (theme) => theme.palette.text.primary, width: 250 }
+          }
         }}
       >
         <Box sx={{ mt: 2 }}>
