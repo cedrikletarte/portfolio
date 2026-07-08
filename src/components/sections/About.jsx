@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import WaveBackground from '../backgrounds/WaveBackground';
 import ParallaxGlow from '../ui/ParallaxGlow';
 import Reveal from '../ui/Reveal';
+import SectionTitle from '../ui/SectionTitle';
 
 const About = () => {
     const t = useTranslations();
@@ -44,21 +45,10 @@ const About = () => {
             >
                 <Grid size={12}>
                     <Box sx={{ textAlign: 'center', mb: { xs: 2, md: 4 } }}>
-                        <Reveal direction="up" distance={40}>
-                            <Text
-                                variant="h3"
-                                component="h2"
-                                sx={{
-                                    fontWeight: 'bold',
-                                    borderBottom: `4px solid ${ACCENT}`,
-                                    fontSize: { xs: 24, sm: 28, md: 36 },
-                                    display: 'inline-block',
-                                    pb: 1,
-                                }}
-                            >
-                                {t('about.title')}
-                            </Text>
-                        </Reveal>
+                        <SectionTitle
+                            title={t('about.title')}
+                            titleSx={{ fontSize: { xs: 24, sm: 28, md: 36 }, pb: 1 }}
+                        />
                     </Box>
                 </Grid>
 

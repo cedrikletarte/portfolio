@@ -15,6 +15,7 @@ import OrbitBackground from '../backgrounds/OrbitBackground';
 import CTAButton from '../ui/CTAButton';
 import ParallaxGlow from '../ui/ParallaxGlow';
 import Reveal from '../ui/Reveal';
+import SectionTitle from '../ui/SectionTitle';
 
 // The calendar does its own client-side fetch/render pass that never matches
 // the server-rendered markup, so it's loaded client-only to avoid a hydration
@@ -78,16 +79,11 @@ const GithubStatsClient = ({ stats, username }) => {
       <ParallaxGlow origin="55% 30%" color={`${ACCENT}30`} opacity={0.45} />
       <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, width: '100%', position: 'relative' }}>
         <Box sx={{ pb: 4 }}>
-          <Reveal direction="up" distance={40}>
-            <Text variant="h3" component="h2" fontWeight="bold" sx={{ borderBottom: `4px solid ${ACCENT}`, fontSize: { xs: 28, md: 36 }, display: 'inline-block' }}>
-              {t('githubStats.title')}
-            </Text>
-          </Reveal>
-          <Reveal direction="up" distance={40} delay={0.05}>
-            <Text variant="subtitle1" component="p" sx={{ py: 2 }}>
-              {t('githubStats.desc')}
-            </Text>
-          </Reveal>
+          <SectionTitle
+            title={t('githubStats.title')}
+            description={t('githubStats.desc')}
+            titleSx={{ borderBottom: `4px solid ${ACCENT}` }}
+          />
         </Box>
 
         {!stats ? (

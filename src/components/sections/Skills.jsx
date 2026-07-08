@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import CircuitBackground from '../backgrounds/CircuitBackground';
 import ParallaxGlow from '../ui/ParallaxGlow';
 import Reveal from '../ui/Reveal';
+import SectionTitle from '../ui/SectionTitle';
 
 const skills = [
     { src: "/assets/icons/java.png", alt: "JAVA", label: "skills.java" },
@@ -173,25 +174,7 @@ const Skills = () => {
             <CircuitBackground />
             <ParallaxGlow origin="50% 30%" color={alpha(ACCENT, 0.18)} blur={60} opacity={0.6} />
             <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, width: '100%', position: 'relative' }}>
-                <Reveal direction="up" distance={40}>
-                    <Text
-                        variant="h3"
-                        component="h2"
-                        sx={{
-                            fontWeight: 'bold',
-                            borderBottom: `4px solid ${ACCENT}`,
-                            fontSize: { xs: 28, md: 36 },
-                            display: 'inline-block',
-                        }}
-                    >
-                        {t('skills.title')}
-                    </Text>
-                </Reveal>
-                <Reveal direction="up" distance={40} delay={0.05}>
-                    <Text variant="subtitle1" component="p" sx={{ py: 2 }}>
-                        {t('skills.desc')}
-                    </Text>
-                </Reveal>
+                <SectionTitle title={t('skills.title')} description={t('skills.desc')} />
             </Box>
 
             {reduced ? (

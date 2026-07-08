@@ -3,7 +3,6 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Text from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
@@ -13,6 +12,7 @@ import SendIcon from '@mui/icons-material/Send';
 import CircularProgress from '@mui/material/CircularProgress';
 import DotsDriftBackground from '../backgrounds/DotsDriftBackground';
 import Reveal from '../ui/Reveal';
+import SectionTitle from '../ui/SectionTitle';
 import { useThemeMode } from '../../theme/ThemeContext';
 
 // Dynamically import the Editor component (Quill-based), only on client side
@@ -119,19 +119,15 @@ const Contact = () => {
         }}
       >
         {/* Title and description */}
-        <Reveal direction="up" distance={40}>
-          <Box sx={{ pb: 3 }}>
-            <Text variant="h4" component="h2" fontWeight="bold" sx={{
-              fontWeight: 'bold',
-              borderBottom: `4px solid ${ACCENT}`,
-              fontSize: { xs: 28, md: 36 },
-              display: 'inline-block',
-            }}>
-              {t('contact.title')}
-            </Text>
-            <Text variant="body1" sx={{ py: 1 }}>
-              {/* Rich translation with clickable mailto link */}
-              {t.rich('contact.desc', {
+        <Box sx={{ pb: 3 }}>
+          <SectionTitle
+            title={t('contact.title')}
+            titleVariant="h4"
+            descriptionVariant="body1"
+            descriptionSx={{ py: 1 }}
+            description={
+              // Rich translation with clickable mailto link
+              t.rich('contact.desc', {
                 link: (chunks) => (
                   <a
                     href="mailto:cedrikletarte@gmail.com"
@@ -140,10 +136,10 @@ const Contact = () => {
                     {chunks}
                   </a>
                 ),
-              })}
-            </Text>
-          </Box>
-        </Reveal>
+              })
+            }
+          />
+        </Box>
         {/* Name input field */}
         <Reveal direction="up" distance={40} delay={0.05} style={{ width: '100%' }}>
           <TextField

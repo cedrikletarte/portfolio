@@ -5,10 +5,9 @@ import { useTranslations } from 'next-intl';
 import BlueprintGridBackground from '../backgrounds/BlueprintGridBackground';
 import ParallaxGlow from '../ui/ParallaxGlow';
 import ProjectsStory from '../projects/ProjectsStory';
-import Reveal from '../ui/Reveal';
+import SectionTitle from '../ui/SectionTitle';
 
 import Box from '@mui/material/Box';
-import Text from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import { projects } from '@/data/projects';
@@ -34,16 +33,7 @@ function Projects() {
         <ParallaxGlow top="5%" origin="50% 30%" color={alpha(ACCENT, 0.16)} blur={65} opacity={0.55} />
       </Box>
       <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, pb: 4, mt: '-100vh', position: 'relative' }}>
-        <Reveal direction="up" distance={40}>
-          <Text variant="h3" component="h2" fontWeight="bold" sx={{ borderBottom: `4px solid ${ACCENT}`, fontSize: { xs: 28, md: 36 }, display: 'inline-block' }}>
-            {t('work.projects')}
-          </Text>
-        </Reveal>
-        <Reveal direction="up" distance={40} delay={0.05}>
-          <Text variant="subtitle1" component="p" sx={{ py: 2 }}>
-            {t('work.recent')}
-          </Text>
-        </Reveal>
+        <SectionTitle title={t('work.projects')} description={t('work.recent')} />
       </Box>
 
       <ProjectsStory projects={projects} />
