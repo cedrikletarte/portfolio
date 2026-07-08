@@ -44,6 +44,7 @@ const About = () => {
                         <Reveal direction="up" distance={40}>
                             <Text
                                 variant="h3"
+                                component="h2"
                                 sx={{
                                     fontWeight: 'bold',
                                     borderBottom: '4px solid #ec4899',
@@ -72,6 +73,7 @@ const About = () => {
                         <Reveal direction="left" distance={50}>
                             <Text
                                 variant="h5"
+                                component="h3"
                                 sx={{
                                     fontWeight: 700,
                                     fontSize: { xs: 20, sm: 24, md: 28 },

@@ -42,6 +42,38 @@ const Editor = forwardRef(
             theme: 'snow',
           });
 
+          // The snow theme's link tooltip renders its "edit"/"remove" actions as
+          // bare <a> tags with no href (unlike its own "preview" link, which ships
+          // with href="about:blank" for this exact reason). Lighthouse's SEO audit
+          // flags anchors without a href as uncrawlable. Quill always calls
+          // preventDefault() on these clicks, so giving them the same inert href
+          // Quill already uses elsewhere is safe and doesn't change behavior.
+          container.querySelectorAll('a.ql-action, a.ql-remove').forEach((el) => {
+            el.setAttribute('href', 'about:blank');
+          });
+
+          // Quill's toolbar dropdowns (.ql-picker-label, role="button") render with
+          // no visible text (icon-only) and no accessible name of their own,
+          // failing the aria-command-name audit for screen reader users. Each
+          // dropdown's wrapper carries a "ql-<format>" class we can map to a label.
+          const PICKER_LABELS = {
+            header: 'Text style',
+            font: 'Font',
+            size: 'Font size',
+            color: 'Text color',
+            background: 'Background color',
+            align: 'Alignment',
+          };
+          container.querySelectorAll('.ql-picker').forEach((picker) => {
+            const format = [...picker.classList]
+              .find((c) => c.startsWith('ql-') && c !== 'ql-picker' && c !== 'ql-expanded')
+              ?.replace('ql-', '');
+            const label = picker.querySelector('.ql-picker-label');
+            if (label && format && PICKER_LABELS[format]) {
+              label.setAttribute('aria-label', PICKER_LABELS[format]);
+            }
+          });
+
           // Expose the Quill instance via ref
           ref.current = quill;
 

@@ -84,7 +84,7 @@ const GithubStatsClient = ({ stats, username }) => {
             </Text>
           </Reveal>
           <Reveal direction="up" distance={40} delay={0.05}>
-            <Text variant="subtitle1" sx={{ py: 2 }}>
+            <Text variant="subtitle1" component="p" sx={{ py: 2 }}>
               {t('githubStats.desc')}
             </Text>
           </Reveal>
@@ -120,7 +120,7 @@ const GithubStatsClient = ({ stats, username }) => {
                         {tile.icon}
                       </Box>
                       <Box>
-                        <Text variant="h5" fontWeight="bold" sx={{ lineHeight: 1 }}>{tile.value}</Text>
+                        <Text variant="h5" component="p" fontWeight="bold" sx={{ lineHeight: 1 }}>{tile.value}</Text>
                         <Text variant="body2" sx={{ opacity: 0.7 }}>{tile.label}</Text>
                       </Box>
                     </Paper>

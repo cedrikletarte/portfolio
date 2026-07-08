@@ -32,18 +32,30 @@ export default function ProjectRail({ projects, activeIndex, onJump }) {
             aria-label={t(`${project.key}.title`)}
             aria-current={isActive}
             sx={{
-              width: isActive ? 14 : 8,
-              height: isActive ? 14 : 8,
-              borderRadius: '50%',
-              border: `1.5px solid ${project.accent}`,
-              background: isActive ? project.accent : 'transparent',
-              opacity: isActive ? 1 : 0.5,
+              width: 24,
+              height: 24,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: 'none',
+              background: 'transparent',
               cursor: 'pointer',
               p: 0,
-              transition: 'all .3s',
               '&:focus-visible': { outline: `2px solid ${project.accent}`, outlineOffset: 2 },
             }}
-          />
+          >
+            <Box
+              sx={{
+                width: isActive ? 14 : 8,
+                height: isActive ? 14 : 8,
+                borderRadius: '50%',
+                border: `1.5px solid ${project.accent}`,
+                background: isActive ? project.accent : 'transparent',
+                opacity: isActive ? 1 : 0.5,
+                transition: 'all .3s',
+              }}
+            />
+          </Box>
         );
       })}
       <Text variant="caption" sx={{ mt: 0.5, opacity: 0.6, fontVariantNumeric: 'tabular-nums' }}>

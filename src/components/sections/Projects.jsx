@@ -37,7 +37,7 @@ function Projects() {
           </Text>
         </Reveal>
         <Reveal direction="up" distance={40} delay={0.05}>
-          <Text variant="subtitle1" sx={{ py: 2 }}>
+          <Text variant="subtitle1" component="p" sx={{ py: 2 }}>
             {t('work.recent')}
           </Text>
         </Reveal>

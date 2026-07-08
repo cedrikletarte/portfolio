@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import 'quill/dist/quill.snow.css';
 import { useEffect, useRef, useState } from 'react';
-import { MdSend } from 'react-icons/md';
+import SendIcon from '@mui/icons-material/Send';
 import CircularProgress from '@mui/material/CircularProgress';
 import DotsDriftBackground from '../backgrounds/DotsDriftBackground';
 import Reveal from '../ui/Reveal';
@@ -217,7 +217,7 @@ const Contact = () => {
             type="submit"
             variant="contained"
             color="secondary"
-            endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <MdSend className={sent ? 'send-fly' : ''} />}
+            endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon className={sent ? 'send-fly' : ''} />}
             sx={{
               mt: 2,
               fontWeight: 'bold',

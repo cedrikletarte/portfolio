@@ -4,6 +4,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { scroller } from 'react-scroll';
@@ -134,7 +135,7 @@ const Navbar = () => {
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', minHeight: 80 }}>
           {/* Logo and link to homepage */}
           <a href="https://www.cedrikletarte.com" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="/assets/brand/logo.png" alt="Logo" style={{ width: 50 }} />
+            <Image src="/assets/brand/logo.png" alt="Logo" width={50} height={50} priority />
           </a>
           {/* Desktop navigation links and actions */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
@@ -201,6 +202,7 @@ const Navbar = () => {
             </Tooltip>
             {/* Theme toggle button */}
             <IconButton onClick={toggleTheme} color="inherit"
+              aria-label={mode === 'dark' ? t('navbar.lightMode') : t('navbar.darkMode')}
               sx={{
                 color: (theme) => theme.palette.mode === 'dark'
                   ? theme.palette.warning.main

@@ -1,8 +1,16 @@
 import { routing } from '@/i18n/routing';
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { Raleway } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import "../globals.css";
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-raleway',
+});
 
 const SITE_URL = "https://www.cedrikletarte.com";
 
@@ -63,7 +71,7 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={raleway.variable}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}

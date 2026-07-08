@@ -43,7 +43,7 @@ function HighlightCard({ Icon, title, desc, items, accent }) {
         <Box sx={{ color: accent, display: 'flex' }}>
           <Icon sx={{ fontSize: 20 }} />
         </Box>
-        <Text variant="subtitle2" fontWeight="bold">{title}</Text>
+        <Text variant="subtitle2" component="h4" fontWeight="bold">{title}</Text>
       </Stack>
       {desc ? (
         <Text variant="body2" sx={{ lineHeight: 1.6, color: (theme) => textColor(theme) }}>

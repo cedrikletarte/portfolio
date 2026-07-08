@@ -39,7 +39,7 @@ const skills = [
 // can stretch edge-to-edge on very wide screens. One "half" of the track needs
 // to stay comfortably wider than any realistic viewport, or the visible strip
 // could scroll past the end of the duplicated content and show a blank gap.
-const HALF_REPEATS = 2;
+const HALF_REPEATS = 1;
 
 // Marquee rows use a per-tile margin instead of a container `gap`. With a flex
 // `gap`, translateX(-50%) lands half a gap short of the true repeat-unit width
@@ -47,7 +47,7 @@ const HALF_REPEATS = 2;
 // n-item/n-gap repeat boundary by gap/2) — a visible jump every loop. A margin
 // on every tile (including the last) makes the total width exactly 2×(tile+gap),
 // so -50% lands exactly on the repeat boundary.
-const SkillTile = ({ skill, t, spacing = 0 }) => (
+const SkillTile = ({ skill, t, spacing = 0, priority = false }) => (
     <Paper
         elevation={0}
         sx={{
@@ -63,7 +63,6 @@ const SkillTile = ({ skill, t, spacing = 0 }) => (
                 ? 'rgba(255,255,255,0.03)'
                 : 'rgba(236,72,153,0.04)',
             border: '1px solid rgba(236,72,153,0.35)',
-            backdropFilter: 'blur(4px)',
             borderRadius: 3,
             position: 'relative',
             overflow: 'hidden',
@@ -90,7 +89,7 @@ const SkillTile = ({ skill, t, spacing = 0 }) => (
             alt={skill.alt}
             width={64}
             height={64}
-            loading="eager"
+            priority={priority}
             style={{ margin: '0 auto', position: 'relative', zIndex: 1 }}
         />
         <Text
@@ -131,7 +130,7 @@ const MarqueeRow = ({ items, duration, reverse, t }) => (
             }}
         >
             {Array.from({ length: HALF_REPEATS * 2 }, () => items).flat().map((skill, idx) => (
-                <SkillTile key={`${skill.alt}-${idx}`} skill={skill} t={t} spacing={3} />
+                <SkillTile key={`${skill.alt}-${idx}`} skill={skill} t={t} spacing={3} priority={idx === 0} />
             ))}
         </Box>
     </Box>
@@ -169,6 +168,7 @@ const Skills = () => {
                 <Reveal direction="up" distance={40}>
                     <Text
                         variant="h3"
+                        component="h2"
                         sx={{
                             fontWeight: 'bold',
                             borderBottom: '4px solid #ec4899',
@@ -180,7 +180,7 @@ const Skills = () => {
                     </Text>
                 </Reveal>
                 <Reveal direction="up" distance={40} delay={0.05}>
-                    <Text variant="subtitle1" sx={{ py: 2 }}>
+                    <Text variant="subtitle1" component="p" sx={{ py: 2 }}>
                         {t('skills.desc')}
                     </Text>
                 </Reveal>
@@ -188,8 +188,8 @@ const Skills = () => {
 
             {reduced ? (
                 <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, width: '100%', display: 'flex', flexWrap: 'wrap', gap: 3, justifyContent: 'center', mt: 2 }}>
-                    {skills.map((skill) => (
-                        <SkillTile key={skill.alt} skill={skill} t={t} />
+                    {skills.map((skill, idx) => (
+                        <SkillTile key={skill.alt} skill={skill} t={t} priority={idx === 0} />
                     ))}
                 </Box>
             ) : (

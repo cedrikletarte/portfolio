@@ -67,7 +67,7 @@ export async function fetchGithubStats(username: string): Promise<GithubStats | 
 
     return {
       username: user.login,
-      avatarUrl: user.avatar_url,
+      avatarUrl: `${user.avatar_url}&s=80`,
       profileUrl: user.html_url,
       publicRepos: user.public_repos,
       memberSince: new Date(user.created_at).getFullYear(),
