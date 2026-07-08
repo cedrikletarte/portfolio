@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from './useMediaQuery';
 
 /**
  * Shared engine behind every canvas background (Hero + section variants):
@@ -16,14 +17,8 @@ import { useEffect, useRef, useState } from 'react';
 export function useAnimatedCanvas({ onFrame, onResize, mouseTracking = false }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
-  const [reduced, setReduced] = useState(false);
+  const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
   const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    }
-  }, []);
 
   useEffect(() => {
     if (!containerRef.current || typeof IntersectionObserver === 'undefined') return;

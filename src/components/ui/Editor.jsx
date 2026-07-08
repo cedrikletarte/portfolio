@@ -91,11 +91,13 @@ const Editor = forwardRef(({ readOnly, defaultValue, onTextChange, onSelectionCh
       });
     }
 
-    // Cleanup on unmount: remove Quill instance and clear container
+    // Cleanup on unmount: remove Quill instance and clear container. Reuses
+    // the `container` captured above (not containerRef.current) since the
+    // ref's value could have already changed by the time this runs.
     return () => {
       isMounted = false;
       if (ref) ref.current = null;
-      if (containerRef.current) containerRef.current.innerHTML = '';
+      if (container) container.innerHTML = '';
     };
   }, [ref]);
 

@@ -1,7 +1,8 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 /**
  * Radial-gradient glow blob used behind every section, now with a subtle
@@ -19,16 +20,10 @@ export default function ParallaxGlow({
   strength = 50,
 }) {
   const ref = useRef(null);
-  const [reduced, setReduced] = useState(false);
+  const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], [-strength, strength]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.92, 1, 0.92]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    }
-  }, []);
 
   return (
     <motion.div

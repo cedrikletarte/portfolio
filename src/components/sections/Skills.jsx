@@ -5,11 +5,11 @@ import Text from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import CircuitBackground from '../backgrounds/CircuitBackground';
 import ParallaxGlow from '../ui/ParallaxGlow';
 import Reveal from '../ui/Reveal';
 import SectionTitle from '../ui/SectionTitle';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const skills = [
   { src: '/assets/icons/java.png', alt: 'JAVA', label: 'skills.java' },
@@ -154,13 +154,7 @@ const Skills = () => {
   const t = useTranslations();
   const theme = useTheme();
   const ACCENT = theme.palette.primary.main;
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    }
-  }, []);
+  const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
 
   return (
     <Box

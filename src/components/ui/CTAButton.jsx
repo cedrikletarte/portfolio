@@ -2,7 +2,8 @@
 
 import Button from '@mui/material/Button';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 /**
  * Magnetic-hover wrapper around MUI's Button.
@@ -11,18 +12,12 @@ import { useEffect, useRef, useState } from 'react';
  */
 export default function CTAButton({ children, strength = 0.35, ...buttonProps }) {
   const ref = useRef(null);
-  const [reduced, setReduced] = useState(false);
+  const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 300, damping: 20, mass: 0.5 });
   const springY = useSpring(y, { stiffness: 300, damping: 20, mass: 0.5 });
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    }
-  }, []);
 
   const handleMouseMove = (e) => {
     if (reduced || !ref.current) return;

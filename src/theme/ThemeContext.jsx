@@ -2,6 +2,7 @@
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 import { ACCENT } from './colors';
 
 const ThemeModeContext = createContext();
@@ -11,13 +12,12 @@ export function useThemeMode() {
 }
 
 export function CustomThemeProvider({ children }) {
-  const [mode, setMode] = useState('dark');
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.matchMedia) {
-      setMode(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    }
-  }, []);
+  // Default to dark (matches the previous useState('dark') default) until
+  // hydration, then stays live-synced to the OS setting; a manual toggle
+  // sets `override`, which then takes precedence for the rest of the session.
+  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)', true);
+  const [override, setOverride] = useState(null);
+  const mode = override ?? (prefersDark ? 'dark' : 'light');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', mode);
@@ -41,7 +41,7 @@ export function CustomThemeProvider({ children }) {
     [mode],
   );
 
-  const toggleTheme = () => setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  const toggleTheme = () => setOverride(mode === 'dark' ? 'light' : 'dark');
 
   return (
     <ThemeModeContext.Provider value={{ mode, toggleTheme }}>

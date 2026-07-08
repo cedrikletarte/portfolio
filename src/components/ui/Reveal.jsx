@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 /**
  * Reveal animation wrapper.
@@ -21,13 +22,7 @@ export default function Reveal({
 }) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    }
-  }, []);
+  const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
 
   useEffect(() => {
     if (!ref.current) return;

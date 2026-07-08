@@ -5,9 +5,10 @@ import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Reveal from '@/components/ui/Reveal';
+import { useMediaQuery as useMatchMedia } from '@/hooks/useMediaQuery';
 import ProjectPanel from './ProjectPanel';
 import ProjectRail from './ProjectRail';
 
@@ -26,14 +27,10 @@ function jumpToPanel(containerRef, index, total) {
 
 export default function ProjectsStory({ projects }) {
   const containerRef = useRef(null);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = useMatchMedia('(prefers-reduced-motion: reduce)');
   const theme = useTheme();
   const isNarrow = useMediaQuery(theme.breakpoints.down('md'));
   const simple = reducedMotion || isNarrow;
-
-  useEffect(() => {
-    setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,

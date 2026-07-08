@@ -22,8 +22,6 @@ const Navbar = () => {
   const t = useTranslations();
   // State for mobile drawer open/close
   const [drawerOpen, setDrawerOpen] = useState(false);
-  // Glass toujours actif
-  const scrolled = true;
   // Theme mode and toggle function from context
   const { mode, toggleTheme } = useThemeMode();
   // Current locale (fr/en)

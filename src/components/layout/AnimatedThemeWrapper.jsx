@@ -17,10 +17,21 @@ const ThemeAnimationContext = createContext({
 
 export const useThemeAnimation = () => useContext(ThemeAnimationContext);
 
+// Ref-based "store the last value" is the common usePrevious implementation,
+// but reading/writing ref.current during render isn't render-pure (breaks
+// under Strict Mode double-render / concurrent rendering). This uses React's
+// documented "adjust state during render" pattern instead: derive the next
+// state synchronously in the render body, calling setState only when the
+// input actually changed — no ref mutation, no effect needed.
 function usePrevious(value) {
-  const ref = useRef();
-  const prev = ref.current;
-  ref.current = value;
+  const [current, setCurrent] = useState(value);
+  const [prev, setPrev] = useState(null);
+
+  if (value !== current) {
+    setPrev(current);
+    setCurrent(value);
+  }
+
   return prev;
 }
 
@@ -54,27 +65,28 @@ export default function AnimatedThemeWrapper({ children }) {
 
   const [dimensions, setDimensions] = useState({ w: 0, h: 0 });
   const [currentRadius, setCurrentRadius] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [displayedMode, setDisplayedMode] = useState(mode);
   const containerRef = useRef();
 
-  // Calcul du centre et du rayon max
-  const centerX = dimensions.w / 2;
-  const centerY = dimensions.h / 2;
-  const maxRadius = Math.hypot(dimensions.w, dimensions.h);
+  // isAnimating is exactly "the target mode differs from what's on screen" —
+  // no need for a separate flag kept in sync via an extra setState.
+  const isAnimating = mode !== displayedMode;
 
   // Gère le changement de mode
   useEffect(() => {
     if (mode !== displayedMode) {
-      setIsAnimating(true);
       const timeout = setTimeout(() => {
         setDisplayedMode(mode);
-        setIsAnimating(false);
         setCurrentRadius(0);
       }, 600);
       return () => clearTimeout(timeout);
     }
   }, [mode, displayedMode]);
+
+  // Calcul du centre et du rayon max
+  const centerX = dimensions.w / 2;
+  const centerY = dimensions.h / 2;
+  const maxRadius = Math.hypot(dimensions.w, dimensions.h);
 
   // Gère la taille du conteneur
   useLayoutEffect(() => {

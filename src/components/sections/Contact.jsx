@@ -44,13 +44,16 @@ const Contact = () => {
 
   // Initialize Quill Delta for the editor's default value on mount
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // eslint-disable-next-line global-require
-      let Quill = require('quill');
-      Quill = Quill.default ? Quill.default : Quill;
+    let isMounted = true;
+    import('quill').then((QuillModule) => {
+      if (!isMounted) return;
+      const Quill = QuillModule.default ?? QuillModule;
       const Delta = Quill.import('delta');
       setDefaultValue(new Delta());
-    }
+    });
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Handle form submission

@@ -40,6 +40,18 @@ const CommandPalette = () => {
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Reset the selection whenever the query or open state changes. Adjusting
+  // state directly during render (React's documented pattern for "reset
+  // state when a prop changes") instead of an effect avoids an extra
+  // render pass after the one that already updated query/open.
+  const [prevQuery, setPrevQuery] = useState(query);
+  const [prevOpen, setPrevOpen] = useState(open);
+  if (query !== prevQuery || open !== prevOpen) {
+    setPrevQuery(query);
+    setPrevOpen(open);
+    setActiveIndex(0);
+  }
+
   const scrollTo = (section) => {
     scroller.scrollTo(section, { duration: 800, delay: 0, smooth: 'easeInOutQuart' });
   };
@@ -107,10 +119,6 @@ const CommandPalette = () => {
     const q = normalize(query);
     return commands.filter((c) => normalize(c.label).includes(q));
   }, [commands, query]);
-
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [query, open]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
