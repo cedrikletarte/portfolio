@@ -1,13 +1,31 @@
 variables:
-  IMAGE_TAGGED_NAME: "portfolio-app:latest"
+  IMAGE_TAGGED_NAME: 'portfolio-app:latest'
   # Docker configuration for socket connection
   DOCKER_HOST: unix:///var/run/docker.sock
-  DOCKER_TLS_CERTDIR: ""
+  DOCKER_TLS_CERTDIR: ''
   DOCKER_DRIVER: overlay2
 
 stages:
+  - test
   - build
   - deploy
+
+test-job:
+  stage: test
+  image: node:lts-alpine
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - npx tsc --noEmit -p tsconfig.json
+    - npm test
+  # No branch restriction: runs on every push, not just master, so feature
+  # branches get feedback before merging. build-job only runs on master, but
+  # since it's in a later stage it also only starts after test-job passes.
 
 build-job:
   stage: build

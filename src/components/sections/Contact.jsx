@@ -1,0 +1,261 @@
+'use client';
+
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { useTheme } from '@mui/material/styles';
+import { useTranslations } from 'next-intl';
+import dynamic from 'next/dynamic';
+import 'quill/dist/quill.snow.css';
+import { useEffect, useRef, useState } from 'react';
+import SendIcon from '@mui/icons-material/Send';
+import CircularProgress from '@mui/material/CircularProgress';
+import DotsDriftBackground from '../backgrounds/DotsDriftBackground';
+import Reveal from '../ui/Reveal';
+import SectionTitle from '../ui/SectionTitle';
+import { useThemeMode } from '../../theme/ThemeContext';
+
+// Dynamically import the Editor component (Quill-based), only on client side
+const Editor = dynamic(() => import('../ui/Editor'), {
+  ssr: false,
+  loading: () => <Box sx={{ minHeight: 200, bgcolor: '#ccd6f6', borderRadius: 1, mb: 2 }} />,
+});
+
+const Contact = () => {
+  const t = useTranslations();
+  const { mode } = useThemeMode();
+  const theme = useTheme();
+  const ACCENT = theme.palette.primary.main;
+
+  // State for form fields
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  // State for Quill default value
+  const [defaultValue, setDefaultValue] = useState(null);
+
+  // State for loading and sent animation
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  // Ref for the Quill editor
+  const quillRef = useRef();
+
+  // Initialize Quill Delta for the editor's default value on mount
+  useEffect(() => {
+    let isMounted = true;
+    import('quill').then((QuillModule) => {
+      if (!isMounted) return;
+      const Quill = QuillModule.default ?? QuillModule;
+      const Delta = Quill.import('delta');
+      setDefaultValue(new Delta());
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      // Send form data to the API endpoint
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+      if (res.ok) {
+        setSent(true);
+        setTimeout(() => setSent(false), 1200);
+      } else {
+        const error = await res.json();
+        alert(error.error || t('error.sending'));
+      }
+    } finally {
+      setLoading(false);
+      setMessage('');
+      setName('');
+      setEmail('');
+      if (quillRef.current) {
+        quillRef.current.setContents([]);
+      }
+    }
+  };
+
+  return (
+    // Main container with centered form and background styling
+    <Box
+      sx={{
+        width: '100%',
+        minHeight: '100vh',
+        color: (theme) => theme.palette.text.primary,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        py: 6,
+        position: 'relative',
+      }}
+      name="contact"
+    >
+      <DotsDriftBackground />
+      {/* Contact form box */}
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          maxWidth: 600,
+          width: '100%',
+          bgcolor: 'rgba(255,255,255,0.02)',
+          p: 4,
+          borderRadius: 2,
+          boxShadow: 6,
+          position: 'relative',
+        }}
+      >
+        {/* Title and description */}
+        <Box sx={{ pb: 3 }}>
+          <SectionTitle
+            title={t('contact.title')}
+            titleVariant="h4"
+            descriptionVariant="body1"
+            descriptionSx={{ py: 1 }}
+            description={
+              // Rich translation with clickable mailto link
+              t.rich('contact.desc', {
+                link: (chunks) => (
+                  <a
+                    href="mailto:cedrikletarte@gmail.com"
+                    style={{ textDecoration: 'underline', color: ACCENT }}
+                  >
+                    {chunks}
+                  </a>
+                ),
+              })
+            }
+          />
+        </Box>
+        {/* Name input field */}
+        <Reveal direction="up" distance={40} delay={0.05} style={{ width: '100%' }}>
+          <TextField
+            label={t('contact.name')}
+            name="name"
+            required
+            variant="filled"
+            value={name}
+            fullWidth
+            sx={{
+              mb: 2,
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
+              borderRadius: 1,
+              '& .MuiInputLabel-root': {
+                color: (theme) => theme.palette.text.secondary,
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: (theme) =>
+                  theme.palette.mode === 'dark' ? ACCENT : theme.palette.text.primary,
+              },
+              '& .MuiInputBase-input': {
+                color: (theme) => theme.palette.text.primary,
+              },
+            }}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Reveal>
+        {/* Email input field */}
+        <Reveal direction="up" distance={40} delay={0.1} style={{ width: '100%' }}>
+          <TextField
+            label={t('contact.email')}
+            name="email"
+            required
+            variant="filled"
+            type="email"
+            value={email}
+            fullWidth
+            sx={{
+              mb: 2,
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
+              borderRadius: 1,
+              '& .MuiInputLabel-root': {
+                color: (theme) => theme.palette.text.secondary,
+              },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: (theme) =>
+                  theme.palette.mode === 'dark' ? ACCENT : theme.palette.text.primary,
+              },
+              '& .MuiInputBase-input': {
+                color: (theme) => theme.palette.text.primary,
+              },
+            }}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Reveal>
+        {/* Rich text editor for the message */}
+        <Reveal direction="up" distance={40} delay={0.15} style={{ width: '100%' }}>
+          <Box className={mode === 'dark' ? 'quill-dark' : ''}>
+            <Editor
+              ref={quillRef}
+              defaultValue={defaultValue}
+              onTextChange={(_delta, _oldDelta, source, quill) => {
+                setMessage(quill.root.innerHTML);
+              }}
+              required
+            />
+          </Box>
+        </Reveal>
+        <Box sx={{ mb: 2 }}>
+          {/* Hidden input to send Quill content */}
+          <input type="hidden" name="message" value={message} />
+        </Box>
+        {/* Submit button with loading and sent animation */}
+        <Reveal
+          direction="up"
+          distance={40}
+          delay={0.2}
+          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+        >
+          <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+            endIcon={
+              loading ? (
+                <CircularProgress size={20} color="inherit" />
+              ) : (
+                <SendIcon className={sent ? 'send-fly' : ''} />
+              )
+            }
+            sx={{
+              mt: 2,
+              fontWeight: 'bold',
+              px: 4,
+              py: 1.5,
+              bgcolor: ACCENT,
+              '&:hover': { bgcolor: '#db2777' },
+              '&.Mui-disabled': {
+                bgcolor: '#a1a1aa',
+                color: '#fff',
+                opacity: 1,
+              },
+            }}
+            disabled={loading}
+          >
+            {loading ? t('contact.buttonLoading') : t('contact.button')}
+          </Button>
+        </Reveal>
+      </Box>
+    </Box>
+  );
+};
+
+export default Contact;
