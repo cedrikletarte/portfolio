@@ -24,6 +24,7 @@ import {
   Toolbar,
   Tooltip,
 } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
@@ -98,7 +99,7 @@ const Navbar = () => {
       : '1px solid rgba(0,0,0,0.08)',
     backdropFilter: 'blur(8px) saturate(1.4)',
     WebkitBackdropFilter: 'blur(8px) saturate(1.4)',
-    color: theme.palette.mode === 'dark' ? '#e2e8f0' : theme.palette.text.primary,
+    color: theme.palette.text.primary,
     transition: 'background .35s, box-shadow .45s, transform .45s, border-color .45s',
     boxShadow: theme.palette.mode === 'dark'
       ? '0 4px 18px -6px rgba(0,0,0,0.55)'
@@ -109,7 +110,7 @@ const Navbar = () => {
       content: '""',
       position: 'absolute',
       inset: 0,
-      background: 'radial-gradient(circle at 35% 30%, rgba(236,72,153,0.35), transparent 70%)',
+      background: `radial-gradient(circle at 35% 30%, ${alpha(theme.palette.primary.main, 0.35)}, transparent 70%)`,
       opacity: 0,
       transition: 'opacity .6s'
     },
@@ -122,10 +123,10 @@ const Navbar = () => {
       boxShadow: theme.palette.mode === 'dark'
         ? '0 10px 26px -8px rgba(0,0,0,0.65)'
         : '0 10px 24px -8px rgba(0,0,0,0.3)',
-      borderColor: 'rgba(236,72,153,0.5)'
+      borderColor: alpha(theme.palette.primary.main, 0.5)
     },
     '&:active': { transform: 'translateY(-1px) scale(.97)' },
-    '&:focus-visible': { outline: '2px solid #ec4899', outlineOffset: 2 }
+    '&:focus-visible': { outline: `2px solid ${theme.palette.primary.main}`, outlineOffset: 2 }
   });
 
   return (
@@ -153,8 +154,8 @@ const Navbar = () => {
                   transition: 'background-color .3s,color .3s',
                   '&:hover': {
                     backgroundColor: (theme) => theme.palette.mode === 'dark'
-                      ? 'rgba(236,72,153,0.18)'
-                      : 'rgba(236,72,153,0.15)',
+                      ? alpha(theme.palette.primary.main, 0.18)
+                      : alpha(theme.palette.primary.main, 0.15),
                     color: (theme) => theme.palette.primary.main,
                   },
                 }}
@@ -194,7 +195,7 @@ const Navbar = () => {
                   letterSpacing: 0.5,
                   opacity: 0.75,
                   transition: 'opacity .2s, border-color .2s',
-                  '&:hover': { opacity: 1, borderColor: '#ec4899' },
+                  '&:hover': { opacity: 1, borderColor: (theme) => theme.palette.primary.main },
                 }}
               >
                 ⌘K

@@ -2,6 +2,7 @@
 
 import Box from '@mui/material/Box';
 import Text from '@mui/material/Typography';
+import { alpha, useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
 import { scroller } from 'react-scroll';
 import { ReactTyped } from 'react-typed';
@@ -12,6 +13,8 @@ import Reveal from '../ui/Reveal';
 
 const Home = () => {
   const t = useTranslations();
+  const theme = useTheme();
+  const ACCENT = theme.palette.primary.main
 
   const scrollTo = (elementName) => {
     scroller.scrollTo(elementName, {
@@ -35,7 +38,7 @@ const Home = () => {
         overflowX: 'hidden',
       }}
     >
-      <ParallaxGlow top="10%" left="40%" origin="45% 40%" size={700} color="rgba(236,72,153,0.18)" blur={80} opacity={0.5} />
+      <ParallaxGlow top="10%" left="40%" origin="45% 40%" size={700} color={alpha(ACCENT, 0.18)} blur={80} opacity={0.5} />
       <HeroCanvas />
       <Box
         sx={{
@@ -51,7 +54,7 @@ const Home = () => {
         }}
       >
         <Reveal direction="up" distance={30}>
-          <Text sx={{ color: '#ec4899', fontWeight: 600, mb: { xs: 1, md: 2 }, fontSize: { xs: 18, md: 22 } }}>
+          <Text sx={{ color: ACCENT, fontWeight: 600, mb: { xs: 1, md: 2 }, fontSize: { xs: 18, md: 22 } }}>
             {t('home.hello')}
           </Text>
         </Reveal>
@@ -98,15 +101,15 @@ const Home = () => {
             variant="outlined"
             onClick={() => scrollTo('work')}
             sx={{
-              borderColor: '#ec4899',
+              borderColor: ACCENT,
               px: { xs: 2, md: 3 },
               py: { xs: 1, md: 1.5 },
               mt: 2,
               fontWeight: 500,
               fontSize: { xs: 14, md: 16 },
               '&:hover': {
-                bgcolor: '#ec4899',
-                borderColor: '#ec4899',
+                bgcolor: ACCENT,
+                borderColor: ACCENT,
                 color: '#0a192f',
               },
               display: 'flex',

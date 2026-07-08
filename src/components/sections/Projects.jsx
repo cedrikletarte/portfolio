@@ -9,11 +9,14 @@ import Reveal from '../ui/Reveal';
 
 import Box from '@mui/material/Box';
 import Text from '@mui/material/Typography';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import { projects } from '@/data/projects';
 
 function Projects() {
   const t = useTranslations();
+  const theme = useTheme();
+  const ACCENT = theme.palette.primary.main
 
   return (
     <Box
@@ -28,11 +31,11 @@ function Projects() {
     >
       <Box sx={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
         <BlueprintGridBackground />
-        <ParallaxGlow top="5%" origin="50% 30%" color="rgba(236,72,153,0.16)" blur={65} opacity={0.55} />
+        <ParallaxGlow top="5%" origin="50% 30%" color={alpha(ACCENT, 0.16)} blur={65} opacity={0.55} />
       </Box>
       <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, pb: 4, mt: '-100vh', position: 'relative' }}>
         <Reveal direction="up" distance={40}>
-          <Text variant="h3" component="h2" fontWeight="bold" sx={{ borderBottom: '4px solid #ec4899', fontSize: { xs: 28, md: 36 }, display: 'inline-block' }}>
+          <Text variant="h3" component="h2" fontWeight="bold" sx={{ borderBottom: `4px solid ${ACCENT}`, fontSize: { xs: 28, md: 36 }, display: 'inline-block' }}>
             {t('work.projects')}
           </Text>
         </Reveal>

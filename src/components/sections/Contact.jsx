@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Text from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import 'quill/dist/quill.snow.css';
@@ -23,6 +24,8 @@ const Editor = dynamic(() => import('../ui/Editor'), {
 const Contact = () => {
   const t = useTranslations();
   const { mode } = useThemeMode();
+  const theme = useTheme();
+  const ACCENT = theme.palette.primary.main
 
   // State for form fields
   const [name, setName] = useState('');
@@ -120,7 +123,7 @@ const Contact = () => {
           <Box sx={{ pb: 3 }}>
             <Text variant="h4" component="h2" fontWeight="bold" sx={{
               fontWeight: 'bold',
-              borderBottom: '4px solid #ec4899',
+              borderBottom: `4px solid ${ACCENT}`,
               fontSize: { xs: 28, md: 36 },
               display: 'inline-block',
             }}>
@@ -132,7 +135,7 @@ const Contact = () => {
                 link: (chunks) => (
                   <a
                     href="mailto:cedrikletarte@gmail.com"
-                    style={{ textDecoration: 'underline', color: '#ec4899' }}
+                    style={{ textDecoration: 'underline', color: ACCENT }}
                   >
                     {chunks}
                   </a>
@@ -155,13 +158,13 @@ const Contact = () => {
               bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
               borderRadius: 1,
               '& .MuiInputLabel-root': {
-                color: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.6)' : '#000000',
+                color: (theme) => theme.palette.text.secondary,
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: (theme) => theme.palette.mode === 'dark' ? '#ec4899' : '#000000',
+                color: (theme) => theme.palette.mode === 'dark' ? ACCENT : theme.palette.text.primary,
               },
               '& .MuiInputBase-input': {
-                color: (theme) => theme.palette.mode === 'dark' ? '#e2e8f0' : '#000000',
+                color: (theme) => theme.palette.text.primary,
               },
             }}
             onChange={(e) => setName(e.target.value)}
@@ -182,13 +185,13 @@ const Contact = () => {
               bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
               borderRadius: 1,
               '& .MuiInputLabel-root': {
-                color: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.6)' : '#000000',
+                color: (theme) => theme.palette.text.secondary,
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: (theme) => theme.palette.mode === 'dark' ? '#ec4899' : '#000000',
+                color: (theme) => theme.palette.mode === 'dark' ? ACCENT : theme.palette.text.primary,
               },
               '& .MuiInputBase-input': {
-                color: (theme) => theme.palette.mode === 'dark' ? '#e2e8f0' : '#000000',
+                color: (theme) => theme.palette.text.primary,
               },
             }}
             onChange={(e) => setEmail(e.target.value)}
@@ -223,7 +226,7 @@ const Contact = () => {
               fontWeight: 'bold',
               px: 4,
               py: 1.5,
-              bgcolor: '#ec4899',
+              bgcolor: ACCENT,
               '&:hover': { bgcolor: '#db2777' },
               '&.Mui-disabled': {
                 bgcolor: '#a1a1aa',

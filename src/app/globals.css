@@ -14,6 +14,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Brand accent — keep in sync with ACCENT in src/theme/colors.js */
+  --color-accent: #ec4899;
+  --color-accent-rgb: 236, 72, 153;
 }
 
 html {
@@ -115,12 +118,12 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: rgba(236, 72, 153, 0.45);
+  background: rgba(var(--color-accent-rgb), 0.45);
   border-radius: 999px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: rgba(236, 72, 153, 0.75);
+  background: rgba(var(--color-accent-rgb), 0.75);
 }
 
 
@@ -152,24 +155,24 @@ body::-webkit-scrollbar-thumb:hover {
 .custom-quill-editor .ql-toolbar button:hover,
 .custom-quill-editor .ql-toolbar .ql-picker-label:hover,
 .custom-quill-editor .ql-toolbar .ql-picker-item:hover {
-  color: #ec4899 !important;
-  fill: #ec4899 !important;
+  color: var(--color-accent) !important;
+  fill: var(--color-accent) !important;
 }
 .custom-quill-editor .ql-toolbar .ql-active {
-  color: #ec4899 !important;
-  fill: #ec4899 !important;
+  color: var(--color-accent) !important;
+  fill: var(--color-accent) !important;
 }
 
 /* Quill editor — dark mode */
 .quill-dark .ql-toolbar.ql-snow {
   background: rgba(255, 255, 255, 0.07) !important;
-  border-color: rgba(236, 72, 153, 0.35) !important;
+  border-color: rgba(var(--color-accent-rgb), 0.35) !important;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 .quill-dark .ql-container.ql-snow {
   background: rgba(255, 255, 255, 0.05) !important;
-  border-color: rgba(236, 72, 153, 0.35) !important;
+  border-color: rgba(var(--color-accent-rgb), 0.35) !important;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -193,17 +196,17 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .quill-dark .ql-toolbar button:hover .ql-stroke,
 .quill-dark .ql-toolbar .ql-picker-label:hover .ql-stroke {
-  stroke: #ec4899 !important;
+  stroke: var(--color-accent) !important;
 }
 .quill-dark .ql-toolbar button:hover .ql-fill,
 .quill-dark .ql-toolbar .ql-picker-label:hover .ql-fill {
-  fill: #ec4899 !important;
+  fill: var(--color-accent) !important;
 }
 .quill-dark .ql-toolbar .ql-active .ql-stroke {
-  stroke: #ec4899 !important;
+  stroke: var(--color-accent) !important;
 }
 .quill-dark .ql-toolbar .ql-active .ql-fill {
-  fill: #ec4899 !important;
+  fill: var(--color-accent) !important;
 }
 
 

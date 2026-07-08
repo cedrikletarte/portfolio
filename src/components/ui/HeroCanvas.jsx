@@ -1,21 +1,24 @@
 "use client";
 
 import { useRef } from 'react';
+import { useTheme } from '@mui/material/styles';
 import { useAnimatedCanvas } from '../../hooks/useAnimatedCanvas';
 import { useThemeMode } from '../../theme/ThemeContext';
+import { hexToRgb } from '../../theme/colors';
 
 const PARTICLE_COUNT = 70;
 const CONNECT_DISTANCE = 130;
 const MOUSE_RADIUS = 140;
 
-const COLORS = {
-  dark: { dot: 'rgba(226,232,240,0.55)', link: [236, 72, 153], link2: [111, 194, 176] },
-  light: { dot: 'rgba(10,25,47,0.45)', link: [219, 39, 119], link2: [45, 138, 118] },
-};
-
 export default function HeroCanvas() {
   const { mode } = useThemeMode();
+  const theme = useTheme();
   const particlesRef = useRef([]);
+
+  const COLORS = {
+    dark: { dot: 'rgba(226,232,240,0.55)', link: hexToRgb(theme.palette.primary.main), link2: [111, 194, 176] },
+    light: { dot: 'rgba(10,25,47,0.45)', link: [219, 39, 119], link2: [45, 138, 118] },
+  };
 
   const onResize = (width, height) => {
     const count = Math.min(PARTICLE_COUNT, Math.floor((width * height) / 12000));

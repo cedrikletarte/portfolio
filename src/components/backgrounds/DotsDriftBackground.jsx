@@ -1,12 +1,15 @@
 "use client";
 
 import { useRef } from 'react';
+import { useTheme } from '@mui/material/styles';
 import { useAnimatedCanvas } from '../../hooks/useAnimatedCanvas';
+import { hexToRgb } from '../../theme/colors';
 
-const COLOR = [236, 72, 153]; // #ec4899
 const DOT_COUNT = 26;
 
 export default function DotsDriftBackground() {
+  const theme = useTheme();
+  const COLOR = hexToRgb(theme.palette.primary.main);
   const dotsRef = useRef([]);
 
   const onResize = (width, height) => {

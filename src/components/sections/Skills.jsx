@@ -2,6 +2,7 @@
 
 import { Box, Paper } from '@mui/material';
 import Text from '@mui/material/Typography';
+import { alpha, useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -47,7 +48,11 @@ const HALF_REPEATS = 1;
 // n-item/n-gap repeat boundary by gap/2) — a visible jump every loop. A margin
 // on every tile (including the last) makes the total width exactly 2×(tile+gap),
 // so -50% lands exactly on the repeat boundary.
-const SkillTile = ({ skill, t, spacing = 0, priority = false }) => (
+const SkillTile = ({ skill, t, spacing = 0, priority = false }) => {
+    const theme = useTheme();
+    const ACCENT = theme.palette.primary.main
+
+    return (
     <Paper
         elevation={0}
         sx={{
@@ -61,8 +66,8 @@ const SkillTile = ({ skill, t, spacing = 0, priority = false }) => (
             alignItems: 'center',
             background: (theme) => theme.palette.mode === 'dark'
                 ? 'rgba(255,255,255,0.03)'
-                : 'rgba(236,72,153,0.04)',
-            border: '1px solid rgba(236,72,153,0.35)',
+                : alpha(ACCENT, 0.04),
+            border: `1px solid ${alpha(ACCENT, 0.35)}`,
             borderRadius: 3,
             position: 'relative',
             overflow: 'hidden',
@@ -72,7 +77,7 @@ const SkillTile = ({ skill, t, spacing = 0, priority = false }) => (
                 content: '""',
                 position: 'absolute',
                 inset: 0,
-                background: 'radial-gradient(circle at 50% 20%, rgba(236,72,153,0.22), transparent 70%)',
+                background: `radial-gradient(circle at 50% 20%, ${alpha(ACCENT, 0.22)}, transparent 70%)`,
                 opacity: 0,
                 transition: 'opacity .5s',
             },
@@ -80,7 +85,7 @@ const SkillTile = ({ skill, t, spacing = 0, priority = false }) => (
             '&:hover': {
                 transform: 'translateY(-6px) scale(1.04)',
                 boxShadow: '0 14px 32px -8px rgba(0,0,0,0.5)',
-                borderColor: 'rgba(236,72,153,0.65)',
+                borderColor: alpha(ACCENT, 0.65),
             },
         }}
     >
@@ -107,7 +112,8 @@ const SkillTile = ({ skill, t, spacing = 0, priority = false }) => (
             {t(skill.label)}
         </Text>
     </Paper>
-);
+    );
+};
 
 const MarqueeRow = ({ items, duration, reverse, t }) => (
     <Box
@@ -138,6 +144,8 @@ const MarqueeRow = ({ items, duration, reverse, t }) => (
 
 const Skills = () => {
     const t = useTranslations();
+    const theme = useTheme();
+    const ACCENT = theme.palette.primary.main
     const [reduced, setReduced] = useState(false);
 
     useEffect(() => {
@@ -163,7 +171,7 @@ const Skills = () => {
             }}
         >
             <CircuitBackground />
-            <ParallaxGlow origin="50% 30%" color="rgba(236,72,153,0.18)" blur={60} opacity={0.6} />
+            <ParallaxGlow origin="50% 30%" color={alpha(ACCENT, 0.18)} blur={60} opacity={0.6} />
             <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, width: '100%', position: 'relative' }}>
                 <Reveal direction="up" distance={40}>
                     <Text
@@ -171,7 +179,7 @@ const Skills = () => {
                         component="h2"
                         sx={{
                             fontWeight: 'bold',
-                            borderBottom: '4px solid #ec4899',
+                            borderBottom: `4px solid ${ACCENT}`,
                             fontSize: { xs: 28, md: 36 },
                             display: 'inline-block',
                         }}

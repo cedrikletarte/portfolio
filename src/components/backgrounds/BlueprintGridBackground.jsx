@@ -1,11 +1,15 @@
 "use client";
 
+import { useTheme } from '@mui/material/styles';
 import { useAnimatedCanvas } from '../../hooks/useAnimatedCanvas';
+import { hexToRgb } from '../../theme/colors';
 
-const COLOR = [236, 72, 153]; // #ec4899
 const GRID_SIZE = 42;
 
 export default function BlueprintGridBackground() {
+  const theme = useTheme();
+  const COLOR = hexToRgb(theme.palette.primary.main);
+
   const onFrame = (ctx, { width, height, time }) => {
     ctx.strokeStyle = `rgba(${COLOR[0]},${COLOR[1]},${COLOR[2]},0.06)`;
     ctx.lineWidth = 1;

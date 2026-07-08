@@ -10,6 +10,7 @@ import {
   TextField,
 } from '@mui/material';
 import Text from '@mui/material/Typography';
+import { alpha, useTheme } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
@@ -33,6 +34,7 @@ const CommandPalette = () => {
   const router = useRouter();
   const { toggleTheme } = useThemeMode();
   const { download } = useCvDownload();
+  const theme = useTheme();
 
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -119,7 +121,7 @@ const CommandPalette = () => {
         paper: {
           sx: {
             borderRadius: 3,
-            border: '1px solid rgba(236,72,153,0.3)',
+            border: `1px solid ${alpha(theme.palette.primary.main, 0.3)}`,
             backgroundImage: 'none',
           },
         },
@@ -138,7 +140,7 @@ const CommandPalette = () => {
             disableUnderline: true,
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon sx={{ color: '#ec4899' }} />
+                <SearchIcon sx={{ color: theme.palette.primary.main }} />
               </InputAdornment>
             ),
           },
@@ -158,11 +160,11 @@ const CommandPalette = () => {
             onMouseEnter={() => setActiveIndex(idx)}
             onClick={() => runCommand(cmd)}
             sx={{
-              '&.Mui-selected': { bgcolor: 'rgba(236,72,153,0.15)' },
-              '&.Mui-selected:hover': { bgcolor: 'rgba(236,72,153,0.2)' },
+              '&.Mui-selected': { bgcolor: alpha(theme.palette.primary.main, 0.15) },
+              '&.Mui-selected:hover': { bgcolor: alpha(theme.palette.primary.main, 0.2) },
             }}
           >
-            <ListItemIcon sx={{ color: '#ec4899', minWidth: 40 }}>{cmd.icon}</ListItemIcon>
+            <ListItemIcon sx={{ color: theme.palette.primary.main, minWidth: 40 }}>{cmd.icon}</ListItemIcon>
             <ListItemText primary={cmd.label} />
           </ListItemButton>
         ))}

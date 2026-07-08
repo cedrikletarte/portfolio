@@ -1,4 +1,6 @@
+import { alpha } from "@mui/material/styles";
 import { ImageResponse } from "next/og";
+import { ACCENT } from "@/theme/colors";
 
 export const alt = "Cédrik Letarte — Full-Stack Developer";
 export const size = { width: 1200, height: 630 };
@@ -21,7 +23,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           padding: "80px",
           background: "#0a192f",
           backgroundImage:
-            "radial-gradient(circle at 75% 30%, rgba(236,72,153,0.35), transparent 60%), radial-gradient(circle at 15% 80%, rgba(111,194,176,0.25), transparent 55%)",
+            `radial-gradient(circle at 75% 30%, ${alpha(ACCENT, 0.35)}, transparent 60%), radial-gradient(circle at 15% 80%, rgba(111,194,176,0.25), transparent 55%)`,
         }}
       >
         <div
@@ -29,7 +31,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
             display: "flex",
             fontSize: 30,
             fontWeight: 600,
-            color: "#ec4899",
+            color: ACCENT,
             marginBottom: 24,
           }}
         >
@@ -63,7 +65,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
             width: 120,
             height: 6,
             borderRadius: 999,
-            background: "#ec4899",
+            background: ACCENT,
             marginTop: 40,
           }}
         />

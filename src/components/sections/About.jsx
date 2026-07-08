@@ -3,6 +3,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Text from '@mui/material/Typography';
+import { alpha, useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
 import WaveBackground from '../backgrounds/WaveBackground';
 import ParallaxGlow from '../ui/ParallaxGlow';
@@ -10,6 +11,8 @@ import Reveal from '../ui/Reveal';
 
 const About = () => {
     const t = useTranslations();
+    const theme = useTheme();
+    const ACCENT = theme.palette.primary.main
 
     return (
         <Box
@@ -27,7 +30,7 @@ const About = () => {
             name="about"
         >
             <WaveBackground />
-            <ParallaxGlow top="15%" origin="50% 40%" color="rgba(236,72,153,0.16)" opacity={0.5} />
+            <ParallaxGlow top="15%" origin="50% 40%" color={alpha(ACCENT, 0.16)} opacity={0.5} />
             <Grid
                 container
                 spacing={{ xs: 3, md: 4 }}
@@ -47,7 +50,7 @@ const About = () => {
                                 component="h2"
                                 sx={{
                                     fontWeight: 'bold',
-                                    borderBottom: '4px solid #ec4899',
+                                    borderBottom: `4px solid ${ACCENT}`,
                                     fontSize: { xs: 24, sm: 28, md: 36 },
                                     display: 'inline-block',
                                     pb: 1,
@@ -66,8 +69,8 @@ const About = () => {
                             pr: { md: 4 },
                             mb: { xs: 2, md: 0 },
                             pb: { xs: 3, md: 0 },
-                            borderRight: { md: '1px solid rgba(236,72,153,0.25)' },
-                            borderBottom: { xs: '1px solid rgba(236,72,153,0.25)', md: 'none' },
+                            borderRight: { md: `1px solid ${alpha(ACCENT, 0.25)}` },
+                            borderBottom: { xs: `1px solid ${alpha(ACCENT, 0.25)}`, md: 'none' },
                         }}
                     >
                         <Reveal direction="left" distance={50}>

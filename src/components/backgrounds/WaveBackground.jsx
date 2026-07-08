@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef } from 'react';
+import { useTheme } from '@mui/material/styles';
 import { useAnimatedCanvas } from '../../hooks/useAnimatedCanvas';
-
-const COLOR = [236, 72, 153]; // #ec4899
+import { hexToRgb } from '../../theme/colors';
 
 export default function WaveBackground() {
+  const theme = useTheme();
+  const COLOR = hexToRgb(theme.palette.primary.main);
   const wavesRef = useRef([]);
 
   const onResize = (width, height) => {
