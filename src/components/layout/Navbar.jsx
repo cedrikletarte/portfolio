@@ -2,34 +2,26 @@
 
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import CircularProgress from '@mui/material/CircularProgress';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { scroller } from 'react-scroll';
-import { useCvDownload } from '../../hooks/useCvDownload';
 import { useThemeMode } from '../../theme/ThemeContext';
+import MobileDrawer from './MobileDrawer';
+import SocialLinks from './SocialLinks';
 
 import {
   AppBar,
   Box,
   Button,
-  Drawer,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
   Toolbar,
   Tooltip,
 } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 
-import GitHubIcon from '@mui/icons-material/GitHub';
-import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import SchoolIcon from '@mui/icons-material/School';
 
 // Navbar component definition
 const Navbar = () => {
@@ -37,8 +29,6 @@ const Navbar = () => {
   const t = useTranslations()
   // State for mobile drawer open/close
   const [drawerOpen, setDrawerOpen] = useState(false)
-  // CV download (shared with the command palette)
-  const { download: handleDownload, loading } = useCvDownload();
   // Glass toujours actif
   const scrolled = true;
   // Theme mode and toggle function from context
@@ -88,46 +78,6 @@ const Navbar = () => {
       transform: mounted ? 'translateY(0)' : 'translateY(-16px)'
     };
   };
-
-  // Shared glassy social icon style
-  const socialIconStyles = (theme) => ({
-    background: theme.palette.mode === 'dark'
-      ? 'rgba(255,255,255,0.07)'
-      : 'rgba(0,0,0,0.05)',
-    border: theme.palette.mode === 'dark'
-      ? '1px solid rgba(255,255,255,0.15)'
-      : '1px solid rgba(0,0,0,0.08)',
-    backdropFilter: 'blur(8px) saturate(1.4)',
-    WebkitBackdropFilter: 'blur(8px) saturate(1.4)',
-    color: theme.palette.text.primary,
-    transition: 'background .35s, box-shadow .45s, transform .45s, border-color .45s',
-    boxShadow: theme.palette.mode === 'dark'
-      ? '0 4px 18px -6px rgba(0,0,0,0.55)'
-      : '0 4px 14px -6px rgba(0,0,0,0.25)',
-    position: 'relative',
-    overflow: 'hidden',
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      inset: 0,
-      background: `radial-gradient(circle at 35% 30%, ${alpha(theme.palette.primary.main, 0.35)}, transparent 70%)`,
-      opacity: 0,
-      transition: 'opacity .6s'
-    },
-    '&:hover:before': { opacity: 0.55 },
-    '&:hover': {
-      background: theme.palette.mode === 'dark'
-        ? 'rgba(255,255,255,0.11)'
-        : 'rgba(0,0,0,0.07)',
-      transform: 'translateY(-4px)',
-      boxShadow: theme.palette.mode === 'dark'
-        ? '0 10px 26px -8px rgba(0,0,0,0.65)'
-        : '0 10px 24px -8px rgba(0,0,0,0.3)',
-      borderColor: alpha(theme.palette.primary.main, 0.5)
-    },
-    '&:active': { transform: 'translateY(-1px) scale(.97)' },
-    '&:focus-visible': { outline: `2px solid ${theme.palette.primary.main}`, outlineOffset: 2 }
-  });
 
   return (
     <>
@@ -228,123 +178,12 @@ const Navbar = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {/* Drawer for mobile navigation */}
-      <Drawer
-        anchor="right"
+      <MobileDrawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        slotProps={{
-          paper: {
-            sx: { background: (theme) => theme.palette.background.paper, color: (theme) => theme.palette.text.primary, width: 250 }
-          }
-        }}
-      >
-        <Box sx={{ mt: 2 }}>
-          <List>
-            {/* Navigation links in drawer */}
-            {navLinks.map((item) => (
-              <ListItem key={item.to} disablePadding>
-                <ListItemButton
-                  onClick={() => {
-                    scrollTo(item.to)
-                    setDrawerOpen(false)
-                  }}
-                >
-                  <ListItemText primary={item.label} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-            {/* Language switch in drawer */}
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={() => {
-                  router.replace(`/${locale === 'fr' ? 'en' : 'fr'}`)
-                  setDrawerOpen(false)
-                }}
-              >
-                <ListItemText primary={locale === 'fr' ? 'EN' : 'FR'} />
-              </ListItemButton>
-            </ListItem>
-            {/* Theme toggle in drawer */}
-            <ListItem disablePadding>
-              <ListItemButton
-                onClick={() => {
-                  toggleTheme();
-                  setDrawerOpen(false);
-                }}
-                sx={{
-                  color: (theme) => theme.palette.mode === 'dark'
-                    ? theme.palette.warning.main
-                    : theme.palette.primary.main
-                }}
-              >
-                <ListItemText
-                  primary={mode === 'dark' ? t('navbar.lightMode') || 'Light Mode' : t('navbar.darkMode') || 'Dark Mode'}
-                />
-                {mode === 'dark'
-                  ? <Brightness7Icon sx={{ ml: 1 }} />
-                  : <Brightness4Icon sx={{ ml: 1 }} />
-                }
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Box>
-        {/* Social icons at the bottom of the Drawer */}
-        <Box
-          sx={{
-            mt: 'auto',
-            mb: 2,
-            px: 2,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: 2,
-          }}
-        >
-          {/* GitHub icon */}
-          <Tooltip title="GitHub" arrow placement="top">
-            <IconButton
-              component="a"
-              href="https://github.com/cedrikletarte"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              color="inherit"
-              sx={(theme)=> ({ width:58, height:58, ...socialIconStyles(theme) })}
-            >
-              <GitHubIcon fontSize="medium" />
-            </IconButton>
-          </Tooltip>
-          {/* Email icon */}
-          <Tooltip title="Email" arrow placement="top">
-            <IconButton
-              component="a"
-              href="mailto:cedrikletarte@gmail.com"
-              aria-label="Email"
-              color="inherit"
-              sx={(theme)=> ({ width:58, height:58, ...socialIconStyles(theme) })}
-            >
-              <MailOutlinedIcon fontSize="medium" />
-            </IconButton>
-          </Tooltip>
-          {/* CV download icon with loading spinner */}
-          <Tooltip title={locale === 'fr' ? 'Télécharger le CV' : 'Download CV'} arrow placement="top">
-            <IconButton
-              onClick={handleDownload}
-              color="inherit"
-              aria-label={locale === 'fr' ? 'Télécharger le CV' : 'Download CV'}
-              disabled={loading}
-              sx={(theme)=> ({ width:58, height:58, ...socialIconStyles(theme) })}
-            >
-              {loading
-                ? <CircularProgress size={26} color="inherit" />
-                : <SchoolIcon fontSize="medium" />
-              }
-            </IconButton>
-          </Tooltip>
-        </Box>
-      </Drawer>
+        navLinks={navLinks}
+        scrollTo={scrollTo}
+      />
       {/* Social icons (desktop only, fixed on the left) */}
       <Box
         sx={{
@@ -357,39 +196,7 @@ const Navbar = () => {
         }}
       >
         <Box component="ul" sx={{ listStyle: 'none', p: 0, m: 0, display:'flex', flexDirection:'column', gap:1.5 }}>
-          {[{
-            label:'GitHub',
-            href:'https://github.com/cedrikletarte',
-            icon:<GitHubIcon fontSize="small" />,
-            action: undefined
-          },{
-            label:'Email',
-            href:'mailto:cedrikletarte@gmail.com',
-            icon:<MailOutlinedIcon fontSize="small" />,
-            action: undefined
-          },{
-            label:'CV',
-            href: undefined,
-            icon: loading ? <CircularProgress size={18} color="inherit" /> : <SchoolIcon fontSize="small" />,
-            action: handleDownload
-          }].map((item,i)=> (
-            <Box key={`social-${item.label}`} component="li" sx={{ ml:0 }}>
-              <Tooltip title={item.label} placement="right" arrow>
-                <IconButton
-                  component={item.href? 'a':'button'}
-                  href={item.href}
-                  onClick={item.action}
-                  target={item.href? '_blank': undefined}
-                  rel={item.href? 'noopener noreferrer': undefined}
-                  aria-label={item.label}
-                  sx={(theme)=> ({ width:52, height:52, ...socialIconStyles(theme), '&:hover':{...socialIconStyles(theme)['&:hover'], transform:'translateY(-3px) scale(1.05)'} })}
-                  disabled={item.label==='CV' && loading}
-                >
-                  {item.icon}
-                </IconButton>
-              </Tooltip>
-            </Box>
-          ))}
+          <SocialLinks size={52} iconSize="small" tooltipPlacement="right" liftOnHover listItem />
         </Box>
       </Box>
       {/* Spacer for AppBar to avoid content being hidden behind navbar */}
