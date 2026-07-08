@@ -1,8 +1,8 @@
 variables:
-  IMAGE_TAGGED_NAME: "portfolio-app:latest"
+  IMAGE_TAGGED_NAME: 'portfolio-app:latest'
   # Docker configuration for socket connection
   DOCKER_HOST: unix:///var/run/docker.sock
-  DOCKER_TLS_CERTDIR: ""
+  DOCKER_TLS_CERTDIR: ''
   DOCKER_DRIVER: overlay2
 
 stages:

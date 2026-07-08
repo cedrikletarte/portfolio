@@ -107,11 +107,26 @@
     "tagline": "Portfolio website",
     "description": "Portfolio built with Next.js, TypeScript and Material UI. Supports French/English localization, dark/light mode and is deployed via Docker with a GitLab CI/CD pipeline. This portfolio is itself a demonstration of my front-end and DevOps skills.",
     "highlights": [
-      { "title": "Stack", "desc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD." },
-      { "title": "Projects showcase", "desc": "Each project is presented with a description, screenshots and the technologies used, in an interactive scroll experience." },
-      { "title": "UX & animations", "desc": "Scroll-triggered animations, glass morphism UI, smooth transitions and responsive layout." },
-      { "title": "Performance & SEO", "desc": "Server-side rendering, IndexNow indexing, secure contact form with server-side validation." },
-      { "title": "i18n", "desc": "Full French and English support via next-intl, with locale-aware routing." }
+      {
+        "title": "Stack",
+        "desc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD."
+      },
+      {
+        "title": "Projects showcase",
+        "desc": "Each project is presented with a description, screenshots and the technologies used, in an interactive scroll experience."
+      },
+      {
+        "title": "UX & animations",
+        "desc": "Scroll-triggered animations, glass morphism UI, smooth transitions and responsive layout."
+      },
+      {
+        "title": "Performance & SEO",
+        "desc": "Server-side rendering, IndexNow indexing, secure contact form with server-side validation."
+      },
+      {
+        "title": "i18n",
+        "desc": "Full French and English support via next-intl, with locale-aware routing."
+      }
     ]
   },
   "gaming": {
@@ -119,10 +134,22 @@
     "tagline": "Video game development",
     "description": "Team project built with Unity and C#. Players design their own 3D city and explore it in first-person, with Spider-Man-inspired movement mechanics.",
     "highlights": [
-      { "title": "City builder", "desc": "Intuitive 3D object placement interface to build and customize a city." },
-      { "title": "Unity UI menu", "desc": "Ergonomic build menu with smooth navigation using Unity UI." },
-      { "title": "Camera systems", "desc": "Orthogonal, free and FPS cameras for a seamless transition between build and explore modes." },
-      { "title": "Movement mechanics", "desc": "Sprint, jump, wallrun and web-swinging powered by Unity Physics." }
+      {
+        "title": "City builder",
+        "desc": "Intuitive 3D object placement interface to build and customize a city."
+      },
+      {
+        "title": "Unity UI menu",
+        "desc": "Ergonomic build menu with smooth navigation using Unity UI."
+      },
+      {
+        "title": "Camera systems",
+        "desc": "Orthogonal, free and FPS cameras for a seamless transition between build and explore modes."
+      },
+      {
+        "title": "Movement mechanics",
+        "desc": "Sprint, jump, wallrun and web-swinging powered by Unity Physics."
+      }
     ]
   },
   "ai": {
@@ -130,10 +157,22 @@
     "tagline": "Artificial intelligence",
     "description": "University project: an AI agent playing Giant Tic-Tac-Toe — a nested 3×3 board where each move constrains the opponent's next play zone.",
     "highlights": [
-      { "title": "Minimax & Alpha-Beta pruning", "desc": "Efficiently searches a very large state space to choose the best move." },
-      { "title": "Heuristic evaluation", "desc": "Custom evaluation function that prioritizes winning moves." },
-      { "title": "Move generation", "desc": "Generates valid moves while respecting the board's nested constraints." },
-      { "title": "Network play", "desc": "Network interface to compete against other agents on a game server." }
+      {
+        "title": "Minimax & Alpha-Beta pruning",
+        "desc": "Efficiently searches a very large state space to choose the best move."
+      },
+      {
+        "title": "Heuristic evaluation",
+        "desc": "Custom evaluation function that prioritizes winning moves."
+      },
+      {
+        "title": "Move generation",
+        "desc": "Generates valid moves while respecting the board's nested constraints."
+      },
+      {
+        "title": "Network play",
+        "desc": "Network interface to compete against other agents on a game server."
+      }
     ]
   },
   "earth": {
@@ -141,10 +180,22 @@
     "tagline": "3D Earth Globe",
     "description": "Interactive 3D globe built with Next.js and CesiumJS, featuring city search, custom self-hosted map tiles, atmospheric controls and a space skybox.",
     "highlights": [
-      { "title": "3D Globe", "desc": "CesiumJS renders a real-time interactive Earth with satellite imagery, 3D terrain and a physically-based atmosphere." },
-      { "title": "City Search", "desc": "Self-hosted Nominatim geocoder lets users search and fly to any city or location worldwide." },
-      { "title": "Custom Map Styles", "desc": "Self-hosted TileServer-GL serves multiple tile styles switchable at runtime." },
-      { "title": "Skybox & Atmosphere", "desc": "6-face space skybox with tunable atmospheric parameters for a realistic space environment." }
+      {
+        "title": "3D Globe",
+        "desc": "CesiumJS renders a real-time interactive Earth with satellite imagery, 3D terrain and a physically-based atmosphere."
+      },
+      {
+        "title": "City Search",
+        "desc": "Self-hosted Nominatim geocoder lets users search and fly to any city or location worldwide."
+      },
+      {
+        "title": "Custom Map Styles",
+        "desc": "Self-hosted TileServer-GL serves multiple tile styles switchable at runtime."
+      },
+      {
+        "title": "Skybox & Atmosphere",
+        "desc": "6-face space skybox with tunable atmospheric parameters for a realistic space environment."
+      }
     ]
   },
   "error": {

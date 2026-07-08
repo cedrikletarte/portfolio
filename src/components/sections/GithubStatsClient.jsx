@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Avatar, Box, Grid, Paper, Stack } from '@mui/material';
 import Text from '@mui/material/Typography';
@@ -22,7 +22,7 @@ import SectionTitle from '../ui/SectionTitle';
 // mismatch (same pattern already used for the Quill editor in Contact.jsx).
 const GitHubCalendar = dynamic(
   () => import('react-github-calendar').then((mod) => mod.GitHubCalendar),
-  { ssr: false }
+  { ssr: false },
 );
 
 const ACCENT = '#a78bfa';
@@ -52,10 +52,24 @@ const GithubStatsClient = ({ stats, username }) => {
 
   const tiles = stats
     ? [
-        { icon: <FolderIcon sx={{ fontSize: 26 }} />, value: stats.publicRepos, label: t('githubStats.repos') },
-        { icon: <CalendarMonthIcon sx={{ fontSize: 26 }} />, value: stats.memberSince, label: t('githubStats.memberSince') },
+        {
+          icon: <FolderIcon sx={{ fontSize: 26 }} />,
+          value: stats.publicRepos,
+          label: t('githubStats.repos'),
+        },
+        {
+          icon: <CalendarMonthIcon sx={{ fontSize: 26 }} />,
+          value: stats.memberSince,
+          label: t('githubStats.memberSince'),
+        },
         ...(totalContributions !== null
-          ? [{ icon: <InsightsIcon sx={{ fontSize: 26 }} />, value: totalContributions, label: t('githubStats.contributionsYear') }]
+          ? [
+              {
+                icon: <InsightsIcon sx={{ fontSize: 26 }} />,
+                value: totalContributions,
+                label: t('githubStats.contributionsYear'),
+              },
+            ]
           : []),
       ]
     : [];
@@ -88,7 +102,15 @@ const GithubStatsClient = ({ stats, username }) => {
 
         {!stats ? (
           <Reveal direction="up" distance={40}>
-            <Paper elevation={0} sx={{ p: 3, border: `1px solid ${ACCENT}40`, borderRadius: 2, background: 'rgba(255,255,255,0.03)' }}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 3,
+                border: `1px solid ${ACCENT}40`,
+                borderRadius: 2,
+                background: 'rgba(255,255,255,0.03)',
+              }}
+            >
               <Text variant="body2">{t('githubStats.unavailable')}</Text>
             </Paper>
           </Reveal>
@@ -108,16 +130,33 @@ const GithubStatsClient = ({ stats, username }) => {
                         gap: 2,
                         borderRadius: 3,
                         border: `1px solid ${ACCENT}40`,
-                        background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`,
+                        background: (theme) =>
+                          theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}08`,
                         backdropFilter: 'blur(4px)',
                       }}
                     >
-                      <Box sx={{ width: 48, height: 48, borderRadius: 2, background: `${ACCENT}22`, color: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <Box
+                        sx={{
+                          width: 48,
+                          height: 48,
+                          borderRadius: 2,
+                          background: `${ACCENT}22`,
+                          color: ACCENT,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}
+                      >
                         {tile.icon}
                       </Box>
                       <Box>
-                        <Text variant="h5" component="p" fontWeight="bold" sx={{ lineHeight: 1 }}>{tile.value}</Text>
-                        <Text variant="body2" sx={{ opacity: 0.7 }}>{tile.label}</Text>
+                        <Text variant="h5" component="p" fontWeight="bold" sx={{ lineHeight: 1 }}>
+                          {tile.value}
+                        </Text>
+                        <Text variant="body2" sx={{ opacity: 0.7 }}>
+                          {tile.label}
+                        </Text>
                       </Box>
                     </Paper>
                   </Reveal>
@@ -128,14 +167,33 @@ const GithubStatsClient = ({ stats, username }) => {
             {stats.topLanguages.length > 0 && (
               <Reveal direction="up" distance={45} delay={0.15}>
                 <Box sx={{ mb: 4 }}>
-                  <Text variant="overline" sx={{ color: ACCENT, letterSpacing: 2, fontWeight: 600, mb: 1.5, display: 'block' }}>
+                  <Text
+                    variant="overline"
+                    sx={{
+                      color: ACCENT,
+                      letterSpacing: 2,
+                      fontWeight: 600,
+                      mb: 1.5,
+                      display: 'block',
+                    }}
+                  >
                     {t('githubStats.languagesTitle')}
                   </Text>
                   <Stack spacing={1.2}>
                     {stats.topLanguages.map((lang) => (
                       <Box key={lang.name} sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        <Text variant="body2" sx={{ width: 100, flexShrink: 0, fontWeight: 600 }}>{lang.name}</Text>
-                        <Box sx={{ flex: 1, height: 8, borderRadius: 4, background: `${ACCENT}18`, overflow: 'hidden' }}>
+                        <Text variant="body2" sx={{ width: 100, flexShrink: 0, fontWeight: 600 }}>
+                          {lang.name}
+                        </Text>
+                        <Box
+                          sx={{
+                            flex: 1,
+                            height: 8,
+                            borderRadius: 4,
+                            background: `${ACCENT}18`,
+                            overflow: 'hidden',
+                          }}
+                        >
                           <Box
                             sx={{
                               height: '100%',
@@ -160,7 +218,8 @@ const GithubStatsClient = ({ stats, username }) => {
                   p: { xs: 2, sm: 3 },
                   borderRadius: 3,
                   border: `1px solid ${ACCENT}30`,
-                  background: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}06`,
+                  background: (theme) =>
+                    theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${ACCENT}06`,
                   overflowX: 'auto',
                   display: 'flex',
                   justifyContent: 'center',
@@ -179,15 +238,35 @@ const GithubStatsClient = ({ stats, username }) => {
             </Reveal>
 
             <Reveal direction="up" distance={40} delay={0.25}>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mt: 4 }}>
-                <Avatar src={stats.avatarUrl} alt={username} sx={{ width: 40, height: 40, border: `2px solid ${ACCENT}` }} />
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 2,
+                  mt: 4,
+                }}
+              >
+                <Avatar
+                  src={stats.avatarUrl}
+                  alt={username}
+                  sx={{ width: 40, height: 40, border: `2px solid ${ACCENT}` }}
+                />
                 <CTAButton
                   variant="outlined"
                   href={stats.profileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   startIcon={<GitHubIcon />}
-                  sx={{ borderColor: ACCENT, color: ACCENT, px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: `${ACCENT}15`, borderColor: ACCENT } }}
+                  sx={{
+                    borderColor: ACCENT,
+                    color: ACCENT,
+                    px: 3,
+                    py: 1,
+                    fontWeight: 600,
+                    borderRadius: 2,
+                    '&:hover': { bgcolor: `${ACCENT}15`, borderColor: ACCENT },
+                  }}
                 >
                   {t('githubStats.viewProfile')}
                 </CTAButton>

@@ -57,5 +57,4 @@ export const projects: ProjectMeta[] = [
   },
 ];
 
-export const getProjectMeta = (key: ProjectKey) =>
-  projects.find((p) => p.key === key);
+export const getProjectMeta = (key: ProjectKey) => projects.find((p) => p.key === key);

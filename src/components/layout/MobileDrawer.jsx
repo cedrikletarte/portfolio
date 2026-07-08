@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -28,8 +28,12 @@ export default function MobileDrawer({ open, onClose, navLinks, scrollTo }) {
       onClose={onClose}
       slotProps={{
         paper: {
-          sx: { background: (theme) => theme.palette.background.paper, color: (theme) => theme.palette.text.primary, width: 250 }
-        }
+          sx: {
+            background: (theme) => theme.palette.background.paper,
+            color: (theme) => theme.palette.text.primary,
+            width: 250,
+          },
+        },
       }}
     >
       <Box sx={{ mt: 2 }}>
@@ -66,18 +70,24 @@ export default function MobileDrawer({ open, onClose, navLinks, scrollTo }) {
                 onClose();
               }}
               sx={{
-                color: (theme) => theme.palette.mode === 'dark'
-                  ? theme.palette.warning.main
-                  : theme.palette.primary.main
+                color: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.warning.main
+                    : theme.palette.primary.main,
               }}
             >
               <ListItemText
-                primary={mode === 'dark' ? t('navbar.lightMode') || 'Light Mode' : t('navbar.darkMode') || 'Dark Mode'}
+                primary={
+                  mode === 'dark'
+                    ? t('navbar.lightMode') || 'Light Mode'
+                    : t('navbar.darkMode') || 'Dark Mode'
+                }
               />
-              {mode === 'dark'
-                ? <Brightness7Icon sx={{ ml: 1 }} />
-                : <Brightness4Icon sx={{ ml: 1 }} />
-              }
+              {mode === 'dark' ? (
+                <Brightness7Icon sx={{ ml: 1 }} />
+              ) : (
+                <Brightness4Icon sx={{ ml: 1 }} />
+              )}
             </ListItemButton>
           </ListItem>
         </List>

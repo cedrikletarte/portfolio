@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRef } from 'react';
 import { useTheme } from '@mui/material/styles';
@@ -16,7 +16,11 @@ export default function HeroCanvas() {
   const particlesRef = useRef([]);
 
   const COLORS = {
-    dark: { dot: 'rgba(226,232,240,0.55)', link: hexToRgb(theme.palette.primary.main), link2: [111, 194, 176] },
+    dark: {
+      dot: 'rgba(226,232,240,0.55)',
+      link: hexToRgb(theme.palette.primary.main),
+      link2: [111, 194, 176],
+    },
     light: { dot: 'rgba(10,25,47,0.45)', link: [219, 39, 119], link2: [45, 138, 118] },
   };
 

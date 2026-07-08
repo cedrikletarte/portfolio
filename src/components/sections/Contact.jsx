@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -25,7 +25,7 @@ const Contact = () => {
   const t = useTranslations();
   const { mode } = useThemeMode();
   const theme = useTheme();
-  const ACCENT = theme.palette.primary.main
+  const ACCENT = theme.palette.primary.main;
 
   // State for form fields
   const [name, setName] = useState('');
@@ -151,13 +151,15 @@ const Contact = () => {
             fullWidth
             sx={{
               mb: 2,
-              bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
               borderRadius: 1,
               '& .MuiInputLabel-root': {
                 color: (theme) => theme.palette.text.secondary,
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: (theme) => theme.palette.mode === 'dark' ? ACCENT : theme.palette.text.primary,
+                color: (theme) =>
+                  theme.palette.mode === 'dark' ? ACCENT : theme.palette.text.primary,
               },
               '& .MuiInputBase-input': {
                 color: (theme) => theme.palette.text.primary,
@@ -178,13 +180,15 @@ const Contact = () => {
             fullWidth
             sx={{
               mb: 2,
-              bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.07)' : '#ccd6f6',
               borderRadius: 1,
               '& .MuiInputLabel-root': {
                 color: (theme) => theme.palette.text.secondary,
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: (theme) => theme.palette.mode === 'dark' ? ACCENT : theme.palette.text.primary,
+                color: (theme) =>
+                  theme.palette.mode === 'dark' ? ACCENT : theme.palette.text.primary,
               },
               '& .MuiInputBase-input': {
                 color: (theme) => theme.palette.text.primary,
@@ -211,12 +215,23 @@ const Contact = () => {
           <input type="hidden" name="message" value={message} />
         </Box>
         {/* Submit button with loading and sent animation */}
-        <Reveal direction="up" distance={40} delay={0.2} style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <Reveal
+          direction="up"
+          distance={40}
+          delay={0.2}
+          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+        >
           <Button
             type="submit"
             variant="contained"
             color="secondary"
-            endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon className={sent ? 'send-fly' : ''} />}
+            endIcon={
+              loading ? (
+                <CircularProgress size={20} color="inherit" />
+              ) : (
+                <SendIcon className={sent ? 'send-fly' : ''} />
+              )
+            }
             sx={{
               mt: 2,
               fontWeight: 'bold',

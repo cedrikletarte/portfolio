@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Button from '@mui/material/Button';
 import { motion, useMotionValue, useSpring } from 'framer-motion';

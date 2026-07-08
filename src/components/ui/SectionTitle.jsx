@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Text from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';

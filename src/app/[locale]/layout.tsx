@@ -1,9 +1,9 @@
 import { routing } from '@/i18n/routing';
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { Raleway } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import "../globals.css";
+import '../globals.css';
 
 const raleway = Raleway({
   subsets: ['latin'],
@@ -12,9 +12,13 @@ const raleway = Raleway({
   variable: '--font-raleway',
 });
 
-const SITE_URL = "https://www.cedrikletarte.com";
+const SITE_URL = 'https://www.cedrikletarte.com';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
   const { locale } = await params;
   let messages;
   try {
@@ -22,8 +26,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   } catch {
     messages = {};
   }
-  const title = messages.title || "Portfolio";
-  const description = messages.description || "Portfolio";
+  const title = messages.title || 'Portfolio';
+  const description = messages.description || 'Portfolio';
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -31,29 +35,29 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description,
     alternates: {
       canonical: `/${locale}`,
-      languages: { fr: "/fr", en: "/en" },
+      languages: { fr: '/fr', en: '/en' },
     },
     openGraph: {
       title,
       description,
       url: `/${locale}`,
-      siteName: "Cédrik Letarte",
-      locale: locale === "fr" ? "fr_CA" : "en_US",
-      type: "website",
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: title }],
+      siteName: 'Cédrik Letarte',
+      locale: locale === 'fr' ? 'fr_CA' : 'en_US',
+      type: 'website',
+      images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: title }],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
-      images: ["/opengraph-image"],
+      images: ['/opengraph-image'],
     },
   };
 }
 
 export default async function LocaleLayout({
   children,
-  params
+  params,
 }: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;

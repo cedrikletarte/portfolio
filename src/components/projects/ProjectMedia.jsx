@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -30,7 +30,13 @@ export default function ProjectMedia({ projectKey, images, accent }) {
   if (images.length === 1) {
     return (
       <Box sx={FRAME_SX(accent)}>
-        <Image src={images[0]} alt={`${projectKey} screenshot`} fill sizes="(max-width: 900px) 100vw, 55vw" style={{ objectFit: 'cover' }} />
+        <Image
+          src={images[0]}
+          alt={`${projectKey} screenshot`}
+          fill
+          sizes="(max-width: 900px) 100vw, 55vw"
+          style={{ objectFit: 'cover' }}
+        />
       </Box>
     );
   }
@@ -52,7 +58,15 @@ export default function ProjectMedia({ projectKey, images, accent }) {
       <IconButton
         onClick={handlePrev}
         aria-label="Previous screenshot"
-        sx={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', bgcolor: 'rgba(0,0,0,0.5)', color: 'white', '&:hover': { bgcolor: `${accent}cc` } }}
+        sx={{
+          position: 'absolute',
+          left: 8,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          bgcolor: 'rgba(0,0,0,0.5)',
+          color: 'white',
+          '&:hover': { bgcolor: `${accent}cc` },
+        }}
       >
         <ArrowBackIosNewIcon fontSize="small" />
       </IconButton>
@@ -60,12 +74,29 @@ export default function ProjectMedia({ projectKey, images, accent }) {
       <IconButton
         onClick={handleNext}
         aria-label="Next screenshot"
-        sx={{ position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)', bgcolor: 'rgba(0,0,0,0.5)', color: 'white', '&:hover': { bgcolor: `${accent}cc` } }}
+        sx={{
+          position: 'absolute',
+          right: 8,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          bgcolor: 'rgba(0,0,0,0.5)',
+          color: 'white',
+          '&:hover': { bgcolor: `${accent}cc` },
+        }}
       >
         <ArrowForwardIosIcon fontSize="small" />
       </IconButton>
 
-      <Box sx={{ position: 'absolute', bottom: 10, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 1 }}>
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 10,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          gap: 1,
+        }}
+      >
         {images.map((_, i) => (
           <Box
             key={i}
@@ -82,7 +113,17 @@ export default function ProjectMedia({ projectKey, images, accent }) {
         ))}
       </Box>
 
-      <Box sx={{ position: 'absolute', top: 10, right: 14, bgcolor: 'rgba(0,0,0,0.65)', borderRadius: 10, px: 1.2, py: 0.3 }}>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 10,
+          right: 14,
+          bgcolor: 'rgba(0,0,0,0.65)',
+          borderRadius: 10,
+          px: 1.2,
+          py: 0.3,
+        }}
+      >
         <Text variant="caption" sx={{ color: '#fff', fontWeight: 600, letterSpacing: 0.5 }}>
           {index + 1} / {images.length}
         </Text>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -59,7 +59,8 @@ export default function ProjectPlaceholder({ projectKey, accent }) {
         sx={{
           position: 'relative',
           height: 32,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)'),
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)',
           borderBottom: `1px solid ${accent}25`,
           display: 'flex',
           alignItems: 'center',
@@ -68,14 +69,18 @@ export default function ProjectPlaceholder({ projectKey, accent }) {
         }}
       >
         {DOT_COLORS.map((c) => (
-          <Box key={c} sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: c, opacity: 0.8 }} />
+          <Box
+            key={c}
+            sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: c, opacity: 0.8 }}
+          />
         ))}
         <Text
           variant="caption"
           sx={{
             ml: 1,
             fontFamily: 'monospace',
-            color: (theme) => (theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'),
+            color: (theme) =>
+              theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
             letterSpacing: 0.5,
           }}
         >

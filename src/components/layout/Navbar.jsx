@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -11,14 +11,7 @@ import { useThemeMode } from '../../theme/ThemeContext';
 import MobileDrawer from './MobileDrawer';
 import SocialLinks from './SocialLinks';
 
-import {
-  AppBar,
-  Box,
-  Button,
-  IconButton,
-  Toolbar,
-  Tooltip,
-} from '@mui/material';
+import { AppBar, Box, Button, IconButton, Toolbar, Tooltip } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -26,17 +19,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 // Navbar component definition
 const Navbar = () => {
   // Initialize translation function
-  const t = useTranslations()
+  const t = useTranslations();
   // State for mobile drawer open/close
-  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(false);
   // Glass toujours actif
   const scrolled = true;
   // Theme mode and toggle function from context
   const { mode, toggleTheme } = useThemeMode();
   // Current locale (fr/en)
-  const locale = useLocale()
+  const locale = useLocale();
   // Next.js router for navigation
-  const router = useRouter()
+  const router = useRouter();
   // Mount animation state
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -51,8 +44,8 @@ const Navbar = () => {
       duration: 800,
       delay: 0,
       smooth: 'easeInOutQuart',
-    })
-  }
+    });
+  };
 
   // Navigation links for sections
   const navLinks = [
@@ -62,7 +55,7 @@ const Navbar = () => {
     { label: t('navbar.github'), to: 'github' },
     { label: t('navbar.work'), to: 'work' },
     { label: t('navbar.contact'), to: 'contact' },
-  ]
+  ];
 
   const glassStyles = (theme) => {
     const isDark = theme.palette.mode === 'dark';
@@ -73,16 +66,20 @@ const Navbar = () => {
       WebkitBackdropFilter: 'blur(14px) saturate(1.5)',
       borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
       boxShadow: isDark ? '0 4px 16px -4px rgba(0,0,0,0.45)' : '0 4px 18px -6px rgba(0,0,0,0.25)',
-      transition: 'background-color .35s, backdrop-filter .35s, opacity .55s ease, transform .55s ease',
+      transition:
+        'background-color .35s, backdrop-filter .35s, opacity .55s ease, transform .55s ease',
       opacity: mounted ? 1 : 0,
-      transform: mounted ? 'translateY(0)' : 'translateY(-16px)'
+      transform: mounted ? 'translateY(0)' : 'translateY(-16px)',
     };
   };
 
   return (
     <>
       {/* AppBar: main navigation bar, fixed at the top */}
-      <AppBar position="fixed" sx={(theme) => ({ color: theme.palette.text.primary, boxShadow: 0, ...glassStyles(theme) })}>
+      <AppBar
+        position="fixed"
+        sx={(theme) => ({ color: theme.palette.text.primary, boxShadow: 0, ...glassStyles(theme) })}
+      >
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', minHeight: 80 }}>
           {/* Logo and link to homepage */}
           <a href="https://www.cedrikletarte.com" style={{ display: 'flex', alignItems: 'center' }}>
@@ -103,9 +100,10 @@ const Navbar = () => {
                   borderRadius: 1,
                   transition: 'background-color .3s,color .3s',
                   '&:hover': {
-                    backgroundColor: (theme) => theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.primary.main, 0.18)
-                      : alpha(theme.palette.primary.main, 0.15),
+                    backgroundColor: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.primary.main, 0.18)
+                        : alpha(theme.palette.primary.main, 0.15),
                     color: (theme) => theme.palette.primary.main,
                   },
                 }}
@@ -135,7 +133,8 @@ const Navbar = () => {
                   px: 1,
                   py: 0.5,
                   borderRadius: 1,
-                  border: (theme) => `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)'}`,
+                  border: (theme) =>
+                    `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.15)'}`,
                   background: 'transparent',
                   color: 'inherit',
                   cursor: 'pointer',
@@ -152,18 +151,18 @@ const Navbar = () => {
               </Box>
             </Tooltip>
             {/* Theme toggle button */}
-            <IconButton onClick={toggleTheme} color="inherit"
+            <IconButton
+              onClick={toggleTheme}
+              color="inherit"
               aria-label={mode === 'dark' ? t('navbar.lightMode') : t('navbar.darkMode')}
               sx={{
-                color: (theme) => theme.palette.mode === 'dark'
-                  ? theme.palette.warning.main
-                  : theme.palette.primary.main
+                color: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.warning.main
+                    : theme.palette.primary.main,
               }}
             >
-              {mode === 'dark'
-                ? <Brightness7Icon />
-                : <Brightness4Icon />
-              }
+              {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             </IconButton>
           </Box>
           {/* Mobile menu button (hamburger icon) */}
@@ -195,14 +194,17 @@ const Navbar = () => {
           zIndex: 1200,
         }}
       >
-        <Box component="ul" sx={{ listStyle: 'none', p: 0, m: 0, display:'flex', flexDirection:'column', gap:1.5 }}>
+        <Box
+          component="ul"
+          sx={{ listStyle: 'none', p: 0, m: 0, display: 'flex', flexDirection: 'column', gap: 1.5 }}
+        >
           <SocialLinks size={52} iconSize="small" tooltipPlacement="right" liftOnHover listItem />
         </Box>
       </Box>
       {/* Spacer for AppBar to avoid content being hidden behind navbar */}
       <Toolbar sx={{ minHeight: 80 }} />
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

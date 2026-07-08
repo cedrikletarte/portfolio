@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import Box from '@mui/material/Box';
 import Text from '@mui/material/Typography';
@@ -14,7 +14,7 @@ import Reveal from '../ui/Reveal';
 const Home = () => {
   const t = useTranslations();
   const theme = useTheme();
-  const ACCENT = theme.palette.primary.main
+  const ACCENT = theme.palette.primary.main;
 
   const scrollTo = (elementName) => {
     scroller.scrollTo(elementName, {
@@ -38,7 +38,15 @@ const Home = () => {
         overflowX: 'hidden',
       }}
     >
-      <ParallaxGlow top="10%" left="40%" origin="45% 40%" size={700} color={alpha(ACCENT, 0.18)} blur={80} opacity={0.5} />
+      <ParallaxGlow
+        top="10%"
+        left="40%"
+        origin="45% 40%"
+        size={700}
+        color={alpha(ACCENT, 0.18)}
+        blur={80}
+        opacity={0.5}
+      />
       <HeroCanvas />
       <Box
         sx={{
@@ -54,7 +62,14 @@ const Home = () => {
         }}
       >
         <Reveal direction="up" distance={30}>
-          <Text sx={{ color: ACCENT, fontWeight: 600, mb: { xs: 1, md: 2 }, fontSize: { xs: 18, md: 22 } }}>
+          <Text
+            sx={{
+              color: ACCENT,
+              fontWeight: 600,
+              mb: { xs: 1, md: 2 },
+              fontSize: { xs: 18, md: 22 },
+            }}
+          >
             {t('home.hello')}
           </Text>
         </Reveal>
@@ -83,12 +98,7 @@ const Home = () => {
               minHeight: 40,
             }}
           >
-            <ReactTyped
-              strings={t.raw('home.typed')}
-              typeSpeed={100}
-              backSpeed={50}
-              loop
-            />
+            <ReactTyped strings={t.raw('home.typed')} typeSpeed={100} backSpeed={50} loop />
           </Text>
         </Reveal>
         <Reveal direction="up" distance={40} delay={0.15}>

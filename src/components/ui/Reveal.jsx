@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * Reveal animation wrapper.
@@ -14,8 +14,8 @@ export default function Reveal({
   delay = 0,
   duration = 0.6,
   distance = 40,
-  direction = "up",
-  as: Tag = "div",
+  direction = 'up',
+  as: Tag = 'div',
   style,
   ...rest
 }) {
@@ -24,7 +24,7 @@ export default function Reveal({
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     }
   }, []);
@@ -40,7 +40,7 @@ export default function Reveal({
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
@@ -53,9 +53,7 @@ export default function Reveal({
     right: { x: -distance },
   };
 
-  const initial = reduced
-    ? { opacity: 0 }
-    : { opacity: 0, ...axisMap[direction], scale: 0.98 };
+  const initial = reduced ? { opacity: 0 } : { opacity: 0, ...axisMap[direction], scale: 0.98 };
   const animate = inView
     ? reduced
       ? { opacity: 1 }
@@ -69,7 +67,7 @@ export default function Reveal({
       initial={initial}
       animate={animate}
       transition={{ duration, delay, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{ willChange: "opacity, transform", ...style }}
+      style={{ willChange: 'opacity, transform', ...style }}
       {...rest}
     >
       {children}

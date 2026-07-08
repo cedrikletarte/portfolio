@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Dialog,
@@ -50,17 +50,54 @@ const CommandPalette = () => {
     () => [
       { id: 'home', label: t('navbar.home'), icon: <HomeIcon />, run: () => scrollTo('home') },
       { id: 'about', label: t('navbar.about'), icon: <PersonIcon />, run: () => scrollTo('about') },
-      { id: 'skills', label: t('navbar.skills'), icon: <BuildIcon />, run: () => scrollTo('skills') },
-      { id: 'github-section', label: t('githubStats.title'), icon: <GitHubIcon />, run: () => scrollTo('github') },
+      {
+        id: 'skills',
+        label: t('navbar.skills'),
+        icon: <BuildIcon />,
+        run: () => scrollTo('skills'),
+      },
+      {
+        id: 'github-section',
+        label: t('githubStats.title'),
+        icon: <GitHubIcon />,
+        run: () => scrollTo('github'),
+      },
       { id: 'work', label: t('navbar.work'), icon: <WorkIcon />, run: () => scrollTo('work') },
-      { id: 'contact', label: t('navbar.contact'), icon: <MailOutlineIcon />, run: () => scrollTo('contact') },
-      { id: 'theme', label: t('commandPalette.toggleTheme'), icon: <Brightness4Icon />, run: toggleTheme },
-      { id: 'locale', label: t('commandPalette.switchLanguage', { locale: nextLocale }), icon: <TranslateIcon />, run: () => router.replace(`/${locale === 'fr' ? 'en' : 'fr'}`) },
+      {
+        id: 'contact',
+        label: t('navbar.contact'),
+        icon: <MailOutlineIcon />,
+        run: () => scrollTo('contact'),
+      },
+      {
+        id: 'theme',
+        label: t('commandPalette.toggleTheme'),
+        icon: <Brightness4Icon />,
+        run: toggleTheme,
+      },
+      {
+        id: 'locale',
+        label: t('commandPalette.switchLanguage', { locale: nextLocale }),
+        icon: <TranslateIcon />,
+        run: () => router.replace(`/${locale === 'fr' ? 'en' : 'fr'}`),
+      },
       { id: 'cv', label: t('commandPalette.downloadCv'), icon: <SchoolIcon />, run: download },
-      { id: 'github', label: t('commandPalette.openGithub'), icon: <GitHubIcon />, run: () => window.open('https://github.com/cedrikletarte', '_blank', 'noopener,noreferrer') },
-      { id: 'email', label: t('commandPalette.sendEmail'), icon: <MailOutlineIcon />, run: () => { window.location.href = 'mailto:cedrikletarte@gmail.com'; } },
+      {
+        id: 'github',
+        label: t('commandPalette.openGithub'),
+        icon: <GitHubIcon />,
+        run: () => window.open('https://github.com/cedrikletarte', '_blank', 'noopener,noreferrer'),
+      },
+      {
+        id: 'email',
+        label: t('commandPalette.sendEmail'),
+        icon: <MailOutlineIcon />,
+        run: () => {
+          window.location.href = 'mailto:cedrikletarte@gmail.com';
+        },
+      },
     ],
-    [t, locale, nextLocale, toggleTheme, router, download]
+    [t, locale, nextLocale, toggleTheme, router, download],
   );
 
   const normalize = (str) => str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -164,7 +201,9 @@ const CommandPalette = () => {
               '&.Mui-selected:hover': { bgcolor: alpha(theme.palette.primary.main, 0.2) },
             }}
           >
-            <ListItemIcon sx={{ color: theme.palette.primary.main, minWidth: 40 }}>{cmd.icon}</ListItemIcon>
+            <ListItemIcon sx={{ color: theme.palette.primary.main, minWidth: 40 }}>
+              {cmd.icon}
+            </ListItemIcon>
             <ListItemText primary={cmd.label} />
           </ListItemButton>
         ))}

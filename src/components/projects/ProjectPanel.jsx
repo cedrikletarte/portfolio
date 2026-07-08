@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -11,7 +11,12 @@ import { useTranslations } from 'next-intl';
 
 import CTAButton from '@/components/ui/CTAButton';
 import ProjectMedia from './ProjectMedia';
-import { FALLBACK_HIGHLIGHT_ICON, HEADER_ICONS, HIGHLIGHT_ICONS, renderBold } from './projectVisuals';
+import {
+  FALLBACK_HIGHLIGHT_ICON,
+  HEADER_ICONS,
+  HIGHLIGHT_ICONS,
+  renderBold,
+} from './projectVisuals';
 
 const textColor = (theme, strong = false) =>
   theme.palette.mode === 'dark'
@@ -21,11 +26,20 @@ const textColor = (theme, strong = false) =>
 // Builds a [bounds, output] pair for useTransform, skipping the enter/exit
 // segment on edge panels instead of collapsing it into a zero-width range
 // (which framer-motion resolves ambiguously right at v=0/v=1).
-function edgeAwareRange(isFirst, isLast, enterBounds, exitBounds, [enterValue, dwellValue, exitValue]) {
+function edgeAwareRange(
+  isFirst,
+  isLast,
+  enterBounds,
+  exitBounds,
+  [enterValue, dwellValue, exitValue],
+) {
   if (isFirst && isLast) return { bounds: [0, 1], output: [dwellValue, dwellValue] };
   if (isFirst) return { bounds: exitBounds, output: [dwellValue, exitValue] };
   if (isLast) return { bounds: enterBounds, output: [enterValue, dwellValue] };
-  return { bounds: [...enterBounds, ...exitBounds], output: [enterValue, dwellValue, dwellValue, exitValue] };
+  return {
+    bounds: [...enterBounds, ...exitBounds],
+    output: [enterValue, dwellValue, dwellValue, exitValue],
+  };
 }
 
 function HighlightCard({ Icon, title, desc, items, accent }) {
@@ -36,14 +50,17 @@ function HighlightCard({ Icon, title, desc, items, accent }) {
         height: '100%',
         borderRadius: 2,
         border: `1px solid ${accent}40`,
-        background: (theme) => (theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${accent}08`),
+        background: (theme) =>
+          theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : `${accent}08`,
       }}
     >
       <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mb: items?.length ? 1 : 0.5 }}>
         <Box sx={{ color: accent, display: 'flex' }}>
           <Icon sx={{ fontSize: 20 }} />
         </Box>
-        <Text variant="subtitle2" component="h4" fontWeight="bold">{title}</Text>
+        <Text variant="subtitle2" component="h4" fontWeight="bold">
+          {title}
+        </Text>
       </Stack>
       {desc ? (
         <Text variant="body2" sx={{ lineHeight: 1.6, color: (theme) => textColor(theme) }}>
@@ -53,7 +70,11 @@ function HighlightCard({ Icon, title, desc, items, accent }) {
       {items?.length ? (
         <Stack spacing={0.75} sx={{ mt: 1 }}>
           {items.map((item, i) => (
-            <Text key={i} variant="body2" sx={{ lineHeight: 1.5, color: (theme) => textColor(theme) }}>
+            <Text
+              key={i}
+              variant="body2"
+              sx={{ lineHeight: 1.5, color: (theme) => textColor(theme) }}
+            >
               {renderBold(item)}
             </Text>
           ))}
@@ -63,7 +84,15 @@ function HighlightCard({ Icon, title, desc, items, accent }) {
   );
 }
 
-export default function ProjectPanel({ project, index, total, scrollYProgress, overlap = 0.3, mode, active = true }) {
+export default function ProjectPanel({
+  project,
+  index,
+  total,
+  scrollYProgress,
+  overlap = 0.3,
+  mode,
+  active = true,
+}) {
   const t = useTranslations();
   const { key, accent, tags, images, repoUrl, liveUrl } = project;
 
@@ -87,10 +116,26 @@ export default function ProjectPanel({ project, index, total, scrollYProgress, o
   const dummyProgress = useMotionValue(0);
   const source = scrollYProgress ?? dummyProgress;
 
-  const opacity = useTransform(source, isScroll ? opacityRange.bounds : [0, 1], isScroll ? opacityRange.output : [1, 1]);
-  const textY = useTransform(source, isScroll ? textYRange.bounds : [0, 1], isScroll ? textYRange.output : [0, 0]);
-  const mediaY = useTransform(source, isScroll ? mediaYRange.bounds : [0, 1], isScroll ? mediaYRange.output : [0, 0]);
-  const mediaScale = useTransform(source, isScroll ? mediaScaleRange.bounds : [0, 1], isScroll ? mediaScaleRange.output : [1, 1]);
+  const opacity = useTransform(
+    source,
+    isScroll ? opacityRange.bounds : [0, 1],
+    isScroll ? opacityRange.output : [1, 1],
+  );
+  const textY = useTransform(
+    source,
+    isScroll ? textYRange.bounds : [0, 1],
+    isScroll ? textYRange.output : [0, 0],
+  );
+  const mediaY = useTransform(
+    source,
+    isScroll ? mediaYRange.bounds : [0, 1],
+    isScroll ? mediaYRange.output : [0, 0],
+  );
+  const mediaScale = useTransform(
+    source,
+    isScroll ? mediaScaleRange.bounds : [0, 1],
+    isScroll ? mediaScaleRange.output : [1, 1],
+  );
   const pointerEvents = useTransform(opacity, (v) => (v < 0.05 ? 'none' : 'auto'));
 
   const HeaderIcon = HEADER_ICONS[key];
@@ -127,97 +172,140 @@ export default function ProjectPanel({ project, index, total, scrollYProgress, o
         <Box
           component={motion.div}
           style={{ y: isScroll ? textY : 0, willChange: isScroll ? 'transform' : undefined }}
-          sx={{ width: '100%', flex: { md: '0 0 45%' }, maxWidth: { md: '45%' }, mx: { xs: 'auto', md: 0 } }}
+          sx={{
+            width: '100%',
+            flex: { md: '0 0 45%' },
+            maxWidth: { md: '45%' },
+            mx: { xs: 'auto', md: 0 },
+          }}
         >
-            <Stack direction="row" spacing={2} sx={{ alignItems: 'center', mb: 2.5 }}>
-              {HeaderIcon && (
-                <Box
-                  sx={{
-                    width: 56,
-                    height: 56,
-                    borderRadius: 2.5,
-                    background: `linear-gradient(135deg, ${accent}30, ${accent}10)`,
-                    border: `1px solid ${accent}50`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: accent,
-                    flexShrink: 0,
-                  }}
-                >
-                  <HeaderIcon sx={{ fontSize: 30 }} />
-                </Box>
-              )}
-              <Box>
-                <Text variant="h4" component="h3" fontWeight="bold" sx={{ lineHeight: 1.15, fontSize: { xs: 22, md: 30 } }}>
-                  {t(`${key}.title`)}
-                </Text>
-                <Box sx={{ height: 3, width: 48, borderRadius: 2, background: accent, mt: 0.6 }} />
+          <Stack direction="row" spacing={2} sx={{ alignItems: 'center', mb: 2.5 }}>
+            {HeaderIcon && (
+              <Box
+                sx={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: 2.5,
+                  background: `linear-gradient(135deg, ${accent}30, ${accent}10)`,
+                  border: `1px solid ${accent}50`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: accent,
+                  flexShrink: 0,
+                }}
+              >
+                <HeaderIcon sx={{ fontSize: 30 }} />
               </Box>
-            </Stack>
+            )}
+            <Box>
+              <Text
+                variant="h4"
+                component="h3"
+                fontWeight="bold"
+                sx={{ lineHeight: 1.15, fontSize: { xs: 22, md: 30 } }}
+              >
+                {t(`${key}.title`)}
+              </Text>
+              <Box sx={{ height: 3, width: 48, borderRadius: 2, background: accent, mt: 0.6 }} />
+            </Box>
+          </Stack>
 
-            <Text variant="body1" sx={{ mb: 3, lineHeight: 1.7, color: (theme) => textColor(theme, true) }}>
-              {t(`${key}.description`)}
-            </Text>
+          <Text
+            variant="body1"
+            sx={{ mb: 3, lineHeight: 1.7, color: (theme) => textColor(theme, true) }}
+          >
+            {t(`${key}.description`)}
+          </Text>
 
-            <Stack spacing={1.5} sx={{ mb: 3 }}>
-              {highlights.map((h, i) => (
-                <HighlightCard
-                  key={i}
-                  Icon={highlightIcons[i] ?? FALLBACK_HIGHLIGHT_ICON}
-                  title={h.title}
-                  desc={h.desc}
-                  items={h.items}
-                  accent={accent}
+          <Stack spacing={1.5} sx={{ mb: 3 }}>
+            {highlights.map((h, i) => (
+              <HighlightCard
+                key={i}
+                Icon={highlightIcons[i] ?? FALLBACK_HIGHLIGHT_ICON}
+                title={h.title}
+                desc={h.desc}
+                items={h.items}
+                accent={accent}
+              />
+            ))}
+          </Stack>
+
+          {tags.length > 0 && (
+            <Stack direction="row" gap={1} sx={{ flexWrap: 'wrap', mb: 3 }}>
+              {tags.map((tag) => (
+                <Chip
+                  key={tag}
+                  label={tag}
+                  size="small"
+                  sx={{
+                    bgcolor: `${accent}15`,
+                    color: accent,
+                    border: `1px solid ${accent}40`,
+                    fontWeight: 600,
+                  }}
                 />
               ))}
             </Stack>
+          )}
 
-            {tags.length > 0 && (
-              <Stack direction="row" gap={1} sx={{ flexWrap: 'wrap', mb: 3 }}>
-                {tags.map((tag) => (
-                  <Chip
-                    key={tag}
-                    label={tag}
-                    size="small"
-                    sx={{ bgcolor: `${accent}15`, color: accent, border: `1px solid ${accent}40`, fontWeight: 600 }}
-                  />
-                ))}
-              </Stack>
+          <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
+            {repoUrl && (
+              <CTAButton
+                variant="outlined"
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<GitHubIcon />}
+                sx={{
+                  borderColor: accent,
+                  color: accent,
+                  px: 3,
+                  py: 1,
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  '&:hover': { bgcolor: `${accent}15`, borderColor: accent },
+                }}
+              >
+                {t('navbar.github')}
+              </CTAButton>
             )}
-
-            <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
-              {repoUrl && (
-                <CTAButton
-                  variant="outlined"
-                  href={repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<GitHubIcon />}
-                  sx={{ borderColor: accent, color: accent, px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: `${accent}15`, borderColor: accent } }}
-                >
-                  {t('navbar.github')}
-                </CTAButton>
-              )}
-              {liveUrl && (
-                <CTAButton
-                  variant="contained"
-                  href={liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<OpenInNewIcon />}
-                  sx={{ bgcolor: accent, color: '#0a192f', px: 3, py: 1, fontWeight: 600, borderRadius: 2, '&:hover': { bgcolor: accent, filter: 'brightness(1.1)' } }}
-                >
-                  {t('work.liveDemo')}
-                </CTAButton>
-              )}
-            </Stack>
+            {liveUrl && (
+              <CTAButton
+                variant="contained"
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<OpenInNewIcon />}
+                sx={{
+                  bgcolor: accent,
+                  color: '#0a192f',
+                  px: 3,
+                  py: 1,
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  '&:hover': { bgcolor: accent, filter: 'brightness(1.1)' },
+                }}
+              >
+                {t('work.liveDemo')}
+              </CTAButton>
+            )}
+          </Stack>
         </Box>
 
         <Box
           component={motion.div}
-          style={{ y: isScroll ? mediaY : 0, scale: isScroll ? mediaScale : 1, willChange: isScroll ? 'transform' : undefined }}
-          sx={{ width: '100%', flex: { md: '0 0 50%' }, maxWidth: { md: '50%' }, mx: { xs: 'auto', md: 0 } }}
+          style={{
+            y: isScroll ? mediaY : 0,
+            scale: isScroll ? mediaScale : 1,
+            willChange: isScroll ? 'transform' : undefined,
+          }}
+          sx={{
+            width: '100%',
+            flex: { md: '0 0 50%' },
+            maxWidth: { md: '50%' },
+            mx: { xs: 'auto', md: 0 },
+          }}
         >
           <ProjectMedia projectKey={key} images={images} accent={accent} />
         </Box>

@@ -107,11 +107,26 @@
     "tagline": "Création d'une page web portfolio",
     "description": "Portfolio construit avec Next.js, TypeScript et Material UI. Supporte la localisation français/anglais, le mode sombre/clair, et est déployé via Docker avec un pipeline CI/CD GitLab. Ce portfolio est lui-même une démonstration de mes compétences front-end et DevOps.",
     "highlights": [
-      { "title": "Stack", "desc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD." },
-      { "title": "Vitrine de projets", "desc": "Chaque projet est présenté avec une description, des captures d'écran et les technologies utilisées, dans une expérience de défilement interactive." },
-      { "title": "UX & animations", "desc": "Animations déclenchées au défilement, interface glass morphism, transitions fluides et mise en page responsive." },
-      { "title": "Performance & SEO", "desc": "Rendu côté serveur, indexation IndexNow, formulaire de contact sécurisé avec validation côté serveur." },
-      { "title": "i18n", "desc": "Support complet français et anglais via next-intl, avec routage adapté aux locales." }
+      {
+        "title": "Stack",
+        "desc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD."
+      },
+      {
+        "title": "Vitrine de projets",
+        "desc": "Chaque projet est présenté avec une description, des captures d'écran et les technologies utilisées, dans une expérience de défilement interactive."
+      },
+      {
+        "title": "UX & animations",
+        "desc": "Animations déclenchées au défilement, interface glass morphism, transitions fluides et mise en page responsive."
+      },
+      {
+        "title": "Performance & SEO",
+        "desc": "Rendu côté serveur, indexation IndexNow, formulaire de contact sécurisé avec validation côté serveur."
+      },
+      {
+        "title": "i18n",
+        "desc": "Support complet français et anglais via next-intl, avec routage adapté aux locales."
+      }
     ]
   },
   "gaming": {
@@ -119,10 +134,22 @@
     "tagline": "Réalisation d'un jeu vidéo",
     "description": "Projet d'équipe réalisé avec Unity et C#. Les joueurs conçoivent leur propre ville en 3D et l'explorent à la première personne, avec des mécaniques de mouvement inspirées de Spider-Man.",
     "highlights": [
-      { "title": "Constructeur de ville", "desc": "Interface intuitive de placement d'objets 3D pour construire et personnaliser une ville." },
-      { "title": "Menu Unity UI", "desc": "Menu de construction ergonomique avec navigation fluide via Unity UI." },
-      { "title": "Systèmes de caméra", "desc": "Caméras orthogonale, libre et FPS pour une transition fluide entre les modes construction et exploration." },
-      { "title": "Mécaniques de mouvement", "desc": "Sprint, saut, wallrun et déplacement en tirant des toiles propulsés par Unity Physics." }
+      {
+        "title": "Constructeur de ville",
+        "desc": "Interface intuitive de placement d'objets 3D pour construire et personnaliser une ville."
+      },
+      {
+        "title": "Menu Unity UI",
+        "desc": "Menu de construction ergonomique avec navigation fluide via Unity UI."
+      },
+      {
+        "title": "Systèmes de caméra",
+        "desc": "Caméras orthogonale, libre et FPS pour une transition fluide entre les modes construction et exploration."
+      },
+      {
+        "title": "Mécaniques de mouvement",
+        "desc": "Sprint, saut, wallrun et déplacement en tirant des toiles propulsés par Unity Physics."
+      }
     ]
   },
   "ai": {
@@ -130,10 +157,22 @@
     "tagline": "Création d'une intelligence artificielle",
     "description": "Projet universitaire : un agent IA jouant au Tic-Tac-Toe Géant — un plateau 3×3 imbriqué où chaque coup contraint la zone de jeu suivante de l'adversaire.",
     "highlights": [
-      { "title": "Minimax & élagage Alpha-Bêta", "desc": "Explore efficacement un espace d'états très vaste pour choisir le meilleur coup." },
-      { "title": "Évaluation heuristique", "desc": "Fonction d'évaluation personnalisée qui priorise les coups gagnants." },
-      { "title": "Génération de coups", "desc": "Génère les coups valides en respectant les contraintes imbriquées du plateau." },
-      { "title": "Jeu en réseau", "desc": "Interface réseau pour s'affronter contre d'autres agents sur un serveur de jeu." }
+      {
+        "title": "Minimax & élagage Alpha-Bêta",
+        "desc": "Explore efficacement un espace d'états très vaste pour choisir le meilleur coup."
+      },
+      {
+        "title": "Évaluation heuristique",
+        "desc": "Fonction d'évaluation personnalisée qui priorise les coups gagnants."
+      },
+      {
+        "title": "Génération de coups",
+        "desc": "Génère les coups valides en respectant les contraintes imbriquées du plateau."
+      },
+      {
+        "title": "Jeu en réseau",
+        "desc": "Interface réseau pour s'affronter contre d'autres agents sur un serveur de jeu."
+      }
     ]
   },
   "earth": {
@@ -141,10 +180,22 @@
     "tagline": "Globe terrestre 3D",
     "description": "Globe 3D interactif construit avec Next.js et CesiumJS, avec recherche de villes, tuiles cartographiques auto-hébergées, contrôles atmosphériques et skybox spatial.",
     "highlights": [
-      { "title": "Globe 3D", "desc": "CesiumJS rend une Terre interactive en temps réel avec imagerie satellite, relief 3D et atmosphère physiquement réaliste." },
-      { "title": "Recherche de villes", "desc": "Un géocodeur Nominatim auto-hébergé permet de rechercher et naviguer vers n'importe quelle ville dans le monde." },
-      { "title": "Styles de carte", "desc": "TileServer-GL auto-hébergé sert plusieurs styles de tuiles personnalisés commutables à l'exécution." },
-      { "title": "Skybox & Atmosphère", "desc": "Skybox spatiale 6 faces avec paramètres atmosphériques réglables pour un environnement réaliste." }
+      {
+        "title": "Globe 3D",
+        "desc": "CesiumJS rend une Terre interactive en temps réel avec imagerie satellite, relief 3D et atmosphère physiquement réaliste."
+      },
+      {
+        "title": "Recherche de villes",
+        "desc": "Un géocodeur Nominatim auto-hébergé permet de rechercher et naviguer vers n'importe quelle ville dans le monde."
+      },
+      {
+        "title": "Styles de carte",
+        "desc": "TileServer-GL auto-hébergé sert plusieurs styles de tuiles personnalisés commutables à l'exécution."
+      },
+      {
+        "title": "Skybox & Atmosphère",
+        "desc": "Skybox spatiale 6 faces avec paramètres atmosphériques réglables pour un environnement réaliste."
+      }
     ]
   },
   "error": {

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -35,7 +35,10 @@ export default function ProjectsStory({ projects }) {
     setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   }, []);
 
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
   const [activeIndex, setActiveIndex] = useState(0);
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
@@ -55,7 +58,10 @@ export default function ProjectsStory({ projects }) {
   }
 
   return (
-    <Box ref={containerRef} sx={{ position: 'relative', height: `${projects.length * PANEL_VH}vh` }}>
+    <Box
+      ref={containerRef}
+      sx={{ position: 'relative', height: `${projects.length * PANEL_VH}vh` }}
+    >
       <Box sx={{ position: 'sticky', top: 80, height: 'calc(100vh - 80px)', overflow: 'hidden' }}>
         {projects.map((project, i) => (
           <ProjectPanel

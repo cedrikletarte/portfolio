@@ -83,6 +83,8 @@ export async function POST(req) {
     return new Response(JSON.stringify({ ok: true }), { status: 200 });
   } catch (e) {
     console.error('Email send error:', e);
-    return new Response(JSON.stringify({ error: 'Failed to send message. Please try again.' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Failed to send message. Please try again.' }), {
+      status: 500,
+    });
   }
 }

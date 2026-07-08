@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -29,7 +29,7 @@ export function useAnimatedCanvas({ onFrame, onResize, mouseTracking = false }) 
     if (!containerRef.current || typeof IntersectionObserver === 'undefined') return;
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => setVisible(entry.isIntersecting)),
-      { threshold: 0.05 }
+      { threshold: 0.05 },
     );
     observer.observe(containerRef.current);
     return () => observer.disconnect();

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRef } from 'react';
 import { useTheme } from '@mui/material/styles';
@@ -43,7 +43,11 @@ export default function DotsDriftBackground() {
   if (reduced) return null;
 
   return (
-    <div ref={containerRef} aria-hidden style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+    <div
+      ref={containerRef}
+      aria-hidden
+      style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none' }}
+    >
       <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
     </div>
   );

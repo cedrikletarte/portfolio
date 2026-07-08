@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { useTranslations } from 'next-intl';
 
@@ -15,7 +15,7 @@ import { projects } from '@/data/projects';
 function Projects() {
   const t = useTranslations();
   const theme = useTheme();
-  const ACCENT = theme.palette.primary.main
+  const ACCENT = theme.palette.primary.main;
 
   return (
     <Box
@@ -28,9 +28,24 @@ function Projects() {
         position: 'relative',
       }}
     >
-      <Box sx={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
+      <Box
+        sx={{
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          overflow: 'hidden',
+          zIndex: 0,
+          pointerEvents: 'none',
+        }}
+      >
         <BlueprintGridBackground />
-        <ParallaxGlow top="5%" origin="50% 30%" color={alpha(ACCENT, 0.16)} blur={65} opacity={0.55} />
+        <ParallaxGlow
+          top="5%"
+          origin="50% 30%"
+          color={alpha(ACCENT, 0.16)}
+          blur={65}
+          opacity={0.55}
+        />
       </Box>
       <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, pb: 4, mt: '-100vh', position: 'relative' }}>
         <SectionTitle title={t('work.projects')} description={t('work.recent')} />
