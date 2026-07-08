@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Reveal from '@/components/ui/Reveal';
 import { useMediaQuery as useMatchMedia } from '@/hooks/useMediaQuery';
@@ -14,6 +14,8 @@ import ProjectRail from './ProjectRail';
 
 const PANEL_VH = 140;
 const OVERLAP_FRACTION = 0.55;
+const STICKY_TOP = 80;
+const JUMP_LOCK_MS = 700;
 
 function jumpToPanel(containerRef, index, total) {
   const el = containerRef.current;
@@ -37,10 +39,49 @@ export default function ProjectsStory({ projects }) {
     offset: ['start start', 'end end'],
   });
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeIndexRef = useRef(activeIndex);
+  const lockedRef = useRef(false);
+  const unlockTimerRef = useRef(null);
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     setActiveIndex(Math.min(projects.length - 1, Math.max(0, Math.floor(v * projects.length))));
   });
+
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  useEffect(() => {
+    if (simple) return undefined;
+
+    function onWheel(e) {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const pinned = rect.top <= STICKY_TOP && rect.bottom > window.innerHeight;
+      if (!pinned) return;
+
+      const direction = e.deltaY > 0 ? 1 : -1;
+      const targetIndex = activeIndexRef.current + direction;
+      if (targetIndex < 0 || targetIndex > projects.length - 1) return;
+
+      e.preventDefault();
+      if (lockedRef.current) return;
+
+      lockedRef.current = true;
+      jumpToPanel(containerRef, targetIndex, projects.length);
+      window.clearTimeout(unlockTimerRef.current);
+      unlockTimerRef.current = window.setTimeout(() => {
+        lockedRef.current = false;
+      }, JUMP_LOCK_MS);
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      window.removeEventListener('wheel', onWheel);
+      window.clearTimeout(unlockTimerRef.current);
+    };
+  }, [simple, projects.length]);
 
   if (simple) {
     return (
@@ -59,7 +100,14 @@ export default function ProjectsStory({ projects }) {
       ref={containerRef}
       sx={{ position: 'relative', height: `${projects.length * PANEL_VH}vh` }}
     >
-      <Box sx={{ position: 'sticky', top: 80, height: 'calc(100vh - 80px)', overflow: 'hidden' }}>
+      <Box
+        sx={{
+          position: 'sticky',
+          top: STICKY_TOP,
+          height: `calc(100vh - ${STICKY_TOP}px)`,
+          overflow: 'hidden',
+        }}
+      >
         {projects.map((project, i) => (
           <ProjectPanel
             key={project.key}
