@@ -160,6 +160,7 @@ const Skills = () => {
                 justifyContent: 'center',
                 py: { xs: 4, md: 6 },
                 position: 'relative',
+                overflowX: 'hidden',
             }}
         >
             <CircuitBackground />

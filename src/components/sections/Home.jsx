@@ -32,6 +32,7 @@ const Home = () => {
         alignItems: 'center',
         py: { xs: 4, md: 0 },
         position: 'relative',
+        overflowX: 'hidden',
       }}
     >
       <ParallaxGlow top="10%" left="40%" origin="45% 40%" size={700} color="rgba(236,72,153,0.18)" blur={80} opacity={0.5} />

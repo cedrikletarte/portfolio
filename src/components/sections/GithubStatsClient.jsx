@@ -71,6 +71,7 @@ const GithubStatsClient = ({ stats, username }) => {
         alignItems: 'center',
         py: { xs: 4, md: 0 },
         position: 'relative',
+        overflowX: 'hidden',
       }}
     >
       <OrbitBackground />

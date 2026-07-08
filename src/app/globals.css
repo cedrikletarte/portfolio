@@ -20,6 +20,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  overflow-x: clip; /* clip (not hidden) avoids the overflow-y:auto coupling that turns html/body into a scroll container and breaks position:sticky */
 }
 
 @theme inline {
@@ -41,6 +42,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   background-color: #0A192F !important; /* Set the background color to transparent */
+  overflow-x: clip; /* clip (not hidden) avoids the overflow-y:auto coupling that turns html/body into a scroll container and breaks position:sticky */
 }
 
 
@@ -102,11 +104,7 @@ body {
   .border-effect:hover::after {
     width: 50%;
   }
-  
 
-  html {
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-  }
 
 /* Thin styled scrollbar */
 body::-webkit-scrollbar {

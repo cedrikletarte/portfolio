@@ -22,6 +22,7 @@ const About = () => {
                 py: { xs: 4, md: 8 },
                 px: { xs: 2, md: 4 },
                 position: 'relative',
+                overflowX: 'hidden',
             }}
             name="about"
         >
