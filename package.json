@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-next-app",
+  "name": "portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -31,13 +31,13 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "26.1.0",
+    "@types/node": "26.1.1",
     "@types/react": "19",
     "@types/react-dom": "19",
-    "eslint": "9.39.4",
+    "eslint": "^9.39.4",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "4.3.2",
-    "typescript": "6.0.3"
+    "typescript": "^6.0.3"
   },
   "browserslist": [
     "defaults",
