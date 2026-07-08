@@ -70,11 +70,13 @@ export async function fetchGithubStats(username: string): Promise<GithubStats | 
       avatarUrl: `${user.avatar_url}&s=80`,
       profileUrl: user.html_url,
       publicRepos: user.public_repos,
-      memberSince: new Date(user.created_at).getFullYear(),
+      // getUTCFullYear, not getFullYear: created_at is a UTC timestamp, and
+      // in a negative-UTC-offset timezone, getFullYear() on a Jan 1 UTC
+      // date rolls back to Dec 31 of the previous year.
+      memberSince: new Date(user.created_at).getUTCFullYear(),
       topLanguages,
     };
   } catch {
     return null;
   }
 }
-

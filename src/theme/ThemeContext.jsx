@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
@@ -38,7 +38,7 @@ export function CustomThemeProvider({ children }) {
           ...(mode === 'dark' ? { text: { primary: '#e2e8f0' } } : {}),
         },
       }),
-    [mode]
+    [mode],
   );
 
   const toggleTheme = () => setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
