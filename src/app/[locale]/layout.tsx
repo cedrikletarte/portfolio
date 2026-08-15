@@ -52,6 +52,9 @@ export async function generateMetadata({
       description,
       images: ['/opengraph-image'],
     },
+    verification: {
+      google: 'XS5h2itFlD6wPP6b0rmWS5jMFvjtgcFpRXPw-tJByr4',
+    },
   };
 }
 

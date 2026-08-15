@@ -105,7 +105,7 @@
   "website": {
     "title": "Portfolio",
     "tagline": "Création d'une page web portfolio",
-    "description": "Portfolio construit avec Next.js, TypeScript et Material UI. Supporte la localisation français/anglais, le mode sombre/clair, et est déployé via Docker avec un pipeline CI/CD GitLab. Ce portfolio est lui-même une démonstration de mes compétences front-end et DevOps.",
+    "description": "Portfolio construit avec Next.js, TypeScript et Material UI. Supporte la localisation français/anglais, le mode sombre/clair, et est déployé via Docker avec un pipeline CI/CD GitLab.",
     "highlights": [
       {
         "title": "Stack",
