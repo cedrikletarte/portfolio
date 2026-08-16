@@ -1,4 +1,5 @@
 import { routing } from '@/i18n/routing';
+import { SITE_URL } from '@/lib/site';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { Raleway } from 'next/font/google';
@@ -11,8 +12,6 @@ const raleway = Raleway({
   display: 'swap',
   variable: '--font-raleway',
 });
-
-const SITE_URL = 'https://www.cedrikletarte.com';
 
 export async function generateMetadata({
   params,
