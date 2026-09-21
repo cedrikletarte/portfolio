@@ -8,6 +8,7 @@ variables:
 stages:
   - test
   - build
+  - scan
   - deploy
 
 test-job:
@@ -36,6 +37,8 @@ build-job:
   script:
     - docker build -f /opt/Dockerfile -t "${IMAGE_TAGGED_NAME}" --no-cache --network=host .
   rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
     - if: $CI_COMMIT_BRANCH == "master" && $CI_PROJECT_ID == "1"
 
 deploy-job:
@@ -49,4 +52,45 @@ deploy-job:
     - docker compose -f /opt/docker-compose.yml down || true
     - docker compose -f /opt/docker-compose.yml up -d
   rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
     - if: $CI_COMMIT_BRANCH == "master" && $CI_PROJECT_ID == "1"
+
+# --- Security checks -------------------------------------------------------------------------------
+# They run on every master pipeline (informational: a finding does not block the deploy) and on a
+# weekly scheduled pipeline (CI/CD > Schedules, target branch master), where a finding fails the
+# pipeline so that the GitLab -> n8n webhook sends a FAILED notification to Discord.
+
+dependency-audit:
+  stage: scan
+  image: node:lts-alpine
+  script:
+    # reads package-lock.json only, nothing to install; devDependencies are not shipped to production
+    - npm audit --omit=dev --audit-level=high
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $CI_PROJECT_ID == "1"
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_PROJECT_ID == "1"
+      allow_failure: true
+
+image-scan:
+  stage: scan
+  image:
+    name: aquasec/trivy:latest
+    entrypoint: [""]
+  # After a build the image is fresh; on a scheduled pipeline there is no build and the scan looks at the
+  # image that is currently deployed on the runner's Docker host.
+  needs:
+    - job: build-job
+      optional: true
+  variables:
+    TRIVY_CACHE_DIR: .trivycache
+  cache:
+    key: trivy-db
+    paths:
+      - .trivycache/
+  script:
+    - trivy image --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "${IMAGE_TAGGED_NAME}"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $CI_PROJECT_ID == "1"
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_PROJECT_ID == "1"
+      allow_failure: true
