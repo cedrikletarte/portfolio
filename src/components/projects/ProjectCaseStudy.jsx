@@ -17,6 +17,7 @@ import CTAButton from '@/components/ui/CTAButton';
 import ProjectPlaceholder from './ProjectPlaceholder';
 import { TILE_RADIUS } from './ProjectTile';
 import {
+  DIAGRAMS,
   FALLBACK_HIGHLIGHT_ICON,
   HEADER_ICONS,
   HIGHLIGHT_ICONS,
@@ -24,6 +25,8 @@ import {
 } from './projectVisuals';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
+// Gallery entry standing for the project's diagram (screenshots are URLs).
+const DIAGRAM = 'diagram';
 
 /**
  * Full details of a project, opened from its tile. Two columns on desktop
@@ -35,7 +38,12 @@ const FOCUSABLE = 'a[href], button:not([disabled])';
 export default function ProjectCaseStudy({ project, onClose }) {
   const t = useTranslations();
   const { key, accent, tags, images, repoUrl, liveUrl } = project;
-  const [current, setCurrent] = useState(images[0]);
+  const Diagram = DIAGRAMS[project.diagram];
+  // The diagram (when the project has one) leads the gallery.
+  const media = Diagram ? [DIAGRAM, ...images] : images;
+  const [current, setCurrent] = useState(media[0]);
+  const mediaLabel = (item) =>
+    item === DIAGRAM ? t('work.diagram') : t('work.screenshot', { n: images.indexOf(item) + 1 });
   const dialogRef = useRef(null);
   const closeRef = useRef(null);
   const highlights = t.raw(`${key}.highlights`) ?? [];
@@ -152,11 +160,13 @@ export default function ProjectCaseStudy({ project, onClose }) {
                 border: `1px solid ${accent}40`,
               }}
             >
-              {current ? (
+              {current === DIAGRAM ? (
+                <Diagram />
+              ) : current ? (
                 <Image
                   key={current}
                   src={current}
-                  alt={t('work.screenshot', { n: images.indexOf(current) + 1 })}
+                  alt={mediaLabel(current)}
                   fill
                   sizes="(max-width: 900px) 94vw, 640px"
                   style={{ objectFit: 'cover' }}
@@ -169,25 +179,25 @@ export default function ProjectCaseStudy({ project, onClose }) {
                 />
               )}
             </Box>
-            {images.length > 1 && (
+            {media.length > 1 && (
               <Box
                 component={motion.div}
                 {...reveal}
                 sx={{
                   display: 'grid',
-                  gridTemplateColumns: `repeat(${Math.min(images.length, 6)}, 1fr)`,
+                  gridTemplateColumns: 'repeat(6, 1fr)',
                   gap: 1,
                   mt: 1.5,
                 }}
               >
-                {images.map((src, i) => (
+                {media.map((item) => (
                   <Box
-                    key={src}
+                    key={item}
                     component="button"
                     type="button"
-                    onClick={() => setCurrent(src)}
-                    aria-label={t('work.screenshot', { n: i + 1 })}
-                    aria-pressed={src === current}
+                    onClick={() => setCurrent(item)}
+                    aria-label={mediaLabel(item)}
+                    aria-pressed={item === current}
                     sx={{
                       position: 'relative',
                       aspectRatio: '16 / 9',
@@ -195,13 +205,17 @@ export default function ProjectCaseStudy({ project, onClose }) {
                       borderRadius: 1.5,
                       overflow: 'hidden',
                       cursor: 'pointer',
-                      border: `2px solid ${src === current ? accent : 'transparent'}`,
-                      opacity: src === current ? 1 : 0.6,
+                      border: `2px solid ${item === current ? accent : 'transparent'}`,
+                      opacity: item === current ? 1 : 0.6,
                       transition: 'all .25s',
                       '&:hover, &:focus-visible': { opacity: 1 },
                     }}
                   >
-                    <Image src={src} alt="" fill sizes="110px" style={{ objectFit: 'cover' }} />
+                    {item === DIAGRAM ? (
+                      <Diagram animated={false} />
+                    ) : (
+                      <Image src={item} alt="" fill sizes="110px" style={{ objectFit: 'cover' }} />
+                    )}
                   </Box>
                 ))}
               </Box>

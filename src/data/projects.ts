@@ -5,6 +5,8 @@ export interface ProjectMeta {
   accent: string;
   tags: string[];
   images: string[];
+  // Shown before the screenshots (tile cover, first gallery item); see DIAGRAMS.
+  diagram?: 'homelab';
   repoUrl?: string;
   liveUrl?: string;
 }
@@ -20,15 +22,17 @@ export const projects: ProjectMeta[] = [
     key: 'server',
     accent: '#6fc2b0',
     repoUrl: 'https://github.com/cedrikletarte/homelab-infra',
+    diagram: 'homelab',
     tags: [
       'Docker',
+      'Ansible',
+      'GitLab CI',
       'Traefik',
-      'Crowdsec',
+      'CrowdSec',
       'Cloudflare',
       'WireGuard',
-      'Plex',
-      'Vaultwarden',
-      'Portainer',
+      'Renovate',
+      'n8n',
     ],
     images: ['/assets/screenshots/homarr.png'],
   },

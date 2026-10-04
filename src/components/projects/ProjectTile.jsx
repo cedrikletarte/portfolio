@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import ProjectPlaceholder from './ProjectPlaceholder';
+import { DIAGRAMS } from './projectVisuals';
 
 export const TILE_RADIUS = 20;
 const GALLERY_INTERVAL_MS = 1100;
@@ -26,10 +27,12 @@ const TILE_TAGS = 4;
 export default function ProjectTile({ project, index, area, sizes, onOpen }) {
   const t = useTranslations();
   const { key, accent, tags, images } = project;
+  // A project with a diagram shows it instead of its screenshots.
+  const Diagram = DIAGRAMS[project.diagram];
   const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
   const [hover, setHover] = useState(false);
   const [frame, setFrame] = useState(0);
-  const cycling = hover && !reduced && images.length > 1;
+  const cycling = hover && !reduced && !Diagram && images.length > 1;
 
   useEffect(() => {
     if (!cycling) return undefined;
@@ -77,7 +80,9 @@ export default function ProjectTile({ project, index, area, sizes, onOpen }) {
       }}
     >
       <motion.div layoutId={`project-media-${key}`} style={{ position: 'absolute', inset: 0 }}>
-        {images.length === 0 ? (
+        {Diagram ? (
+          <Diagram compact />
+        ) : images.length === 0 ? (
           <ProjectPlaceholder
             projectKey={key}
             accent={accent}

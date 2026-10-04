@@ -8,7 +8,8 @@
     "highlightsLabel": "Points forts",
     "screenshotComingSoon": "Capture d'écran à venir",
     "close": "Fermer",
-    "screenshot": "Capture {n}"
+    "screenshot": "Capture {n}",
+    "diagram": "Schéma d'architecture"
   },
   "home": {
     "hello": "Bonjour, mon nom est",
@@ -74,23 +75,40 @@
     "darkMode": "Mode sombre"
   },
   "server": {
-    "title": "Serveur multifonction",
-    "tagline": "Configuration d'un serveur multifonction",
-    "description": "Serveur Ubuntu auto-hébergé exécutant des services conteneurisés, avec sécurité renforcée, accès distant par VPN et maintenance entièrement automatisée.",
+    "title": "Homelab auto-hébergé",
+    "tagline": "Infrastructure as code et GitOps",
+    "description": "Serveur Ubuntu qui fait tourner plus de 30 services Docker (GitLab, Immich, Nextcloud, Plex, Vaultwarden… et ce portfolio), entièrement décrit en code : Ansible le reconstruit à partir d'une installation vierge.",
     "highlights": [
       {
-        "title": "Conteneurisation",
-        "desc": "Streaming, automatisation du contenu et gestion des mots de passe dans des conteneurs Docker administrés avec Portainer."
+        "title": "GitOps de bout en bout",
+        "desc": "Images épinglées, mises à jour par Renovate, validées en CI GitLab (gitleaks, shellcheck) puis déployées au merge."
       },
       {
-        "title": "Sécurité",
-        "desc": "Reverse-proxy Traefik en HTTPS, détection d'intrusion Crowdsec, IP masquée par Cloudflare et accès distant WireGuard."
+        "title": "Sécurité en profondeur",
+        "desc": "Tunnel Cloudflare, Traefik avec le WAF CrowdSec, pare-feu ufw, conteneurs durcis et VPN WireGuard."
       },
       {
-        "title": "Automatisation",
-        "desc": "Conteneurs et paquets Ubuntu (<b>unattended upgrades</b>) se mettent à jour sans intervention manuelle."
+        "title": "Auto-réparation",
+        "desc": "Des scripts relancent les conteneurs défaillants, réparent le VPN, surveillent les disques et chiffrent les sauvegardes, avec alertes Discord via n8n."
       }
-    ]
+    ],
+    "diagram": {
+      "aria": "Schéma d'architecture du homelab : les visiteurs passent par Cloudflare puis Traefik, filtré par CrowdSec, vers les stacks Docker du serveur Ubuntu ; l'accès distant passe par WireGuard ; Renovate, les merge requests et la CI GitLab déploient les mises à jour ; les scripts d'auto-réparation alertent sur Discord.",
+      "visitors": "Visiteurs",
+      "remote": "Accès distant",
+      "host": "Serveur Ubuntu",
+      "photos": "Photos",
+      "files": "Fichiers",
+      "media": "Multimédia",
+      "management": "Gestion",
+      "database": "Base de données",
+      "search": "Recherche",
+      "selfHealing": "Auto-réparation",
+      "selfHealingSub": "watchdogs · SMART · sauvegardes chiffrées",
+      "update": "mises à jour",
+      "deploy": "Déploiement",
+      "alerts": "alertes via n8n"
+    }
   },
   "website": {
     "title": "Portfolio",

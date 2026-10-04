@@ -8,7 +8,8 @@
     "highlightsLabel": "Highlights",
     "screenshotComingSoon": "Screenshot coming soon",
     "close": "Close",
-    "screenshot": "Screenshot {n}"
+    "screenshot": "Screenshot {n}",
+    "diagram": "Architecture diagram"
   },
   "home": {
     "hello": "Hello, my name is",
@@ -74,23 +75,40 @@
     "darkMode": "Dark mode"
   },
   "server": {
-    "title": "Multifunctional Server",
-    "tagline": "Multifunctional server setup",
-    "description": "Self-hosted Ubuntu server running containerized services, with hardened security, VPN remote access and fully automated maintenance.",
+    "title": "Self-hosted Homelab",
+    "tagline": "Infrastructure as code and GitOps",
+    "description": "Ubuntu server running 30+ Docker services (GitLab, Immich, Nextcloud, Plex, Vaultwarden… and this portfolio), described entirely as code: Ansible rebuilds it from a fresh install.",
     "highlights": [
       {
-        "title": "Containerization",
-        "desc": "Media streaming, content automation and password management in Docker containers managed with Portainer."
+        "title": "End-to-end GitOps",
+        "desc": "Pinned images, updates proposed by Renovate, checked in GitLab CI (gitleaks, shellcheck) and deployed on merge."
       },
       {
-        "title": "Security",
-        "desc": "Traefik reverse-proxy over HTTPS, Crowdsec intrusion detection, IP masked by Cloudflare and WireGuard remote access."
+        "title": "Defense in depth",
+        "desc": "Cloudflare tunnel, Traefik with the CrowdSec WAF, ufw firewall, hardened containers and WireGuard VPN."
       },
       {
-        "title": "Automation",
-        "desc": "Containers and Ubuntu packages (<b>unattended upgrades</b>) update themselves without manual intervention."
+        "title": "Self-healing",
+        "desc": "Scripts restart failing containers, repair the VPN, watch the disks and encrypt the backups, with Discord alerts through n8n."
       }
-    ]
+    ],
+    "diagram": {
+      "aria": "Homelab architecture diagram: visitors go through Cloudflare then Traefik, filtered by CrowdSec, to the Docker stacks of the Ubuntu server; remote access goes through WireGuard; Renovate, merge requests and GitLab CI deploy the updates; self-healing scripts send alerts to Discord.",
+      "visitors": "Visitors",
+      "remote": "Remote access",
+      "host": "Ubuntu server",
+      "photos": "Photos",
+      "files": "Files",
+      "media": "Media",
+      "management": "Management",
+      "database": "Database",
+      "search": "Search",
+      "selfHealing": "Self-healing",
+      "selfHealingSub": "watchdogs · SMART · encrypted backups",
+      "update": "updates",
+      "deploy": "Deploy",
+      "alerts": "alerts via n8n"
+    }
   },
   "website": {
     "title": "Portfolio",
