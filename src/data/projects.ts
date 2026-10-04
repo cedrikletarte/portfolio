@@ -7,6 +7,9 @@ export interface ProjectMeta {
   images: string[];
   // Shown before the screenshots (tile cover, first gallery item); see DIAGRAMS.
   diagram?: 'homelab';
+  // Muted demo clip: played on hover on the tile, leads the gallery after
+  // the diagram. WebM for most browsers, MP4 for Safari; poster shown first.
+  video?: { webm: string; mp4: string; poster: string };
   repoUrl?: string;
   liveUrl?: string;
 }
@@ -66,6 +69,11 @@ export const projects: ProjectMeta[] = [
     key: 'website',
     accent: '#ec4899',
     repoUrl: 'https://github.com/cedrikletarte/portfolio',
+    video: {
+      webm: '/assets/videos/portfolio-demo.webm',
+      mp4: '/assets/videos/portfolio-demo.mp4',
+      poster: '/assets/videos/portfolio-demo-poster.webp',
+    },
     tags: ['Next.js', 'TypeScript', 'MUI', 'GSAP', 'Docker', 'GitLab CI/CD'],
     images: ['/assets/screenshots/thumbnail.png'],
   },

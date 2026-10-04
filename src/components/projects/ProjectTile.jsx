@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import ProjectPlaceholder from './ProjectPlaceholder';
+import ProjectVideo from './ProjectVideo';
 import { DIAGRAMS } from './projectVisuals';
 
 export const TILE_RADIUS = 20;
@@ -19,20 +20,23 @@ const GALLERY_INTERVAL_MS = 1100;
 const TILE_TAGS = 4;
 
 /**
- * One project in the grid: cover screenshot, number, title and tags. On
- * hover the cover zooms, a spotlight follows the cursor and multi-shot
- * projects flip through their gallery. The tile shares its layoutId with
+ * One project in the grid: cover (diagram, demo video or screenshot),
+ * number, title and tags. On hover the cover zooms, a spotlight follows the
+ * cursor, demo videos play and multi-shot projects flip through their
+ * gallery. The tile shares its layoutId with
  * ProjectCaseStudy, so clicking it morphs the tile into the case study.
  */
 export default function ProjectTile({ project, index, area, sizes, onOpen }) {
   const t = useTranslations();
   const { key, accent, tags, images } = project;
-  // A project with a diagram shows it instead of its screenshots.
+  // A diagram, or else a demo video (played on hover), replaces the
+  // screenshots on the tile.
   const Diagram = DIAGRAMS[project.diagram];
+  const { video } = project;
   const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
   const [hover, setHover] = useState(false);
   const [frame, setFrame] = useState(0);
-  const cycling = hover && !reduced && !Diagram && images.length > 1;
+  const cycling = hover && !reduced && !Diagram && !video && images.length > 1;
 
   useEffect(() => {
     if (!cycling) return undefined;
@@ -82,6 +86,9 @@ export default function ProjectTile({ project, index, area, sizes, onOpen }) {
       <motion.div layoutId={`project-media-${key}`} style={{ position: 'absolute', inset: 0 }}>
         {Diagram ? (
           <Diagram compact />
+        ) : video ? (
+          // Nothing is downloaded until the first hover.
+          <ProjectVideo video={video} playing={hover && !reduced} preload="none" />
         ) : images.length === 0 ? (
           <ProjectPlaceholder
             projectKey={key}

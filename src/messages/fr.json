@@ -9,7 +9,8 @@
     "screenshotComingSoon": "Capture d'écran à venir",
     "close": "Fermer",
     "screenshot": "Capture {n}",
-    "diagram": "Schéma d'architecture"
+    "diagram": "Schéma d'architecture",
+    "video": "Démo vidéo"
   },
   "home": {
     "hello": "Bonjour, mon nom est",

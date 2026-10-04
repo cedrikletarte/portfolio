@@ -9,7 +9,8 @@
     "screenshotComingSoon": "Screenshot coming soon",
     "close": "Close",
     "screenshot": "Screenshot {n}",
-    "diagram": "Architecture diagram"
+    "diagram": "Architecture diagram",
+    "video": "Video demo"
   },
   "home": {
     "hello": "Hello, my name is",

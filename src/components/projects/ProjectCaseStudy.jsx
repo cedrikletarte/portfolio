@@ -14,7 +14,9 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 import CTAButton from '@/components/ui/CTAButton';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import ProjectPlaceholder from './ProjectPlaceholder';
+import ProjectVideo from './ProjectVideo';
 import { TILE_RADIUS } from './ProjectTile';
 import {
   DIAGRAMS,
@@ -25,8 +27,6 @@ import {
 } from './projectVisuals';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
-// Gallery entry standing for the project's diagram (screenshots are URLs).
-const DIAGRAM = 'diagram';
 
 /**
  * Full details of a project, opened from its tile. Two columns on desktop
@@ -39,11 +39,22 @@ export default function ProjectCaseStudy({ project, onClose }) {
   const t = useTranslations();
   const { key, accent, tags, images, repoUrl, liveUrl } = project;
   const Diagram = DIAGRAMS[project.diagram];
-  // The diagram (when the project has one) leads the gallery.
-  const media = Diagram ? [DIAGRAM, ...images] : images;
-  const [current, setCurrent] = useState(media[0]);
-  const mediaLabel = (item) =>
-    item === DIAGRAM ? t('work.diagram') : t('work.screenshot', { n: images.indexOf(item) + 1 });
+  const { video } = project;
+  const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
+  // Gallery: the diagram and the video (when the project has them) lead,
+  // then the screenshots.
+  const media = [
+    ...(Diagram ? [{ id: 'diagram', kind: 'diagram', label: t('work.diagram') }] : []),
+    ...(video ? [{ id: 'video', kind: 'video', label: t('work.video') }] : []),
+    ...images.map((src, i) => ({
+      id: src,
+      kind: 'image',
+      src,
+      label: t('work.screenshot', { n: i + 1 }),
+    })),
+  ];
+  const [currentId, setCurrentId] = useState(media[0]?.id);
+  const current = media.find((item) => item.id === currentId);
   const dialogRef = useRef(null);
   const closeRef = useRef(null);
   const highlights = t.raw(`${key}.highlights`) ?? [];
@@ -160,13 +171,22 @@ export default function ProjectCaseStudy({ project, onClose }) {
                 border: `1px solid ${accent}40`,
               }}
             >
-              {current === DIAGRAM ? (
+              {current?.kind === 'diagram' ? (
                 <Diagram />
+              ) : current?.kind === 'video' ? (
+                // Under reduced motion the clip waits for the visitor (controls).
+                <ProjectVideo
+                  video={video}
+                  playing={!reduced}
+                  controls={reduced}
+                  label={current.label}
+                  preload="auto"
+                />
               ) : current ? (
                 <Image
-                  key={current}
-                  src={current}
-                  alt={mediaLabel(current)}
+                  key={current.src}
+                  src={current.src}
+                  alt={current.label}
                   fill
                   sizes="(max-width: 900px) 94vw, 640px"
                   style={{ objectFit: 'cover' }}
@@ -192,12 +212,12 @@ export default function ProjectCaseStudy({ project, onClose }) {
               >
                 {media.map((item) => (
                   <Box
-                    key={item}
+                    key={item.id}
                     component="button"
                     type="button"
-                    onClick={() => setCurrent(item)}
-                    aria-label={mediaLabel(item)}
-                    aria-pressed={item === current}
+                    onClick={() => setCurrentId(item.id)}
+                    aria-label={item.label}
+                    aria-pressed={item.id === currentId}
                     sx={{
                       position: 'relative',
                       aspectRatio: '16 / 9',
@@ -205,16 +225,47 @@ export default function ProjectCaseStudy({ project, onClose }) {
                       borderRadius: 1.5,
                       overflow: 'hidden',
                       cursor: 'pointer',
-                      border: `2px solid ${item === current ? accent : 'transparent'}`,
-                      opacity: item === current ? 1 : 0.6,
+                      border: `2px solid ${item.id === currentId ? accent : 'transparent'}`,
+                      opacity: item.id === currentId ? 1 : 0.6,
                       transition: 'all .25s',
                       '&:hover, &:focus-visible': { opacity: 1 },
                     }}
                   >
-                    {item === DIAGRAM ? (
-                      <Diagram animated={false} />
-                    ) : (
-                      <Image src={item} alt="" fill sizes="110px" style={{ objectFit: 'cover' }} />
+                    {item.kind === 'diagram' && <Diagram animated={false} />}
+                    {item.kind === 'video' && (
+                      <>
+                        <Image
+                          src={video.poster}
+                          alt=""
+                          fill
+                          sizes="110px"
+                          style={{ objectFit: 'cover' }}
+                        />
+                        <Box
+                          component="span"
+                          aria-hidden
+                          sx={{
+                            position: 'absolute',
+                            inset: 0,
+                            display: 'grid',
+                            placeItems: 'center',
+                            color: '#fff',
+                            fontSize: 18,
+                            background: 'rgba(0,0,0,0.35)',
+                          }}
+                        >
+                          ▶
+                        </Box>
+                      </>
+                    )}
+                    {item.kind === 'image' && (
+                      <Image
+                        src={item.src}
+                        alt=""
+                        fill
+                        sizes="110px"
+                        style={{ objectFit: 'cover' }}
+                      />
                     )}
                   </Box>
                 ))}
