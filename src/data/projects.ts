@@ -56,6 +56,11 @@ export const projects: ProjectMeta[] = [
     key: 'earth',
     accent: '#22d3ee',
     repoUrl: 'https://github.com/cedrikletarte/earth',
+    video: {
+      webm: '/assets/videos/earth-demo.webm',
+      mp4: '/assets/videos/earth-demo.mp4',
+      poster: '/assets/videos/earth-demo-poster.webp',
+    },
     tags: ['Next.js', 'CesiumJS', 'Nominatim', 'TileServer-GL'],
     images: ['/assets/screenshots/earth.png'],
   },
