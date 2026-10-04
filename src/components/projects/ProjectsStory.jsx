@@ -5,6 +5,8 @@ import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
+import { useLenis } from 'lenis/react';
+import Snap from 'lenis/snap';
 import { useEffect, useRef, useState } from 'react';
 
 import Reveal from '@/components/ui/Reveal';
@@ -15,16 +17,13 @@ import ProjectRail from './ProjectRail';
 const PANEL_VH = 140;
 const OVERLAP_FRACTION = 0.55;
 const STICKY_TOP = 80;
-const JUMP_LOCK_MS = 700;
 
-function jumpToPanel(containerRef, index, total) {
-  const el = containerRef.current;
-  if (!el) return;
-  const rect = el.getBoundingClientRect();
-  const containerTop = rect.top + window.scrollY;
-  const scrollableRange = rect.height - window.innerHeight;
-  const target = containerTop + ((index + 0.5) / total) * scrollableRange;
-  window.scrollTo({ top: target, behavior: 'smooth' });
+// Scroll offset (inside the tall container) where panel `index` sits fully
+// in view: the middle of its slice of the pinned scroll range. The range is
+// the container height minus one viewport, matching useScroll's
+// ['start start', 'end end'] offsets.
+function panelAnchorTop(index, total) {
+  return `calc(${(index + 0.5) / total} * (${total * PANEL_VH}vh - 100vh))`;
 }
 
 export default function ProjectsStory({ projects }) {
@@ -39,49 +38,37 @@ export default function ProjectsStory({ projects }) {
     offset: ['start start', 'end end'],
   });
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeIndexRef = useRef(activeIndex);
-  const lockedRef = useRef(false);
-  const unlockTimerRef = useRef(null);
+  const lenis = useLenis();
+  const anchorsRef = useRef([]);
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     setActiveIndex(Math.min(projects.length - 1, Math.max(0, Math.floor(v * projects.length))));
   });
 
+  // Once the user stops scrolling near a panel, Lenis eases the page onto
+  // that panel's anchor. Unlike hijacking the wheel, this keeps trackpad
+  // inertia intact and lets the user scroll out of the section freely.
   useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
-
-  useEffect(() => {
-    if (simple) return undefined;
-
-    function onWheel(e) {
-      const el = containerRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const pinned = rect.top <= STICKY_TOP && rect.bottom > window.innerHeight;
-      if (!pinned) return;
-
-      const direction = e.deltaY > 0 ? 1 : -1;
-      const targetIndex = activeIndexRef.current + direction;
-      if (targetIndex < 0 || targetIndex > projects.length - 1) return;
-
-      e.preventDefault();
-      if (lockedRef.current) return;
-
-      lockedRef.current = true;
-      jumpToPanel(containerRef, targetIndex, projects.length);
-      window.clearTimeout(unlockTimerRef.current);
-      unlockTimerRef.current = window.setTimeout(() => {
-        lockedRef.current = false;
-      }, JUMP_LOCK_MS);
-    }
-
-    window.addEventListener('wheel', onWheel, { passive: false });
+    if (simple || !lenis) return undefined;
+    const snap = new Snap(lenis, {
+      type: 'proximity',
+      distanceThreshold: '40%',
+      debounce: 300,
+      duration: 0.9,
+    });
+    snap.addElements(anchorsRef.current.filter(Boolean));
     return () => {
-      window.removeEventListener('wheel', onWheel);
-      window.clearTimeout(unlockTimerRef.current);
+      snap.stop();
+      snap.destroy();
     };
-  }, [simple, projects.length]);
+  }, [simple, lenis, projects.length]);
+
+  const jumpToPanel = (index) => {
+    const anchor = anchorsRef.current[index];
+    if (!anchor) return;
+    if (lenis) lenis.scrollTo(anchor, { duration: 1 });
+    else anchor.scrollIntoView({ behavior: 'smooth' });
+  };
 
   if (simple) {
     return (
@@ -100,6 +87,16 @@ export default function ProjectsStory({ projects }) {
       ref={containerRef}
       sx={{ position: 'relative', height: `${projects.length * PANEL_VH}vh` }}
     >
+      {projects.map((project, i) => (
+        <Box
+          key={project.key}
+          aria-hidden
+          ref={(el) => {
+            anchorsRef.current[i] = el;
+          }}
+          sx={{ position: 'absolute', left: 0, top: panelAnchorTop(i, projects.length), height: 0 }}
+        />
+      ))}
       <Box
         sx={{
           position: 'sticky',
@@ -120,11 +117,7 @@ export default function ProjectsStory({ projects }) {
             active={Math.abs(i - activeIndex) <= 1}
           />
         ))}
-        <ProjectRail
-          projects={projects}
-          activeIndex={activeIndex}
-          onJump={(i) => jumpToPanel(containerRef, i, projects.length)}
-        />
+        <ProjectRail projects={projects} activeIndex={activeIndex} onJump={jumpToPanel} />
       </Box>
     </Box>
   );

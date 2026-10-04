@@ -65,8 +65,8 @@ export default function MobileDrawer({ open, onClose, navLinks, scrollTo }) {
           {/* Theme toggle in drawer */}
           <ListItem disablePadding>
             <ListItemButton
-              onClick={() => {
-                toggleTheme();
+              onClick={(event) => {
+                toggleTheme(event);
                 onClose();
               }}
               sx={{

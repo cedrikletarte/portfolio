@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { scroller } from 'react-scroll';
+import { useScrollToSection } from '../../hooks/useScrollToSection';
 import { useThemeMode } from '../../theme/ThemeContext';
 import MobileDrawer from './MobileDrawer';
 import SocialLinks from './SocialLinks';
@@ -37,13 +37,7 @@ const Navbar = () => {
   }, []);
 
   // Function to scroll smoothly to a section by name
-  const scrollTo = (elementName) => {
-    scroller.scrollTo(elementName, {
-      duration: 800,
-      delay: 0,
-      smooth: 'easeInOutQuart',
-    });
-  };
+  const scrollTo = useScrollToSection();
 
   // Navigation links for sections
   const navLinks = [

@@ -24,8 +24,8 @@ import TranslateIcon from '@mui/icons-material/Translate';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
-import { scroller } from 'react-scroll';
 import { useCvDownload } from '../../hooks/useCvDownload';
+import { useScrollToSection } from '../../hooks/useScrollToSection';
 import { useThemeMode } from '../../theme/ThemeContext';
 
 const CommandPalette = () => {
@@ -52,9 +52,7 @@ const CommandPalette = () => {
     setActiveIndex(0);
   }
 
-  const scrollTo = (section) => {
-    scroller.scrollTo(section, { duration: 800, delay: 0, smooth: 'easeInOutQuart' });
-  };
+  const scrollTo = useScrollToSection();
 
   const nextLocale = locale === 'fr' ? 'EN' : 'FR';
 
@@ -109,7 +107,7 @@ const CommandPalette = () => {
         },
       },
     ],
-    [t, locale, nextLocale, toggleTheme, router, download],
+    [t, locale, nextLocale, toggleTheme, router, download, scrollTo],
   );
 
   const normalize = (str) => str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();

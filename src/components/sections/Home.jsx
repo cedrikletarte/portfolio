@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 import Text from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
-import { scroller } from 'react-scroll';
 import { ReactTyped } from 'react-typed';
+import { useScrollToSection } from '../../hooks/useScrollToSection';
 import CTAButton from '../ui/CTAButton';
 import HeroCanvas from '../ui/HeroCanvas';
 import ParallaxGlow from '../ui/ParallaxGlow';
@@ -16,13 +16,7 @@ const Home = () => {
   const theme = useTheme();
   const ACCENT = theme.palette.primary.main;
 
-  const scrollTo = (elementName) => {
-    scroller.scrollTo(elementName, {
-      duration: 800,
-      delay: 0,
-      smooth: 'easeInOutQuart',
-    });
-  };
+  const scrollTo = useScrollToSection();
 
   return (
     <Box
