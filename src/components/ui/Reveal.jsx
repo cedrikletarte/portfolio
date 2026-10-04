@@ -49,11 +49,18 @@ export default function Reveal({
   };
 
   const initial = reduced ? { opacity: 0 } : { opacity: 0, ...axisMap[direction], scale: 0.98 };
-  const animate = inView
-    ? reduced
-      ? { opacity: 1 }
-      : { opacity: 1, x: 0, y: 0, scale: 1 }
-    : initial;
+  // Always settle on the resting transform: `reduced` is false during SSR and
+  // hydration, so the offset from `initial` is already applied by the time
+  // the media query reports reduced motion. Under reduced motion that offset
+  // snaps back instantly (see transition) instead of animating.
+  const animate = inView ? { opacity: 1, x: 0, y: 0, scale: 1 } : initial;
+  const snap = { duration: 0 };
+  const transition = {
+    duration,
+    delay,
+    ease: [0.25, 0.1, 0.25, 1],
+    ...(reduced && { x: snap, y: snap, scale: snap }),
+  };
 
   return (
     <motion.div
@@ -61,7 +68,7 @@ export default function Reveal({
       as={Tag}
       initial={initial}
       animate={animate}
-      transition={{ duration, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={transition}
       style={{ willChange: 'opacity, transform', ...style }}
       {...rest}
     >
