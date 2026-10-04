@@ -22,8 +22,8 @@ const TILE_TAGS = 4;
 /**
  * One project in the grid: cover (diagram, demo video or screenshot),
  * number, title and tags. On hover the cover zooms, a spotlight follows the
- * cursor, demo videos play and multi-shot projects flip through their
- * gallery. The tile shares its layoutId with
+ * cursor, demo videos play, diagrams start their traffic and multi-shot
+ * projects flip through their gallery. The tile shares its layoutId with
  * ProjectCaseStudy, so clicking it morphs the tile into the case study.
  */
 export default function ProjectTile({ project, index, area, sizes, onOpen }) {
@@ -85,7 +85,7 @@ export default function ProjectTile({ project, index, area, sizes, onOpen }) {
     >
       <motion.div layoutId={`project-media-${key}`} style={{ position: 'absolute', inset: 0 }}>
         {Diagram ? (
-          <Diagram compact />
+          <Diagram compact decorative playing={hover} />
         ) : video ? (
           // Nothing is downloaded until the first hover.
           <ProjectVideo video={video} playing={hover && !reduced} preload="none" />

@@ -8,12 +8,13 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 /**
  * Architecture of the homelab (homelab-infra repo), drawn as SVG in a 16:10
  * viewBox so it fills the same frames as a screenshot. Links draw in when the
- * diagram enters the viewport, then packets travel along them: web traffic
+ * diagram enters the viewport; while `playing`, packets travel along them: web traffic
  * through Cloudflare and Traefik, a request stopped by CrowdSec, the
  * WireGuard VPN, the GitOps deploy loop and the alerts sent to Discord.
  * Static under prefers-reduced-motion, or with `animated={false}`
  * (thumbnails). `compact` drops the bottom row (GitOps and alerts), which a
- * tile would cover with its title.
+ * tile would cover with its title. `decorative` hides it from assistive
+ * technology, for places that already name the project (tile, thumbnail).
  */
 
 const COLORS = {
@@ -44,45 +45,53 @@ const LINKS = [
   { d: 'M975 158 V518', color: COLORS.web },
   ...STACK_Y.map((y) => ({ d: `M975 ${y + H / 2} H1010`, color: COLORS.web })),
   ...STACK_Y.map((y) => ({ d: `M1250 ${y + H / 2} H1290`, color: COLORS.web })),
-  { d: 'M815 280 V340', color: COLORS.blocked },
+  { d: 'M815 276 V340', color: COLORS.blocked },
   { d: 'M260 640 H690', color: COLORS.vpn },
   { d: 'M940 640 H975 V518', color: COLORS.vpn },
   { band: true, d: 'M280 905 H330', color: COLORS.gitops },
   { band: true, d: 'M570 905 H620', color: COLORS.gitops },
   { band: true, d: 'M860 905 H910', color: COLORS.gitops },
   { band: true, d: 'M1030 860 V800', color: COLORS.gitops },
-  { band: true, d: 'M1410 740 V860', color: COLORS.alert },
+  { band: true, d: 'M1410 736 V860', color: COLORS.alert },
 ];
 
 const PACKETS = [
   {
-    d: 'M150 300 H460 C635 300 635 230 815 230 H975 V158 H1130',
+    d: 'M150 300 H580 C635 300 635 230 690 230 H815 H975 V158 H1130',
     color: COLORS.web,
     dur: 3.2,
     begin: 0,
   },
   {
-    d: 'M150 300 H460 C635 300 635 230 815 230 H975 V278 H1410',
+    d: 'M150 300 H580 C635 300 635 230 690 230 H815 H975 V278 H1410',
     color: COLORS.web,
     dur: 3.6,
     begin: 1.4,
   },
-  { d: 'M150 300 H460 C635 300 635 230 815 230 V390', color: COLORS.blocked, dur: 4, begin: 2.2 },
+  {
+    d: 'M150 300 H580 C635 300 635 230 690 230 H815 V390',
+    color: COLORS.blocked,
+    dur: 4,
+    begin: 2.2,
+  },
   { d: 'M150 640 H815 H975 V398 H1130', color: COLORS.vpn, dur: 3.8, begin: 0.8 },
-  { band: true, d: 'M160 905 H1030 V770', color: COLORS.gitops, dur: 4.4, begin: 0.4 },
+  { band: true, d: 'M160 905 H1030 V800', color: COLORS.gitops, dur: 4.4, begin: 0.4 },
   { band: true, d: 'M1410 690 V905', color: COLORS.alert, dur: 2.6, begin: 1.8 },
 ];
 
 function Node({ x, y, w = W, h = H, label, sub, color = COLORS.stroke, highlight = false }) {
   return (
     <g>
+      {/* Opaque base: packets travel under the nodes and must vanish there,
+          including under the translucent tint of a highlighted node. */}
+      <rect x={x} y={y} width={w} height={h} rx={18} fill={COLORS.node} />
       <rect
         x={x}
         y={y}
         width={w}
         height={h}
         rx={18}
-        fill={highlight ? `${color}26` : COLORS.node}
+        fill={highlight ? `${color}26` : 'none'}
         stroke={color}
         strokeWidth={highlight ? 3 : 2}
       />
@@ -105,10 +114,18 @@ function Node({ x, y, w = W, h = H, label, sub, color = COLORS.stroke, highlight
   );
 }
 
-export default function HomelabDiagram({ animated = true, compact = false }) {
+export default function HomelabDiagram({
+  animated = true,
+  playing = true,
+  compact = false,
+  decorative = false,
+}) {
   const t = useTranslations('server.diagram');
   const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
   const live = animated && !reduced;
+  // Packets only travel while `playing` (the tile ties it to its hover); the
+  // links still draw in once either way.
+  const flowing = live && playing;
   const links = compact ? LINKS.filter((l) => !l.band) : LINKS;
   const packets = compact ? PACKETS.filter((p) => !p.band) : PACKETS;
 
@@ -126,8 +143,9 @@ export default function HomelabDiagram({ animated = true, compact = false }) {
   return (
     <svg
       viewBox={compact ? '0 0 1600 830' : '0 0 1600 1000'}
-      role="img"
-      aria-label={t('aria')}
+      role={decorative ? undefined : 'img'}
+      aria-label={decorative ? undefined : t('aria')}
+      aria-hidden={decorative || undefined}
       preserveAspectRatio="xMidYMid meet"
       style={{
         display: 'block',
@@ -190,7 +208,7 @@ export default function HomelabDiagram({ animated = true, compact = false }) {
         />
       ))}
 
-      {live &&
+      {flowing &&
         packets.map((p) => (
           <circle key={p.d} r={8} fill={p.color} opacity={0}>
             <animateMotion
@@ -223,7 +241,7 @@ export default function HomelabDiagram({ animated = true, compact = false }) {
       />
       <g>
         <Node x={690} y={340} w={250} label="CrowdSec" sub="WAF · IPS" color={COLORS.blocked} />
-        {live && (
+        {flowing && (
           // Flashes when the red packet reaches it: the request is blocked.
           <rect x={690} y={340} width={250} height={H} rx={18} fill={COLORS.blocked} opacity={0}>
             <animate

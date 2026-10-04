@@ -231,7 +231,7 @@ export default function ProjectCaseStudy({ project, onClose }) {
                       '&:hover, &:focus-visible': { opacity: 1 },
                     }}
                   >
-                    {item.kind === 'diagram' && <Diagram animated={false} />}
+                    {item.kind === 'diagram' && <Diagram animated={false} decorative />}
                     {item.kind === 'video' && (
                       <>
                         <Image
