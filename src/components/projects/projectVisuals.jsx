@@ -1,7 +1,6 @@
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CodeIcon from '@mui/icons-material/Code';
 import DnsIcon from '@mui/icons-material/Dns';
 import ExploreIcon from '@mui/icons-material/Explore';
 import FunctionsIcon from '@mui/icons-material/Functions';
@@ -18,7 +17,6 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import TranslateIcon from '@mui/icons-material/Translate';
-import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 
 export const HEADER_ICONS = {
   server: DnsIcon,
@@ -30,10 +28,10 @@ export const HEADER_ICONS = {
 
 export const HIGHLIGHT_ICONS = {
   server: [LayersIcon, SecurityIcon, AutoAwesomeMotionIcon],
-  website: [CodeIcon, ViewCarouselIcon, AutoAwesomeIcon, SpeedIcon, TranslateIcon],
-  gaming: [SportsEsportsIcon, SpeedIcon, ThreeDRotationIcon, GestureIcon],
-  ai: [FunctionsIcon, MemoryIcon, MemoryIcon, HubIcon],
-  earth: [ExploreIcon, MapIcon, MapIcon, AutoAwesomeIcon],
+  website: [AutoAwesomeIcon, SpeedIcon, TranslateIcon],
+  gaming: [SportsEsportsIcon, ThreeDRotationIcon, GestureIcon],
+  ai: [FunctionsIcon, MemoryIcon, HubIcon],
+  earth: [ExploreIcon, MapIcon, AutoAwesomeIcon],
 };
 
 export const FALLBACK_HIGHLIGHT_ICON = CheckCircleIcon;

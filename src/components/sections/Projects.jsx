@@ -4,13 +4,15 @@ import { useTranslations } from 'next-intl';
 
 import BlueprintGridBackground from '../backgrounds/BlueprintGridBackground';
 import ParallaxGlow from '../ui/ParallaxGlow';
-import ProjectsStory from '../projects/ProjectsStory';
+import ProjectGrid from '../projects/ProjectGrid';
 import SectionTitle from '../ui/SectionTitle';
 
 import Box from '@mui/material/Box';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import { projects } from '@/data/projects';
+
+const NAVBAR_HEIGHT = 80;
 
 function Projects() {
   const t = useTranslations();
@@ -47,11 +49,25 @@ function Projects() {
           opacity={0.55}
         />
       </Box>
-      <Box sx={{ maxWidth: 1000, mx: 'auto', px: 2, pb: 4, mt: '-100vh', position: 'relative' }}>
-        <SectionTitle title={t('work.projects')} description={t('work.recent')} />
+      {/* Title + grid, centered vertically in the part of the screen the
+          fixed navbar (80px) leaves visible. */}
+      <Box
+        sx={{
+          position: 'relative',
+          mt: '-100vh',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          pt: { md: `${NAVBAR_HEIGHT + 24}px` },
+          pb: { md: 3 },
+        }}
+      >
+        <Box sx={{ width: '100%', maxWidth: 1180, mx: 'auto', px: { xs: 2, md: 3 }, pb: 1 }}>
+          <SectionTitle title={t('work.projects')} description={t('work.recent')} />
+        </Box>
+        <ProjectGrid projects={projects} />
       </Box>
-
-      <ProjectsStory projects={projects} />
     </Box>
   );
 }

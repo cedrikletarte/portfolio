@@ -6,7 +6,9 @@
     "recent": "Découvrez certains de mes travaux récents.",
     "liveDemo": "Démo en ligne",
     "highlightsLabel": "Points forts",
-    "screenshotComingSoon": "Capture d'écran à venir"
+    "screenshotComingSoon": "Capture d'écran à venir",
+    "close": "Fermer",
+    "screenshot": "Capture {n}"
   },
   "home": {
     "hello": "Bonjour, mon nom est",
@@ -74,58 +76,38 @@
   "server": {
     "title": "Serveur multifonction",
     "tagline": "Configuration d'un serveur multifonction",
-    "description": "Serveur Ubuntu auto-hébergé exécutant des services conteneurisés avec durcissement de la sécurité, accès distant via VPN et maintenance entièrement automatisée.",
+    "description": "Serveur Ubuntu auto-hébergé exécutant des services conteneurisés, avec sécurité renforcée, accès distant par VPN et maintenance entièrement automatisée.",
     "highlights": [
       {
         "title": "Conteneurisation",
-        "desc": "",
-        "items": [
-          "<b>Plex</b> — streaming multimédia personnel",
-          "<b>Radarr / Sonarr / Prowlarr /qBittorrent</b> — automatisation du contenu",
-          "<b>Vaultwarden</b> — gestion des mots de passe",
-          "<b>Portainer</b> — administration des conteneurs"
-        ]
+        "desc": "Streaming, automatisation du contenu et gestion des mots de passe dans des conteneurs Docker administrés avec Portainer."
       },
       {
         "title": "Sécurité",
-        "desc": "",
-        "items": [
-          "<b>Traefik</b> — reverse-proxy avec SSL/TLS",
-          "<b>Crowdsec</b> — détection d'intrusion basée sur le comportement",
-          "<b>Cloudflare</b> — masquage d'IP et protection DDoS",
-          "<b>WireGuard VPN</b> — accès distant chiffré"
-        ]
+        "desc": "Reverse-proxy Traefik en HTTPS, détection d'intrusion Crowdsec, IP masquée par Cloudflare et accès distant WireGuard."
       },
       {
         "title": "Automatisation",
-        "desc": "Les mises à jour automatiques des conteneurs Docker et les <b>unattended upgrades</b> d'Ubuntu maintiennent tous les services à jour sans intervention manuelle."
+        "desc": "Conteneurs et paquets Ubuntu (<b>unattended upgrades</b>) se mettent à jour sans intervention manuelle."
       }
     ]
   },
   "website": {
     "title": "Portfolio",
     "tagline": "Création d'une page web portfolio",
-    "description": "Portfolio construit avec Next.js, TypeScript et Material UI. Supporte la localisation français/anglais, le mode sombre/clair, et est déployé via Docker avec un pipeline CI/CD GitLab.",
+    "description": "Portfolio bilingue construit avec Next.js et TypeScript, en mode sombre ou clair, et déployé via Docker avec un pipeline CI/CD GitLab.",
     "highlights": [
       {
-        "title": "Stack",
-        "desc": "Next.js 16, TypeScript, React, MUI, Tailwind, Docker, GitLab CI/CD."
-      },
-      {
-        "title": "Vitrine de projets",
-        "desc": "Chaque projet est présenté avec une description, des captures d'écran et les technologies utilisées, dans une expérience de défilement interactive."
-      },
-      {
-        "title": "UX & animations",
-        "desc": "Animations déclenchées au défilement, interface glass morphism, transitions fluides et mise en page responsive."
+        "title": "Animations & interactions",
+        "desc": "Défilement fluide (Lenis), effets de texte GSAP, grille de projets animée et transition de thème circulaire."
       },
       {
         "title": "Performance & SEO",
-        "desc": "Rendu côté serveur, indexation IndexNow, formulaire de contact sécurisé avec validation côté serveur."
+        "desc": "Rendu côté serveur, indexation IndexNow et formulaire de contact validé côté serveur."
       },
       {
-        "title": "i18n",
-        "desc": "Support complet français et anglais via next-intl, avec routage adapté aux locales."
+        "title": "Bilingue",
+        "desc": "Français et anglais via next-intl, avec routage par langue."
       }
     ]
   },
@@ -136,19 +118,15 @@
     "highlights": [
       {
         "title": "Constructeur de ville",
-        "desc": "Interface intuitive de placement d'objets 3D pour construire et personnaliser une ville."
-      },
-      {
-        "title": "Menu Unity UI",
-        "desc": "Menu de construction ergonomique avec navigation fluide via Unity UI."
+        "desc": "Placement d'objets 3D et menu de construction en Unity UI pour bâtir sa propre ville."
       },
       {
         "title": "Systèmes de caméra",
-        "desc": "Caméras orthogonale, libre et FPS pour une transition fluide entre les modes construction et exploration."
+        "desc": "Caméras orthogonale, libre et FPS pour passer en douceur de la construction à l'exploration."
       },
       {
         "title": "Mécaniques de mouvement",
-        "desc": "Sprint, saut, wallrun et déplacement en tirant des toiles propulsés par Unity Physics."
+        "desc": "Sprint, saut, wallrun et balancement en toile propulsés par Unity Physics."
       }
     ]
   },
@@ -159,42 +137,34 @@
     "highlights": [
       {
         "title": "Minimax & élagage Alpha-Bêta",
-        "desc": "Explore efficacement un espace d'états très vaste pour choisir le meilleur coup."
+        "desc": "Explore un espace d'états très vaste pour choisir le meilleur coup."
       },
       {
-        "title": "Évaluation heuristique",
-        "desc": "Fonction d'évaluation personnalisée qui priorise les coups gagnants."
-      },
-      {
-        "title": "Génération de coups",
-        "desc": "Génère les coups valides en respectant les contraintes imbriquées du plateau."
+        "title": "Heuristique & génération de coups",
+        "desc": "Évaluation sur mesure qui priorise les coups gagnants, en respectant les contraintes imbriquées du plateau."
       },
       {
         "title": "Jeu en réseau",
-        "desc": "Interface réseau pour s'affronter contre d'autres agents sur un serveur de jeu."
+        "desc": "Affronte d'autres agents sur un serveur de jeu."
       }
     ]
   },
   "earth": {
     "title": "Globe Terrestre",
     "tagline": "Globe terrestre 3D",
-    "description": "Globe 3D interactif construit avec Next.js et CesiumJS, avec recherche de villes, tuiles cartographiques auto-hébergées, contrôles atmosphériques et skybox spatial.",
+    "description": "Globe 3D interactif construit avec Next.js et CesiumJS, avec recherche de villes et tuiles cartographiques auto-hébergées.",
     "highlights": [
       {
         "title": "Globe 3D",
-        "desc": "CesiumJS rend une Terre interactive en temps réel avec imagerie satellite, relief 3D et atmosphère physiquement réaliste."
+        "desc": "Terre interactive en temps réel avec imagerie satellite, relief 3D et atmosphère réaliste."
       },
       {
-        "title": "Recherche de villes",
-        "desc": "Un géocodeur Nominatim auto-hébergé permet de rechercher et naviguer vers n'importe quelle ville dans le monde."
+        "title": "Services auto-hébergés",
+        "desc": "Géocodeur Nominatim pour rejoindre n'importe quelle ville, et TileServer-GL pour des styles de carte commutables."
       },
       {
-        "title": "Styles de carte",
-        "desc": "TileServer-GL auto-hébergé sert plusieurs styles de tuiles personnalisés commutables à l'exécution."
-      },
-      {
-        "title": "Skybox & Atmosphère",
-        "desc": "Skybox spatiale 6 faces avec paramètres atmosphériques réglables pour un environnement réaliste."
+        "title": "Skybox & atmosphère",
+        "desc": "Skybox spatiale 6 faces et paramètres atmosphériques réglables."
       }
     ]
   },

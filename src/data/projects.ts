@@ -12,35 +12,45 @@ export interface ProjectMeta {
 // Single source of truth for each project's external links, accent color,
 // tech tags and screenshot gallery. `repoUrl`/`liveUrl` are optional on
 // purpose: a "GitHub"/"Live Demo" button only renders when the value is set.
-// `images` is empty until a real screenshot is supplied — ProjectMedia falls
-// back to a placeholder in that case.
+// `images` is empty until a real screenshot is supplied — the grid falls
+// back to a placeholder in that case. The first image is the tile's cover.
+// Array order is display order: the first project gets the grid's big tile.
 export const projects: ProjectMeta[] = [
   {
     key: 'server',
     accent: '#6fc2b0',
     repoUrl: 'https://github.com/cedrikletarte/homelab-infra',
-    tags: ['Cloudflare', 'Wireguard', 'Plex', 'Vaultwarden'],
+    tags: [
+      'Docker',
+      'Traefik',
+      'Crowdsec',
+      'Cloudflare',
+      'WireGuard',
+      'Plex',
+      'Vaultwarden',
+      'Portainer',
+    ],
     images: ['/assets/screenshots/homarr.png'],
-  },
-  {
-    key: 'website',
-    accent: '#ec4899',
-    repoUrl: 'https://github.com/cedrikletarte/portfolio',
-    tags: ['Next.js', 'TypeScript', 'MUI', 'Docker'],
-    images: ['/assets/screenshots/thumbnail.png'],
   },
   {
     key: 'gaming',
     accent: '#f59e0b',
     tags: ['Unity', 'C#'],
     images: [
-      '/assets/screenshots/menu.png',
-      '/assets/screenshots/orthogonal.png',
+      '/assets/screenshots/swinging.png',
+      '/assets/screenshots/wallrun.png',
       '/assets/screenshots/fps.png',
       '/assets/screenshots/freecam.png',
-      '/assets/screenshots/wallrun.png',
-      '/assets/screenshots/swinging.png',
+      '/assets/screenshots/orthogonal.png',
+      '/assets/screenshots/menu.png',
     ],
+  },
+  {
+    key: 'earth',
+    accent: '#22d3ee',
+    repoUrl: 'https://github.com/cedrikletarte/earth',
+    tags: ['Next.js', 'CesiumJS', 'Nominatim', 'TileServer-GL'],
+    images: ['/assets/screenshots/earth.png'],
   },
   {
     key: 'ai',
@@ -49,11 +59,11 @@ export const projects: ProjectMeta[] = [
     images: ['/assets/screenshots/tictactoe.png'],
   },
   {
-    key: 'earth',
-    accent: '#22d3ee',
-    repoUrl: 'https://github.com/cedrikletarte/earth',
-    tags: ['Next.js', 'CesiumJS'],
-    images: ['/assets/screenshots/earth.png'],
+    key: 'website',
+    accent: '#ec4899',
+    repoUrl: 'https://github.com/cedrikletarte/portfolio',
+    tags: ['Next.js', 'TypeScript', 'MUI', 'GSAP', 'Docker', 'GitLab CI/CD'],
+    images: ['/assets/screenshots/thumbnail.png'],
   },
 ];
 

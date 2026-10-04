@@ -9,24 +9,28 @@ import { HEADER_ICONS, PLACEHOLDER_META } from './projectVisuals';
 
 const DOT_COLORS = ['#ff5f57', '#febc2e', '#28c840'];
 
-export default function ProjectPlaceholder({ projectKey, accent }) {
+// `sx` overrides the frame, e.g. to fill a grid tile instead of keeping 16:10.
+export default function ProjectPlaceholder({ projectKey, accent, sx }) {
   const t = useTranslations();
   const meta = PLACEHOLDER_META[projectKey];
   const HeaderIcon = HEADER_ICONS[projectKey];
 
   return (
     <Box
-      sx={{
-        position: 'relative',
-        width: '100%',
-        aspectRatio: '16 / 10',
-        borderRadius: 3,
-        overflow: 'hidden',
-        border: `1px solid ${accent}40`,
-        boxShadow: `0 0 0 1px ${accent}20, 0 16px 48px -10px rgba(0,0,0,0.6)`,
-        background: (theme) =>
-          theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
-      }}
+      sx={[
+        {
+          position: 'relative',
+          width: '100%',
+          aspectRatio: '16 / 10',
+          borderRadius: 3,
+          overflow: 'hidden',
+          border: `1px solid ${accent}40`,
+          boxShadow: `0 0 0 1px ${accent}20, 0 16px 48px -10px rgba(0,0,0,0.6)`,
+          background: (theme) =>
+            theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.02)',
+        },
+        ...(Array.isArray(sx) ? sx : [sx ?? false]),
+      ]}
     >
       {/* Diagonal accent hatch background */}
       <Box
