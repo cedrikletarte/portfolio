@@ -4,12 +4,13 @@ import Box from '@mui/material/Box';
 import Text from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
-import { ReactTyped } from 'react-typed';
 import { useScrollToSection } from '../../hooks/useScrollToSection';
 import CTAButton from '../ui/CTAButton';
+import CharReveal from '../ui/CharReveal';
 import HeroCanvas from '../ui/HeroCanvas';
 import ParallaxGlow from '../ui/ParallaxGlow';
 import Reveal from '../ui/Reveal';
+import ScrambleCycle from '../ui/ScrambleCycle';
 
 const Home = () => {
   const t = useTranslations();
@@ -67,20 +68,18 @@ const Home = () => {
             {t('home.hello')}
           </Text>
         </Reveal>
-        <Reveal direction="up" distance={40} delay={0.05}>
-          <Text
-            component="h1"
-            variant="h2"
-            sx={{
-              fontWeight: 'bold',
-              fontSize: { xs: 32, sm: 40, md: 56 },
-              mb: { xs: 1, md: 2 },
-              lineHeight: 1.1,
-            }}
-          >
-            Cédrik
-          </Text>
-        </Reveal>
+        <Text
+          component="h1"
+          variant="h2"
+          sx={{
+            fontWeight: 'bold',
+            fontSize: { xs: 32, sm: 40, md: 56 },
+            mb: { xs: 1, md: 2 },
+            lineHeight: 1.1,
+          }}
+        >
+          <CharReveal delay={0.15}>Cédrik</CharReveal>
+        </Text>
         <Reveal direction="up" distance={40} delay={0.1}>
           <Text
             component="div"
@@ -92,7 +91,7 @@ const Home = () => {
               minHeight: 40,
             }}
           >
-            <ReactTyped strings={t.raw('home.typed')} typeSpeed={100} backSpeed={50} loop />
+            <ScrambleCycle strings={t.raw('home.typed')} delay={0.6} />
           </Text>
         </Reveal>
         <Reveal direction="up" distance={40} delay={0.15}>
