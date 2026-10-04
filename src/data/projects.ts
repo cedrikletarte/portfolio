@@ -61,7 +61,7 @@ export const projects: ProjectMeta[] = [
       mp4: '/assets/videos/earth-demo.mp4',
       poster: '/assets/videos/earth-demo-poster.webp',
     },
-    tags: ['Next.js', 'CesiumJS', 'Nominatim', 'TileServer-GL'],
+    tags: ['React', 'Vite', 'CesiumJS', 'NASA GIBS', 'EONET', 'TileServer-GL', 'Nominatim'],
     images: ['/assets/screenshots/earth.png'],
   },
   {

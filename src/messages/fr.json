@@ -170,20 +170,20 @@
   },
   "earth": {
     "title": "Globe Terrestre",
-    "tagline": "Globe terrestre 3D",
-    "description": "Globe 3D interactif construit avec Next.js et CesiumJS, avec recherche de villes et tuiles cartographiques auto-hébergées.",
+    "tagline": "Globe 3D et données de la NASA",
+    "description": "Globe 3D interactif construit avec React, Vite et CesiumJS, sans dépendre de Cesium Ion : cartes et recherche auto-hébergées, données de la NASA et ciel de la Voie lactée.",
     "highlights": [
       {
-        "title": "Globe 3D",
-        "desc": "Terre interactive en temps réel avec imagerie satellite, relief 3D et atmosphère réaliste."
+        "title": "Données de la NASA",
+        "desc": "Imagerie satellite quotidienne (GIBS) avec choix de la date, lumières des villes côté nuit et événements naturels en cours (EONET)."
       },
       {
-        "title": "Services auto-hébergés",
-        "desc": "Géocodeur Nominatim pour rejoindre n'importe quelle ville, et TileServer-GL pour des styles de carte commutables."
+        "title": "Cartes et recherche auto-hébergées",
+        "desc": "Styles de carte TileServer-GL, et une recherche Nominatim qui cadre le lieu, trace ses frontières et affiche sa fiche Wikipédia."
       },
       {
-        "title": "Skybox & atmosphère",
-        "desc": "Skybox spatiale 6 faces et paramètres atmosphériques réglables."
+        "title": "Rendu 3D sur mesure",
+        "desc": "Modes 3D, 2D et Columbus, réglages d'atmosphère et skybox générée en Python à partir d'un panorama de l'ESO."
       }
     ]
   },

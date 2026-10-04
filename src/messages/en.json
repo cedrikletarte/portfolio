@@ -170,20 +170,20 @@
   },
   "earth": {
     "title": "Earth Globe",
-    "tagline": "3D Earth Globe",
-    "description": "Interactive 3D globe built with Next.js and CesiumJS, with city search and self-hosted map tiles.",
+    "tagline": "3D globe and NASA data",
+    "description": "Interactive 3D globe built with React, Vite and CesiumJS, without Cesium Ion: self-hosted maps and search, NASA data and a Milky Way sky.",
     "highlights": [
       {
-        "title": "3D Globe",
-        "desc": "Real-time interactive Earth with satellite imagery, 3D terrain and a realistic atmosphere."
+        "title": "NASA data",
+        "desc": "Daily satellite imagery (GIBS) with a date picker, city lights on the night side and ongoing natural events (EONET)."
       },
       {
-        "title": "Self-hosted services",
-        "desc": "Nominatim geocoder to fly to any city, and TileServer-GL for switchable map styles."
+        "title": "Self-hosted maps and search",
+        "desc": "TileServer-GL map styles, and a Nominatim search that frames the place, draws its boundaries and shows its Wikipedia card."
       },
       {
-        "title": "Skybox & atmosphere",
-        "desc": "6-face space skybox with tunable atmospheric parameters."
+        "title": "Custom 3D rendering",
+        "desc": "3D, 2D and Columbus modes, atmosphere settings and a skybox generated in Python from an ESO panorama."
       }
     ]
   },

@@ -2,21 +2,21 @@ import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DnsIcon from '@mui/icons-material/Dns';
-import ExploreIcon from '@mui/icons-material/Explore';
 import FunctionsIcon from '@mui/icons-material/Functions';
 import GestureIcon from '@mui/icons-material/Gesture';
 import HealingIcon from '@mui/icons-material/Healing';
 import HubIcon from '@mui/icons-material/Hub';
 import LanguageIcon from '@mui/icons-material/Language';
-import MapIcon from '@mui/icons-material/Map';
 import MemoryIcon from '@mui/icons-material/Memory';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import PublicIcon from '@mui/icons-material/Public';
+import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 import SecurityIcon from '@mui/icons-material/Security';
 import SpeedIcon from '@mui/icons-material/Speed';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import TranslateIcon from '@mui/icons-material/Translate';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 import HomelabDiagram from './diagrams/HomelabDiagram';
 
@@ -33,7 +33,7 @@ export const HIGHLIGHT_ICONS = {
   website: [AutoAwesomeIcon, SpeedIcon, TranslateIcon],
   gaming: [SportsEsportsIcon, ThreeDRotationIcon, GestureIcon],
   ai: [FunctionsIcon, MemoryIcon, HubIcon],
-  earth: [ExploreIcon, MapIcon, AutoAwesomeIcon],
+  earth: [SatelliteAltIcon, TravelExploreIcon, ThreeDRotationIcon],
 };
 
 export const FALLBACK_HIGHLIGHT_ICON = CheckCircleIcon;
