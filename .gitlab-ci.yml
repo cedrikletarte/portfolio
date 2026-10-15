@@ -1,6 +1,7 @@
 variables:
   IMAGE_TAGGED_NAME: 'portfolio-app:latest'
-  # Docker configuration for socket connection
+  # Docker configuration for socket connection: only the jobs tagged docker-host (protected runner
+  # locked to this project) get the socket, the other jobs run on the shared runner without it
   DOCKER_HOST: unix:///var/run/docker.sock
   DOCKER_TLS_CERTDIR: ''
   DOCKER_DRIVER: overlay2
@@ -30,7 +31,8 @@ test-job:
 
 build-job:
   stage: build
-  image: docker:latest
+  image: docker:29.9.0-cli
+  tags: [docker-host]
   before_script:
     # download docker file from docker-configs repo
     - wget -O /opt/Dockerfile --header "PRIVATE-TOKEN:${GITLAB_READ_TOKEN}" ${CI_API_V4_URL}/projects/19/repository/files/dockerfiles%2Fportfolio%2FDockerfile/raw\?ref=main
@@ -43,7 +45,8 @@ build-job:
 
 deploy-job:
   stage: deploy
-  image: docker:latest
+  image: docker:29.9.0-cli
+  tags: [docker-host]
   needs: [build-job]
   before_script:
     # download docker-compose file from docker-configs repo
@@ -75,8 +78,9 @@ dependency-audit:
 image-scan:
   stage: scan
   image:
-    name: aquasec/trivy:latest
+    name: aquasec/trivy:0.75.0
     entrypoint: [""]
+  tags: [docker-host]
   # After a build the image is fresh; on a scheduled pipeline there is no build and the scan looks at the
   # image that is currently deployed on the runner's Docker host.
   needs:
